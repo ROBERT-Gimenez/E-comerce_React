@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
 }
 .Logo{
   width: 11rem;
@@ -15,6 +20,11 @@
 .nav-contein-btn{
 gap: 7rem;
 }
-
-
+.carousel-inner{
+  height: 9rem;
+}
+img.carrousel{
+  max-width:max-content;
+  min-inline-size:-webkit-fill-available;
+}
 
