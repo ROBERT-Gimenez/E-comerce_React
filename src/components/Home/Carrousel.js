@@ -8,20 +8,16 @@ export default function Carrousel() {
   let imgs = [banner1,banner2,banner3]
   return (
     <div>
-    <Carousel variant="dark" className='corrousel'>
+    <Carousel variant="transparent" className='corrousel'>
       {imgs.map((img , indx) => {
         return(
-          <Carousel.Item interval={1000} key={indx}>
+        <Carousel.Item interval={1000} key={indx}>
         <img
           className="d-block w-100  carrousel"
           src={img}
-          alt="First slide"
+          alt="slide"
         />
-        <Carousel.Caption>
-          <h3>Ofertas</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
+        </Carousel.Item>
         )
       })}
     </Carousel>
