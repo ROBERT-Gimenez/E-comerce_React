@@ -1,7 +1,20 @@
 .App {
   text-align: center;
 }
-
+.Logo{
+  width: 11rem;
+  height: 5rem;
+  position: absolute;
+  left: -17px;
+  top: -1rem;
+}
+.nav-container{
+  position: relative;
+    left: 10%;
+}
+.nav-contein-btn{
+gap: 7rem;
+}
 
 
 
