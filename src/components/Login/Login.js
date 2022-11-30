@@ -4,10 +4,14 @@ import '../Login/Login.css'
 export default function Login() {
   return (
     <div>
-        <form>
+        <nav className='w-full flex py-6 justify-between items-center navbar'>
+
+        </nav>
+        <form className='form-style'>
             <div className='group-input'>
+            <label className='input-label'>Email Address
             <input type="text" id='name' required className='input-style'/>
-            <label for="name" className='input-label'>Email Address</label>
+            </label>
             </div>
         </form>
     </div>

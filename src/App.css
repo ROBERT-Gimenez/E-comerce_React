@@ -9,7 +9,7 @@
 .Logo{
   width: 11rem;
   height: 5rem;
-  position: absolute;
+  position: relative;
   left: -17px;
   top: -1rem;
 }
@@ -30,3 +30,9 @@ img.carrousel{
   display: none;
 }
 
+.navbar-collapse{
+  gap: 7rem;
+}
+a{
+  text-decoration: none;
+}

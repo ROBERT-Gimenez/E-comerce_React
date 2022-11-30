@@ -1,11 +1,13 @@
 import {NavDropdown , Form , Button ,Navbar ,Nav, Container } from 'react-bootstrap';
 import Logo from '../resource/img/logo-2.svg'
+import { Link } from 'react-router-dom';
+
 export default function Header() {
   return (
     <header>
-    <Navbar bg="dark" variant="dark">
-    <Container>
-        <Navbar.Brand href="/">
+    <Navbar variant='dark' bg="dark" expand="lg">
+      <Container fluid>
+      <Navbar.Brand href="/">
             <img
               alt="logo"
               src={Logo}
@@ -14,36 +16,37 @@ export default function Header() {
               className="d-inline align-top Logo"
             />{' '}
         </Navbar.Brand>
-        <Nav className="me-auto nav-container">
-            <Navbar.Collapse id="navbarScroll" className='nav-contein-btn'>
-                <Nav
-                    className="me-auto my-2 my-lg-0"
-                    style={{ maxHeight: '100px' }}
-                    navbarScroll
-                >
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '100px' , gap:"3rem" }}
+            navbarScroll
+          >
+                <Link to="/Admin-Profile"><Nav.Link href="/" >Admin</Nav.Link></Link>
+                <Link to="/ShoppingCart"><Nav.Link href="#action2">Shopping</Nav.Link></Link>
                     <NavDropdown title="Categorias" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="#action3">Bicicletas</NavDropdown.Item>
-                        <NavDropdown.Item href="#action4">Accesorios</NavDropdown.Item>
+                        <Link to="/Bicicletas"><NavDropdown.Item href="#action3">Bicicletas</NavDropdown.Item></Link>
+                        <Link to="/Accesorios"><NavDropdown.Item href="#action4">Accesorios</NavDropdown.Item></Link>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action5">Promociones</NavDropdown.Item>
+                        <Link to="/Promociones"><NavDropdown.Item href="/">Promociones</NavDropdown.Item></Link>
                     </NavDropdown>
-                </Nav>
-                <Form className="d-flex">
-                    <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                    />
-                    <Button variant="outline-success">Search</Button>
-                </Form>
-            <Nav.Link href="#features">carro</Nav.Link>
-            <Nav.Link href="#pricing">Profile</Nav.Link>
-            </Navbar.Collapse>
-        </Nav>
-          
-    </Container>
+                <Link to="/Login"><Nav.Link href="/">Login</Nav.Link></Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
+
     </header>
   )
 }
