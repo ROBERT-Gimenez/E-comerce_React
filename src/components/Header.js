@@ -29,19 +29,19 @@ export default function Header() {
           </Form>
 
           <Nav
-            className="me-auto my-2 my-lg-0"
+            className="me-auto my-2 my-lg-0 align-items-center"
             style={{ maxHeight: '100px' , gap:"3rem" }}
             navbarScroll
           >
-                <Link to="/Admin-Profile"><Nav.Link href="/" >Admin</Nav.Link></Link>
-                <Link to="/ShoppingCart"><Nav.Link href="#action2">Shopping</Nav.Link></Link>
+                <Link to="/Admin-Profile">Admin</Link>
+                <Link to="/ShoppingCart">Shopping</Link>
                     <NavDropdown title="Categorias" id="navbarScrollingDropdown">
-                        <Link to="/Bicicletas"><NavDropdown.Item href="#action3">Bicicletas</NavDropdown.Item></Link>
-                        <Link to="/Accesorios"><NavDropdown.Item href="#action4">Accesorios</NavDropdown.Item></Link>
+                        <Link to="/Bicicletas"><NavDropdown.Item href="/">Bicicletas</NavDropdown.Item></Link>
+                        <Link to="/Accesorios"><NavDropdown.Item href="/">Accesorios</NavDropdown.Item></Link>
                         <NavDropdown.Divider />
                         <Link to="/Promociones"><NavDropdown.Item href="/">Promociones</NavDropdown.Item></Link>
                     </NavDropdown>
-                <Link to="/Login"><Nav.Link href="/">Login</Nav.Link></Link>
+                <Link to="/Login">Login</Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
