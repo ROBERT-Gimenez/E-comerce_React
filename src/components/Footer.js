@@ -1,11 +1,11 @@
 import React from 'react'
-import {Navbar , Container} from 'react-bootstrap'
+import {Navbar} from 'react-bootstrap'
 
 export default function Footer() {
   return (
     <div>
         <Navbar bg="dark" variant="dark">
-          <Container>
+          <>
           <Navbar.Brand href="#home">
             <img
               alt=""
@@ -16,7 +16,7 @@ export default function Footer() {
             />{' '}
             copyright Bike's Master
           </Navbar.Brand>
-        </Container>
+        </>
       </Navbar>
     </div>
   )
