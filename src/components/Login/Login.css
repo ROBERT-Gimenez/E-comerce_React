@@ -12,7 +12,7 @@ body {
  :before {
     box-sizing: border-box
 }
-form{
+.body-login{
     background-color: #ff2e00;
     padding-bottom: 2rem;
 }
