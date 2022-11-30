@@ -8,18 +8,18 @@ import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import Cart from "./components/Cart/Cart";
 import Admin from "./components/Admin/Admin";
+import Shopping from "./components/Cart/Shopping";
 function App() {
   return (
     <div className="App">
       <Header/>
       <Routes>
       <Route path="/" element={<Home/>}></Route>
-      <Route path="/login" element={<Login/>}></Route>
+      <Route path="/Login" element={<Login/>}></Route>
       <Route path="/Profile" element={<Profile/>}></Route>
       <Route path="/ShoppingCart" element={<Cart/>}></Route>
+      <Route path="/Made-Purchases" element={<Shopping/>}></Route>
       <Route path="/Admin-Profile" element={<Admin/>}></Route>
-      
-
       </Routes>
       <Footer/>
     </div>
