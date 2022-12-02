@@ -3,7 +3,7 @@ import {Navbar} from 'react-bootstrap'
 
 export default function Footer() {
   return (
-    <div>
+    <div className='footer-general'>
         <Navbar bg="dark" variant="dark">
           <>
           <Navbar.Brand href="#home">

@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
+  background-color: #212529;
 }
 .Logo{
   width: 11rem;
@@ -35,4 +36,7 @@ img.carrousel{
 }
 a{
   text-decoration: none;
+}
+.footer-general{
+  box-shadow: 0px 13px 30px 0px;
 }
