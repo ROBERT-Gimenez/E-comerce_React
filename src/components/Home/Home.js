@@ -4,7 +4,7 @@ import Carrousel from './Carrousel'
 
 export default function Home() {
   return (
-    <div>
+    <div className='conteiner-home'>
         <Carrousel/>
         <List/>
     </div>
