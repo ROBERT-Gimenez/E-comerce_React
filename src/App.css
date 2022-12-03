@@ -47,3 +47,8 @@ a{
 .corrousel{
   margin-bottom: 1rem;
 }
+.nav-link ,
+.dropdown-item ,
+.dropdown-menu{
+  color : inherit
+}

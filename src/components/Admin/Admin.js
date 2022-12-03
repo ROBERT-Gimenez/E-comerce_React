@@ -11,9 +11,7 @@ export default function Admin() {
         <Nav.Link eventKey="Products">Products</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="Categorys" >
-          Categorias
-        </Nav.Link>
+        <Nav.Link eventKey="Categorys" >Categorias</Nav.Link>
       </Nav.Item>
     </Nav>
     <Table striped bordered hover variant="dark">
