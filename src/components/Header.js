@@ -35,7 +35,7 @@ export default function Header() {
           >
                 <Link to="/Admin-Profile">Admin</Link>
                 <Link to="/ShoppingCart">Shopping</Link>
-                    <NavDropdown title="Categorias" id="navbarScrollingDropdown">
+                    <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
                         <Link to="/Bicicletas"><NavDropdown.Item href="/">Bicicletas</NavDropdown.Item></Link>
                         <Link to="/Accesorios"><NavDropdown.Item href="/">Accesorios</NavDropdown.Item></Link>
                         <NavDropdown.Divider />
