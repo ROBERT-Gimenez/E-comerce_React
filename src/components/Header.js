@@ -33,6 +33,7 @@ export default function Header() {
             style={{ maxHeight: '100px' , gap:"3rem" }}
             navbarScroll
           >
+                <Link to="/">Home</Link>
                 <Link to="/Admin-Profile">Admin</Link>
                 <Link to="/ShoppingCart">Shopping</Link>
                     <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
