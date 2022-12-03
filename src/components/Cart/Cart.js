@@ -19,28 +19,28 @@ export default function Cart() {
       <thead>
         <tr>
           <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Producto</th>
+          <th>Price</th>
+          <th>Data Time</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>Rueda N26</td>
+          <td>$2566</td>
+          <td>12/22/22</td>
         </tr>
         <tr>
           <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
+          <td>CADENA TEC</td>
+          <td>$1200</td>
+          <td>23/06/21</td>
         </tr>
         <tr>
           <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
+          <td colSpan={2}>Mantenimiento General</td>
+          <td>01/02/21</td>
         </tr>
       </tbody>
     </Table>
