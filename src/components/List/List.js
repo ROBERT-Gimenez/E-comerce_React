@@ -7,8 +7,8 @@ export default function List() {
     <div>
         <Row xs={1} md={4} className="g-4">
       {Array.from({ length: 8 }).map((_, idx) => (
-        <Col>
-         <Card style={{ width: '18rem' }}>
+        <Col key={idx}>
+         <Card style={{ width: '18rem' }} >
             <Card.Img variant="top" src={img} />
             <Card.Body>
                 <Card.Title>Card Title</Card.Title>

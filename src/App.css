@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  height: 100vh;
+  height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -23,8 +23,8 @@ gap: 7rem;
 }
 
 img.carrousel{
-  max-width:max-content;
-  min-inline-size:-webkit-fill-available;
+/*   max-width:max-content;
+  min-inline-size:-webkit-fill-available; */
   height: 12rem;
 
 }
@@ -39,6 +39,7 @@ a{
   text-decoration: none;
 }
 .footer-general{
+  margin-top: 2rem;
   box-shadow: 0px 13px 30px 0px;
 }
 .conteiner-home{
@@ -52,3 +53,29 @@ a{
 .dropdown-menu{
   color : inherit
 }
+.luna-container{
+    transition: 0.3s;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #222222;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+.luna{
+        width: 70%;
+        height: 70%;
+        filter: invert(1);
+    }
+.luna-container:hover{
+        transition: 0.5s;
+        scale: 1.02;
+        cursor: pointer;
+    }
+
+
+

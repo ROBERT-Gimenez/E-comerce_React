@@ -1,8 +1,20 @@
 import {NavDropdown , Form , Button ,Navbar ,Nav, Container } from 'react-bootstrap';
-import Logo from '../resource/img/logo-2.svg'
 import { Link } from 'react-router-dom';
+import {motion} from 'framer-motion'
+// resource 
+import Logo from '../resource/img/logo-2.svg'
+import sol from '../resource/img/sol.png'
+import luna from '../resource/img/luna.png'
+//redux
+import { setNight } from '../Store/state';
+import { useDispatch , useSelector } from 'react-redux';
+
 
 export default function Header() {
+
+    const dispatch = useDispatch();
+    const night = useSelector(state => state.night)
+
   return (
     <header>
     <Navbar variant='dark' bg="dark" expand="lg">
@@ -43,6 +55,14 @@ export default function Header() {
                         <Link to="/Promociones"><NavDropdown.Item href="/">Promociones</NavDropdown.Item></Link>
                     </NavDropdown>
                 <Link to="/Login">Login</Link>
+                <motion.div
+                    initial={{opacity: 0, y:-100}}
+                    animate={{opacity:1, y:0}}
+                    transition={{duration: 0.3, delay: 2.9}}
+                    className="luna-container"
+                    onClick={() => dispatch(setNight())}>
+                <img className='luna' src={night ? luna : sol} alt="nightmode"/>
+                </motion.div>
           </Nav>
         </Navbar.Collapse>
       </Container>

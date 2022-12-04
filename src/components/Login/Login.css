@@ -13,7 +13,6 @@ body {
     box-sizing: border-box
 }
 .body-login{
-    background-color: #ff2e00;
     padding-bottom: 2rem;
 }
 .clearfix:after,

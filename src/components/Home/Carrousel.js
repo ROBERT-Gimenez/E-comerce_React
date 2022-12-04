@@ -11,7 +11,7 @@ export default function Carrousel() {
     <Carousel variant="transparent" className='corrousel'>
       {imgs.map((img , indx) => {
         return(
-        <Carousel.Item interval={1000} key={indx}>
+        <Carousel.Item interval={2000} key={indx}>
         <img
           className="d-block w-100  carrousel"
           src={img}
