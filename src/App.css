@@ -26,6 +26,7 @@ img.carrousel{
 /*   max-width:max-content;
   min-inline-size:-webkit-fill-available; */
   height: 12rem;
+  object-fit: cover;
 
 }
 .carousel-indicators{

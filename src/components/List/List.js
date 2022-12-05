@@ -3,22 +3,26 @@ import {useState , useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
 import './List.css'
 import axios from 'axios';
+import { useSelector , useDispatch } from 'react-redux';
+import { setListStore } from '../../Store/Products';
 const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function List() {
-
-
-    const [productsList , setProductsList] = useState([]);
+  const dispatch = useDispatch();
+  const listStore = useSelector(state => state.products)
+   const [productsList , setProductsList] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:4000/api/products")
         .then(response => {
             const apiData = response.data;
-            console.log(apiData.data)
             setProductsList(apiData.data)
+            dispatch(setListStore(productsList))
+            
+            
         }).catch(err => alert(err))
-    } ,[])
-/* Array.from({ length: 8 }) */
+    } ,[]) 
+    console.log(productsList)
   return (
     <div>
         <Row xs={1} md={4} className="g-4">
