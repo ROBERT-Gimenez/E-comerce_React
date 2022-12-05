@@ -60,8 +60,8 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     color: #222222;
     background-color: rgba(255, 255, 255, 0.75);
@@ -76,6 +76,21 @@ a{
         scale: 1.02;
         cursor: pointer;
     }
+.icons-header{
+  display: flex;
+  align-items: center;
+}
+.icons-header svg{
+  font-size: 1.4rem;
+}
+.whattsapp-icon{
+  position: fixed;
+  font-size: 3rem;
+  bottom: 3%;
+  right: 2%;
+  color: green;
+  z-index: 10;
+}
 
 
 

@@ -1,6 +1,9 @@
 import {Row , Col , Card , Button} from 'react-bootstrap'
 import img from '../../resource/img/carrousel/banner-4.png'
 import React from 'react'
+import {ImHeart} from "react-icons/im";
+import './List.css'
+
 
 export default function List() {
   return (
@@ -9,6 +12,7 @@ export default function List() {
       {Array.from({ length: 8 }).map((_, idx) => (
         <Col key={idx}>
          <Card style={{ width: '18rem' }} >
+            <ImHeart className='cart-card'/>
             <Card.Img variant="top" src={img} />
             <Card.Body>
                 <Card.Title>Card Title</Card.Title>
