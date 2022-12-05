@@ -3,7 +3,7 @@ import {useState , useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
 import './List.css'
 import axios from 'axios';
-const imgs = require.context('../../resource/img/products', true);
+const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function List() {
 
@@ -22,17 +22,18 @@ export default function List() {
   return (
     <div>
         <Row xs={1} md={4} className="g-4">
-      {productsList.map((prod,idx) => (
+      {productsList.length > 1 && productsList.map((prod,idx) => (
+        
         <Col key={idx}>
-         <Card style={{ width: '18rem' }} >
+         <Card className='body-card-product' >
             <ImHeart className='cart-card'/>
-            <Card.Img variant="top" src={imgs(`${prod.image}`)} />
+            <Card.Img className='img-cards-products' variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title}/>
             <Card.Body>
-                <Card.Title>{prod.title}</Card.Title>
+                <Card.Title>{prod.name.substring(0 ,24)}..</Card.Title>
                 <Card.Text>
-                {prod.description}
+                {prod.description.substring(0 ,40)}..
                 </Card.Text>
-                <Button variant="primary">Ver</Button>
+                <Button className='btns-products' variant="primary">Ver</Button>
             </Card.Body>
             </Card>
         </Col>

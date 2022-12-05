@@ -9,3 +9,28 @@
     border-radius: 10px;
     cursor: pointer;
 }
+.img-cards-products{
+    min-height: 15rem;
+    max-height: 14rem;
+    object-fit: contain;
+}
+.body-card-product{
+    width: 18rem;
+    max-height: 23rem;
+    min-height: 23rem;
+    font-size:13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 10px;
+}
+.btns-products{
+    position: absolute;
+    bottom: 2%;
+    left: 36%;
+    width: 30%;
+}
+.body-card-product h5{
+    font-size: 18px;
+}

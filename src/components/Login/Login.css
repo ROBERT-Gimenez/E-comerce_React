@@ -1,19 +1,17 @@
 
-body {
+.body-login{
     margin: 0;
     color: #C1AAC6;
     background: #131315;
     font-family: 'Montserrat', monospace;
     font-weight: bold;
+    padding-bottom: 2rem;
 }
 
 *,
  :after,
  :before {
     box-sizing: border-box
-}
-.body-login{
-    padding-bottom: 2rem;
 }
 .clearfix:after,
 .clearfix:before {
