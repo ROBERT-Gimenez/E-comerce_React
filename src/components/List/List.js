@@ -4,31 +4,25 @@ import {ImHeart} from "react-icons/im";
 import './List.css'
 import axios from 'axios';
 import { useSelector , useDispatch } from 'react-redux';
-import { setListStore } from '../../Store/Products';
+import { setListStore } from '../../Store/state';
 import useGetAxios from '../../hooks/useGetAxios';
-import { set } from 'immer/dist/internal';
 const imgsProducts = require.context('../../resource/img/products', true);
+
 export default function List() {
   const dispatch = useDispatch();
-  const listStore = useSelector(state => state.products)
+  const listStore = useSelector(state => state.Products)
   const [productsList , setProductsList] = useState([]);
-  const {data , loading} = useGetAxios("http://localhost:4000/api/products")
   
+  const {data , loading} = useGetAxios("http://localhost:4000/api/products")
   useEffect(() => {
-         /* axios.get("http://localhost:4000/api/products")
-        .then(response => {
-            const apiData = response.data; */
-             
-
-       /*  }).catch(err => alert(err))  */
-    } ,[])   
-    console.log(productsList)
-    
-   
+       !loading && setProductsList(data)
+       console.log(loading)
+      } ,[loading])   
+         
   return (
     <div>
         <Row xs={1} md={4} className="g-4">
-      {productsList.length > 1 && productsList.map((prod,idx) => (
+      { !loading  && productsList.map((prod,idx) => (
         
         <Col key={idx}>
          <Card className='body-card-product' >
