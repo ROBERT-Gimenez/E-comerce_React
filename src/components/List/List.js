@@ -5,24 +5,26 @@ import './List.css'
 import axios from 'axios';
 import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/Products';
+import useGetAxios from '../../hooks/useGetAxios';
+import { set } from 'immer/dist/internal';
 const imgsProducts = require.context('../../resource/img/products', true);
-
 export default function List() {
   const dispatch = useDispatch();
   const listStore = useSelector(state => state.products)
-   const [productsList , setProductsList] = useState([]);
-
-    useEffect(() => {
-        axios.get("http://localhost:4000/api/products")
+  const [productsList , setProductsList] = useState([]);
+  const {data , loading} = useGetAxios("http://localhost:4000/api/products")
+  
+  useEffect(() => {
+         /* axios.get("http://localhost:4000/api/products")
         .then(response => {
-            const apiData = response.data;
-            setProductsList(apiData.data)
-            dispatch(setListStore(productsList))
-            
-            
-        }).catch(err => alert(err))
-    } ,[]) 
+            const apiData = response.data; */
+             
+
+       /*  }).catch(err => alert(err))  */
+    } ,[])   
     console.log(productsList)
+    
+   
   return (
     <div>
         <Row xs={1} md={4} className="g-4">
