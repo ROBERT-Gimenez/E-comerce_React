@@ -21,7 +21,7 @@ export default function List() {
          
   return (
     <div>
-        <Row xs={1} md={4} className="g-4">
+        <Row xs="auto" md="auto" lg="auto" className="container-col-card">
       { !loading  && productsList.map((prod,idx) => (
         
         <Col key={idx}>

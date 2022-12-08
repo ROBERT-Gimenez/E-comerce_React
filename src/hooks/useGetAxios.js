@@ -16,7 +16,7 @@ export default function useGetAxios(url) {
         .then((data)=>{
             setData(data.data.data);
             setLoading(false);
-            dispatch(setListStore(data.data.data))
+            /* dispatch(setListStore(data.data.data)) */
 
         });
     } , [url]); 
