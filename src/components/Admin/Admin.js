@@ -3,7 +3,7 @@ import React from 'react'
 export default function Admin() {
   return (
     <div>
-    <Nav variant="tabs" defaultActiveKey="/home">
+    <Nav variant="tabs" defaultActiveKey="/home" className='nav-admin'>
       <Nav.Item>
         <Nav.Link eventKey="Users">Users</Nav.Link>
       </Nav.Item>
