@@ -10,7 +10,7 @@ import Cart from "./components/Cart/Cart";
 import Admin from "./components/Admin/Admin";
 import Shopping from "./components/Cart/Shopping";
 import Canvas3D from "./components/Cart/Canvas3D";
-
+import DetailProduct from "./components/Cart/DetailProduct";
 function App() {
   return (
     <div className="App" style={{background:{Canvas3D}}}>
@@ -18,6 +18,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path="/canva" element={<Canvas3D/>}></Route>
+      <Route path="/detalle" element={<DetailProduct/>}></Route>
       <Route path="/Login" element={<Login/>}></Route>
       <Route path="/Profile" element={<Profile/>}></Route>
       <Route path="/ShoppingCart" element={<Cart/>}></Route>

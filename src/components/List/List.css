@@ -10,9 +10,10 @@
     cursor: pointer;
 }
 .img-cards-products{
-    min-height: 15rem;
+    /* min-height: 15rem; */
     max-height: 14rem;
     object-fit: contain;
+    cursor: pointer;
 }
 .container-col-card{
     gap: 10px;

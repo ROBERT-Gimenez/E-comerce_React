@@ -2,6 +2,7 @@ import {Row , Col , Card , Button} from 'react-bootstrap'
 import {useState , useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
 import './List.css'
+import { Link , Navigate} from 'react-router-dom';
 import Loader from '../Loader';
 import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/state';
@@ -28,13 +29,13 @@ export default function List() {
         <Col key={idx}>
          <Card className='body-card-product' >
             <ImHeart className='cart-card'/>
-            <Card.Img className='img-cards-products' variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title}/>
+            <Card.Img className='img-cards-products' variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title} onClick={() => { <Navigate to={`/detalle?movieId=${prod.id}`} />}} />
             <Card.Body>
                 <Card.Title>{prod.name.substring(0 ,24)}..</Card.Title>
                 <Card.Text>
                 {prod.description.substring(0 ,40)}..
                 </Card.Text>
-                <Button className='btns-products' variant="primary">Ver</Button>
+              <Link to={`/detalle?movieId=${prod.id}`} className="btn btn-primary">View Detail</Link>
             </Card.Body>
             </Card>
         </Col>
