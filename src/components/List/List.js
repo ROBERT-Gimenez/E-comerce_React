@@ -2,7 +2,7 @@ import {Row , Col , Card , Button} from 'react-bootstrap'
 import {useState , useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
 import './List.css'
-import axios from 'axios';
+import Loader from '../Loader';
 import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/state';
 import useGetAxios from '../../hooks/useGetAxios';
@@ -22,6 +22,7 @@ export default function List() {
   return (
     <div>
         <Row xs="auto" md="auto" lg="auto" className="container-col-card">
+      {loading && <Loader/>}
       { !loading  && productsList.map((prod,idx) => (
         
         <Col key={idx}>

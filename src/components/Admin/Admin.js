@@ -1,6 +1,7 @@
 import {useState , useEffect} from 'react'
 import {Table , Nav} from 'react-bootstrap';
 import style from './Admin.css'
+import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
 export default function Admin() {
   const user = useGetAxios("http://localhost:4000/api/user");
@@ -10,6 +11,7 @@ export default function Admin() {
   const [products , setProducts] = useState([]);
 
   useEffect(() => {
+    
     user.data && setUsers(user.data)
   },[user.loading]);
 
@@ -36,7 +38,9 @@ export default function Admin() {
       </Nav.Item>
     </Nav>
     <Table striped bordered hover variant="dark">
+      {users.loading || Product.loading && <Loader/>}
       <thead>
+        {users.loading && <Loader/>}
         {users && users.length > 1 ? 
           <tr>
           <th>#</th>

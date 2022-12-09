@@ -96,6 +96,20 @@ a{
   color: green;
   z-index: 10;
 }
+.loader{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border:solid 3px white;
+  border-top-color:transparent;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to{
+    transform: rotate(360deg);
+  }
+}
 
 
 
