@@ -19,6 +19,10 @@ export default function List() {
        !loading && setProductsList(data)
        console.log(loading)
       } ,[loading])   
+    
+  const inDetail= (id) => {
+    return <Navigate to={`/detalle?movieId=${id}`}/>
+  }
          
   return (
     <div>
@@ -29,13 +33,13 @@ export default function List() {
         <Col key={idx}>
          <Card className='body-card-product' >
             <ImHeart className='cart-card'/>
-            <Card.Img className='img-cards-products' variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title} onClick={() => { <Navigate to={`/detalle?movieId=${prod.id}`} />}} />
+            <Card.Img className='img-cards-products' variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title} onClick={() => inDetail(prod.id)} />
             <Card.Body>
                 <Card.Title>{prod.name.substring(0 ,24)}..</Card.Title>
                 <Card.Text>
                 {prod.description.substring(0 ,40)}..
                 </Card.Text>
-              <Link to={`/detalle?movieId=${prod.id}`} className="btn btn-primary">View Detail</Link>
+              <Link to={`/detalle?productId=${prod.id}`} className="btn btn-primary">View Detail</Link>
             </Card.Body>
             </Card>
         </Col>
