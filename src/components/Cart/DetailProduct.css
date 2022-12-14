@@ -1,9 +1,21 @@
+.body_detail{
+    text-align: -webkit-center;
+}
 .rectangule{
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: tomato;
+    padding: 2rem;
+    width: 80%;
+    border-radius: 20px;
 }
-.img-content{
+.img_content{
     width: 30%;
 }
-.img-content img {
+.img {
     width: 100%;
+}
+.text{
+color: aliceblue;
 }
