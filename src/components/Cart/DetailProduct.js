@@ -8,17 +8,18 @@ export default function DetailProduct() {
   let keyword = query.get('productId');
   const {data , loading} = useGetAxios(`http://localhost:4000/api/products/${keyword}`);
   useEffect(() => {
-    setproduct(data)
+    !loading && setproduct(data)
     console.log(data)
-    console.log(product)
+    console.log(loading)
   },[loading])
 
   return (
     <div>
-      {loading ? <Loader/> : (
+      {loading && <Loader/>}
+       {!loading && (
       <div className='rectangule'>
         <div className='img-content'>
-        <img src={imgsProducts(`./${product.image}`)} />
+        <img alt={product.name} src={imgsProducts(`./${product.image}`)} />
         </div>
         <div className='detail-content'>
           <h1>{product.name}</h1>
@@ -29,7 +30,7 @@ export default function DetailProduct() {
 
         </div>
 
-      </div>)}
+      </div>)} 
     </div>
   )
 }

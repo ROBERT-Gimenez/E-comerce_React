@@ -17,7 +17,6 @@ export default function List() {
   const {data , loading} = useGetAxios("http://localhost:4000/api/products")
   useEffect(() => {
        !loading && setProductsList(data)
-       console.log(loading)
       } ,[loading])   
     
   const inDetail= (id) => {

@@ -1,0 +1,9 @@
+.rectangule{
+    display: flex;
+}
+.img-content{
+    width: 30%;
+}
+.img-content img {
+    width: 100%;
+}
