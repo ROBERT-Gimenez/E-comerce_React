@@ -11,7 +11,8 @@ export default function DetailProduct() {
 
   let query = new URLSearchParams(window.location.search);
   let keyword = query.get('productId');
-  const [product , setproduct] = useState([])
+  const [product , setproduct] = useState([]);
+  const [Stars , setStars] = useState(0);
   const {data , loading} = useGetAxios(`http://localhost:4000/api/products/${keyword}`);
   
   useEffect(() => {
@@ -21,6 +22,15 @@ export default function DetailProduct() {
 
    const stars = [1,2,3,4,5] ;
 
+   const selected = (e) => {
+     const n = e.target
+     const l = n.parentElement.getAttribute('name')
+
+     if(l == Stars){
+       setStars(0)
+      }
+      setStars(l)
+   }
 
   return (
     <div className='body_detail'>
@@ -35,7 +45,10 @@ export default function DetailProduct() {
           <div className='detail-content'>
             <h1 className={"text"}>{product.name}</h1>
             <div className='stars_content'>{stars.map((s , indx)=> { 
-              return (<BsFillStarFill key={indx} className='star'/>)
+              if(Stars < s){
+              return (<BsFillStarFill key={indx} name={s} className='star-noselect' onClick={selected}/>)
+              }
+              return <BsFillStarFill key={indx} name={s} className='star_select' onClick={selected}/>
             })}
             </div>
             <div className='rating-stars'></div>

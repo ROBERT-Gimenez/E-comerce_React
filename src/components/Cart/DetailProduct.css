@@ -25,6 +25,11 @@ color: aliceblue;
     justify-content: center;
     gap: 0.5rem;
 }
-.star{
+.star-noselect{
     color: gray;
+    cursor: pointer;
+}
+.star_select{
+    color: yellow;
+    cursor: pointer;
 }
