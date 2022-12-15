@@ -1,5 +1,5 @@
 import {useState , useEffect} from 'react'
-import {Table , Nav} from 'react-bootstrap';
+import {Table , Nav , Placeholder} from 'react-bootstrap';
 import style from './Admin.css'
 import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
@@ -26,6 +26,7 @@ export default function Admin() {
 
   return (
     <div>
+       
     <Nav variant="tabs" defaultActiveKey="/home" className={style.nav}>
       <Nav.Item>
         <Nav.Link eventKey="Users" onClick={getUsers}>Users</Nav.Link>
@@ -38,7 +39,7 @@ export default function Admin() {
       </Nav.Item>
     </Nav>
     <Table striped bordered hover variant="dark">
-      {users.loading || Product.loading && <Loader/>}
+      {users.loading || Product.loading &&  <Loader/>}
       <thead>
         {users.loading && <Loader/>}
         {users && users.length > 1 ? 
