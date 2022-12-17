@@ -33,3 +33,24 @@ color: aliceblue;
     color: yellow;
     cursor: pointer;
 }
+.body_imgs_recomend{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.imgs_recomend{
+    height: 14rem;
+    max-width: 14rem;
+    display: flex;
+    align-items: center;
+}
+.imgs_recomend img{
+object-fit: cover;
+display: flex;
+align-items: center;
+/* width: fit-content; */
+max-width: 90%;
+max-height: 90%;
+
+
+}
