@@ -20,7 +20,7 @@ export default function List() {
       } ,[loading])   
     
   const inDetail= (id) => {
-    return <Navigate to={`/detalle?movieId=${id}`}/>
+    return <Navigate to={`/detalle?productId=${id}`}/>
   }
          
   return (

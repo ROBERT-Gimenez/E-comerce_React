@@ -42,7 +42,10 @@ color: aliceblue;
     height: 14rem;
     max-width: 14rem;
     display: flex;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    margin-right: 1px;
 }
 .imgs_recomend img{
 object-fit: cover;

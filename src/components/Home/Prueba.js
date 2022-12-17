@@ -1,6 +1,7 @@
 import {useState ,useEffect} from 'react'
 import { Virtual , Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link , Navigate} from 'react-router-dom';
 import useGetAxios from '../../hooks/useGetAxios';
 
 // Import Swiper styles
@@ -11,28 +12,40 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 const imgsProducts = require.context('../../resource/img/products', true);
+
 export default function Prueba() {
+
     const [Products , setProducts] = useState([])
     const {data , loading} = useGetAxios('http://localhost:4000/api/products')
 
-    console.log(Products.data)
+    
     useEffect(() => {
-       data && setProducts(data)
-       console.log(data)
+        data && setProducts(data)
+        console.log(data)
     }, [loading]);
     // Create array with 1000 slides ${el.name} ${index + 1}`
     // const slides = Array.from({ length: 1000 }).map(
-    const slides = Products.map(
-      (el, index) =>
-      <>
-      <div className='imgs_recomend'>
-          <img key={index} className='img-cards-products' variant="top" src={imgsProducts(`./${el.image}`)} alt={el.title}  />
-      </div>
+        const slides = Products.map(
+            (el, index) =>
+            <>
+
+       
+        <div id={el.id} key={index}  onClick={() => inDetail(el.id)} className='imgs_recomend'>
+          <img 
+          className='img-cards-products' 
+          variant="top" src={imgsProducts(`./${el.image}`)} 
+          alt={el.title}
+          
+          />
+        </div>
           <h5>{el.name}</h5>
       </>
       
-    );
-
+      );
+      
+      const inDetail= (id) => {
+        return <Navigate to={`/detalle?productId=${id}`}/>
+      }
   return (
     <div className='body_imgs_recomend' style={{color:"wheat"}}>
         
@@ -42,11 +55,11 @@ export default function Prueba() {
     spaceBetween={1} 
     slidesPerView={4}
     pagination={{ clickable: true }} 
-    scrollbar={{ draggable: true }}
+    scrollbar={{ draggable: false }}
     navigation
     virtual>
       {slides.map((slideContent, index) => (
-        <SwiperSlide  key={index} virtualIndex={index}>
+        <SwiperSlide onClick={() => <Navigate to={`/detalle?productId=${slideContent.props.children[0].props.id}`}/> } key={index} virtualIndex={index}>
           {slideContent}
         </SwiperSlide>
       ))}
