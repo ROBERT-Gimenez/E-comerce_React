@@ -52,6 +52,7 @@ a{
 }
 .corrousel{
   margin-bottom: 1rem;
+  object-fit: cover;
 }
 .nav-link ,
 .dropdown-item ,
