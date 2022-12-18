@@ -19,6 +19,7 @@
     gap: 10px;
     justify-content: center;
     align-items: center;
+    width: 99%;
 }
 .body-card-product{
     width: 18rem;

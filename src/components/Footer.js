@@ -1,6 +1,8 @@
-import React from 'react'
+import {Link} from 'react-router-dom'
 import {Navbar} from 'react-bootstrap'
 import {ImWhatsapp} from "react-icons/im";
+import Logo from '../resource/img/logo-2.svg'
+
 
 export default function Footer() {
   return (
@@ -10,16 +12,22 @@ export default function Footer() {
           <>
           <Navbar.Brand href="#home">
             <img
-              alt=""
-              src=""
-              width="30"
-              height="70"
+              alt="Logo"
+              src={Logo}
+              width="60"
+              height="90"
               className="d-inline-block align-top"
             />{' '}
-            copyright Bike's Master
+          <p> copyright Bike's Master </p>
           </Navbar.Brand>
         </>
-      </Navbar>
+        <div className='footer_Links'>
+        <a href="https://www.buenosaires.gob.ar/defensaconsumidor">Defensa al Consumidor</a>
+        <Link to="/">Contacto</Link>
+        <Link to="/">Consulta</Link>
+        <Link to="/">Redes sociales</Link>
+        </div>
+        </Navbar>
     </div>
   )
 }

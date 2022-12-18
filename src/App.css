@@ -1,6 +1,7 @@
 .App {
+  box-sizing: border-box;
   text-align: center;
-  height: 120vh;
+  min-height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -43,12 +44,9 @@ img.carrousel{
 a{
   text-decoration: none;
 }
-.footer-general{
-  margin-top: 2rem;
-  box-shadow: 0px 13px 30px 0px;
-}
+
 .conteiner-home{
-  width: 99%;
+  width: 100%;
 }
 .corrousel{
   margin-bottom: 1rem;
@@ -104,6 +102,27 @@ a{
   border:solid 3px white;
   border-top-color:transparent;
   animation: spin 1.2s linear infinite;
+}
+.footer-general{
+  margin-top: 2rem;
+  box-shadow: 0px 13px 30px 0px;
+}
+.footer-general .navbar-brand{
+  display: flex;
+  justify-content: center;
+  align-items: self-end;
+  font-size: 12px;
+}
+.footer-general .navbar-brand img{
+  position: relative;
+  top: 1.1rem;
+}
+.footer_Links{
+  color: wheat;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
 }
 
 @keyframes spin {
