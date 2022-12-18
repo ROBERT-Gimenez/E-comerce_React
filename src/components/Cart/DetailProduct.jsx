@@ -53,7 +53,13 @@ export default function DetailProduct() {
             })}
             </div>
             <div className='rating-stars'></div>
-            <p className={"text"}>{product.description}</p>
+            <h3 className={"text"}>Precio ${product.price}</h3>
+            <div style={{display:"flex" , justifyContent:"space-evenly"}}>
+              <h5> Devolución gratis</h5>
+              <span> Tenés 30 días desde que lo recibís.</span>
+            </div>
+            <h5>Stock disponible = {product.stock}</h5>
+
 
               <div className="d-grid gap-2">
               <Button variant="primary" size="lg">
@@ -68,6 +74,16 @@ export default function DetailProduct() {
   
         </div>) 
         }
+        <div className='Body_Medios_Pago'>
+          <h3>Medios de pago</h3>
+          <h5>Targetas De Credito</h5>
+          <div className='targetas_conteiner'>
+            <img src="https://http2.mlstatic.com/storage/logos-api-admin/a5f047d0-9be0-11ec-aad4-c3381f368aaf-m.svg" alt="visa" /> 
+            <img src="https://http2.mlstatic.com/storage/logos-api-admin/b2c93a40-f3be-11eb-9984-b7076edb0bb7-m.svg" alt="express" /> 
+            <img src="https://http2.mlstatic.com/storage/logos-api-admin/992bc350-f3be-11eb-826e-6db365b9e0dd-m.svg" alt="Targeta Naranja" /> 
+            <img src="https://http2.mlstatic.com/storage/logos-api-admin/aa2b8f70-5c85-11ec-ae75-df2bef173be2-m.svg" alt="MasterCard" />
+          </div>
+        </div>
         <Prueba/>
     </div>
   )
