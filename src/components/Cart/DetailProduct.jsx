@@ -4,7 +4,7 @@ import Loader from '../Loader';
 import "./DetailProduct.css"
 import { BsFillStarFill } from "react-icons/bs";
 import { Button } from 'react-bootstrap';
-import Prueba from '../Home/Prueba';
+import Prueba from '../Home/CarrouselProduct';
 const imgsProducts = require.context('../../resource/img/products', true);
 
 

@@ -48,12 +48,13 @@ color: aliceblue;
     margin-right: 1px;
 }
 .imgs_recomend img{
-object-fit: cover;
-display: flex;
-align-items: center;
-/* width: fit-content; */
-max-width: 90%;
-max-height: 90%;
-
-
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    /* width: fit-content; */
+    max-width: 90%;
+    max-height: 90%;
+    width: 10rem;
+    height: 10rem;
+    border: solid 4px black;
 }
