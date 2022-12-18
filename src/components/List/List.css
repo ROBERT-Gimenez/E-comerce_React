@@ -10,10 +10,14 @@
     cursor: pointer;
 }
 .img-cards-products{
-    /* min-height: 15rem; */
-    max-height: 14rem;
-    object-fit: contain;
-    cursor: pointer;
+    object-fit: scale-down;
+    display: flex;
+    align-items: center;
+    max-width: 90%;
+    max-height: 11rem;
+    width: 10rem;
+    height: 11rem;
+    cursor: pointer
 }
 .container-col-card{
     gap: 10px;
@@ -22,14 +26,14 @@
     width: 99%;
 }
 .body-card-product{
-    width: 18rem;
     max-height: 23rem;
     min-height: 23rem;
-    font-size:13px;
+    max-width: 14rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    flex-direction: column;
+    margin-right: 1px;
     
 }
 .btns-products{
@@ -40,4 +44,11 @@
 }
 .body-card-product h5{
     font-size: 18px;
+}
+.body_card_detail{
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }

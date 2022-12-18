@@ -33,7 +33,7 @@ export default function List() {
          <Card className='body-card-product' >
             <ImHeart className='cart-card'/>
             <Card.Img className='img-cards-products' variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title} onClick={() => inDetail(prod.id)} />
-            <Card.Body>
+            <Card.Body className="body_card_detail">
                 <Card.Title>{prod.name.substring(0 ,24)}..</Card.Title>
                 <Card.Text>
                 {prod.description.substring(0 ,40)}..

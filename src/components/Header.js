@@ -48,7 +48,7 @@ export default function Header() {
           >
                 <Link to="/">Home</Link>
                 <Link to="/Admin-Profile">Admin</Link>
-                <Link className='icons-header' to="/ShoppingCart">Shopping <HiOutlineShoppingCart/></Link>
+                <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>
                     <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
                         <Link to="/Bicicletas"><NavDropdown.Item href="/">Bicicletas</NavDropdown.Item></Link>
                         <Link to="/Accesorios"><NavDropdown.Item href="/">Accesorios</NavDropdown.Item></Link>

@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <div className='footer-general'>
         <a href='/' className='whattsapp-icon'><ImWhatsapp/></a>
-        <Navbar bg="dark" variant="dark">
+        <Navbar  variant="dark" className='bg_footer'>
           <>
           <Navbar.Brand href="#home">
             <img
