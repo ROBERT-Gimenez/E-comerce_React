@@ -54,11 +54,11 @@ export default function DetailProduct() {
             </div>
             <div className='rating-stars'></div>
             <h3 className={"text"}>Precio ${product.price}</h3>
-            <div style={{display:"flex" , justifyContent:"space-evenly"}}>
+            <div style={{display:"flex" , justifyContent:"space-evenly" , gap: "1rem"}}>
               <h5> Devolución gratis</h5>
               <span> Tenés 30 días desde que lo recibís.</span>
             </div>
-            <h5>Stock disponible = {product.stock}</h5>
+            <h5>Stock disponible : {product.stock}</h5>
 
 
               <div className="d-grid gap-2">

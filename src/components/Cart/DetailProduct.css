@@ -60,6 +60,7 @@ color: aliceblue;
     border: solid 4px black;
 }
 .Body_Medios_Pago{
+    margin-top: 1rem;
     color: navy;
     background-color: aliceblue;
     padding: 2rem;
