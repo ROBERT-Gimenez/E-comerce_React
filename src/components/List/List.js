@@ -24,7 +24,8 @@ export default function List() {
   }
          
   return (
-    <div>
+    <div style={{display: "grid" , placeItems: "center"}}>
+      <h2 className='title_ofertas'>Ofertas</h2>
         <Row xs="auto" md="auto" lg="auto" className="container-col-card">
       {loading && <Loader/>}
       { !loading  && productsList.map((prod,idx) => (

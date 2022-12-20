@@ -52,3 +52,10 @@
     justify-content: space-around;
     align-items: center;
 }
+.title_ofertas{
+    background-image: linear-gradient(to right , #ff2e00 , #3bd9d9);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
