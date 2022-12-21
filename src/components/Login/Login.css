@@ -1,5 +1,6 @@
 
-.body-login{
+.body-login,
+.login-form .footer .label{
     margin: 0;
     color: #C1AAC6;
     background: #131315;
@@ -49,8 +50,8 @@ a {
     border-radius: 20px;
 }
 
-.login-container .sign-in-htm,
-.login-container .sign-up-htm {
+.login-container .body-login,
+.login-container .sign-up-form {
     top: 30%;
     left: 0;
     right: 0;
@@ -59,6 +60,9 @@ a {
     transform: rotateY(180deg);
     backface-visibility: hidden;
     transition: all .4s linear;
+    max-width: 80%;
+    margin: auto;
+    transform-style: preserve-3d;
 }
 
 .login-container .sign-up-htm {
@@ -93,7 +97,7 @@ a {
     border-color: #DF00FF;
 }
 
-.login-form {
+.login-form{
     min-height: 345px;
     position: relative;
     perspective: 1000px;
@@ -103,6 +107,7 @@ a {
 .login-form .group {
     margin-bottom: 15px;
 }
+
 
 .login-form .group .label,
 .login-form .group .input,
@@ -141,12 +146,12 @@ a {
     color: #fff;
 }
 
-.login-container .sign-in:checked+.item+.sign-up+.item+.login-form .sign-in-htm {
-    transform: rotate(0);
+.login-container #item-1:checked ~ .body-login{
+    transform: rotateY(0deg);
 }
 
-.login-container .sign-up:checked+.item+.login-form .sign-up-htm {
-    transform: rotate(0);
+.login-container #item-2:checked ~ .sign-up-form {
+    transform:  rotateY(0deg);
 }
 
 .hr {
