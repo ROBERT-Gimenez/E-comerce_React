@@ -32,7 +32,6 @@ export default function Login() {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
      if(email === "" || password === ""){
         alert("Los campos no pueden estart vacios")
@@ -45,37 +44,44 @@ export default function Login() {
     /* if(email !== 'challenge@alkemy.org' || password !== 'react'){
         alert("Credenciales Invalidas")
         } */
-            
-    axios.post('http://localhost:4000/api/user/login' , {email,password})
+        console.log("consulta")    
+        axios.post('http://localhost:4000/api/user/login' , {email,password})
         .then(res => {
+            console.log(res.data.data.name)
         alert("Perfecto,Ingresaste Correctamente")
-        const tokenAdquirido = res.data.token;
-        localStorage.setItem('token' , tokenAdquirido);// localStorage.getItem('token')
-        history("/");//redireccionamos la pagina con useNavigate
+        /*const tokenAdquirido = res.data.token;
+        localStorage.setItem('token' , tokenAdquirido); */// localStorage.getItem('token')
+       //redireccionamos la pagina con useNavigate
         }).catch((err) => { console.log(err)})
     
              
         }
     const submitCreate = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    
+    const name = document.querySelector("#name").value;
+    const email = document.querySelector("#email_sing_up").value;
+    const password = document.querySelector("#pass_sing_up1").value;
+    const password2 = document.querySelector("#pass_sing_up2").value;
+    const rol_id = 1;
+    console.log(name)
+    console.log(email)
+    console.log(password)
+    console.log(password2)
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
      if(email === "" || password === ""){
         alert("Los campos no pueden estart vacios")
         return;
         }
     if(email !== '' && !regexEmail.test(email)){
-        alert("Ingrese un email valido")
+        alert("Ingrese un email valido caca")
         }
             
-    axios.post('http://localhost:4000/api/user/create' , {email,password})
+    axios.post('http://localhost:4000/api/user/create' , {name,email,password,rol_id})
         .then(res => {
-        alert("Perfecto,Ingresaste Correctamente")
+        alert("Usuario Creado Correctamente")
         const tokenAdquirido = res.data.token;
         localStorage.setItem('token' , tokenAdquirido);// localStorage.getItem('token')
-        history("/");//redireccionamos la pagina con useNavigate
+        window.location.reload()//redireccionamos la pagina con useNavigate
         }).catch((err) => { console.log(err)})
     
              
@@ -93,7 +99,7 @@ export default function Login() {
             <div className="login-form">
                 <div className="sign-in-htm">
                     <div className="group">
-                        <input onKeyDown={verifique} placeholder="Username" id="email " name="email" type="email" className="input"/>
+                        <input  placeholder="Username" id="email " name="email" type="email" className="input"/>
                     </div>
                     <div className="group">
                         <input placeholder="Password" id="pass" name='password' type="password" className="input" data-type="password"/>
@@ -109,15 +115,15 @@ export default function Login() {
                 </div>
             </div>
                 </form>
-                <form className='sign-up-form'>
+                <form onSubmit={submitCreate} className='sign-up-form'>
                 <div className="login-form">   
                  <div className="sign-up-htm">
                     <div className="group">
-                        <input placeholder="Username" id="user_sing_up" type="text" className="input"/>
+                        <input placeholder="Username" name='name' id="name" type="text" className="input"/>
                     </div>
 
                     <div className="group">
-                        <input placeholder="Email adress" id="pass_sing_up" type="text" className="input"/>
+                        <input onKeyDown={verifique} placeholder="Email adress" id="email_sing_up" type="email" className="input"/>
                     </div>
 
                     <div className="group">
@@ -136,7 +142,7 @@ export default function Login() {
 				</div>
 			</div> 
             </div> 
-    </form>
+        </form>
 	</div>
     </div>
     </>

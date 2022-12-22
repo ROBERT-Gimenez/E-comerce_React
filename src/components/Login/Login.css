@@ -152,6 +152,7 @@ a {
 
 .login-container #item-2:checked ~ .sign-up-form {
     transform:  rotateY(0deg);
+
 }
 
 .hr {
