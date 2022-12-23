@@ -1,6 +1,6 @@
 
 .body-login,
-.login-form .footer .label{
+.login-form .footer , .sign-up-form {
     margin: 0;
     color: #C1AAC6;
     background: #131315;
@@ -97,7 +97,7 @@ a {
     border-color: #DF00FF;
 }
 
-.login-form{
+.login-form {
     min-height: 345px;
     position: relative;
     perspective: 1000px;
