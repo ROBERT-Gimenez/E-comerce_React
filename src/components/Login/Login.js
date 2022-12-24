@@ -10,8 +10,8 @@ import {useNavigate} from 'react-router-dom'
   
 export default function Login() {
 
-    const [errEmail , setErrEmail] = useState(false);
-    const [errPassword , setErrPassword] = useState(false);
+    const [errEmail , setErrEmail] = useState("");
+    const [errPassword , setErrPassword] = useState("");
     const {register, formState:{errors} , watch , handleSubmit } = useForm();
     const history = useNavigate();
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -39,8 +39,9 @@ export default function Login() {
     e.preventDefault()
     const email =e.target.email.value;
     const password =e.target.password.value;
-    email.isEmpty() ? setErrEmail("Campo Requerido") : setErrEmail(false);
-
+    if (email === ""){setErrEmail("Campo Requerido")}
+    console.log(errEmail)
+    console.log(email)
         axios.post('http://localhost:4000/api/user/login' , {email,password})
         .then(res => {
             console.log(res)
@@ -93,7 +94,7 @@ export default function Login() {
 
                         <input  placeholder="Username" id="email " name="email" type="email" className="input" 
                         />
-                        {errEmail && <span>{errEmail}</span>}
+                        {errEmail != "" && <span>{errEmail}</span>}
 
                     </div>
                     <div className="group">
