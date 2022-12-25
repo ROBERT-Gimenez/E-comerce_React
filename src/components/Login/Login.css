@@ -2,7 +2,7 @@
 .body-login,
 .login-form .footer , .sign-up-form {
     margin: 0;
-    color: #C1AAC6;
+    color: #ffb347;
     background: #131315;
     font-family: 'Montserrat', monospace;
     font-weight: bold;
@@ -28,6 +28,9 @@
 a {
     color: inherit;
     text-decoration: none
+}
+a:hover {
+    color: #ffb347;
 }
 
 .container-form {
@@ -93,8 +96,8 @@ a {
 
 .login-container .sign-in:checked+.item,
 .login-container .sign-up:checked+.item {
-    color: #fff;
-    border-color: #DF00FF;
+    color: #ffb347;
+    border-color: #ff2e00;
 }
 
 .login-form {
@@ -139,7 +142,7 @@ a {
 }
 
 .login-form .group .button {
-    background: #DF00FF;
+    background: #ff2e00;
 }
 
 .login-form .group .check:checked+label {
