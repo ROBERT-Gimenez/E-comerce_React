@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom'
 export default function Register() {
    
   
-    const [errEmail , setErrEmail] = useState("");
+    const [errEmail , setErrEmail] = useState(null);
     const [errPassword , setErrPassword] = useState("");
     const {register, formState:{errors} , watch , handleSubmit } = useForm();
     const history = useNavigate();
@@ -20,26 +20,32 @@ export default function Register() {
 
     const verifique = (e) => {
         const email =e.target.value;
-        console.log(watch("pass_sing_up2"))
+         //console.log(watch("pass_sing_up2"))
         fetch('http://localhost:4000/api/user')
         .then(response => response.json())
         .then(result => {
-            console.log(result.data) 
-            result.data.forEach(element => {
-                if(email === element.email){
-                    alert("email ya registrado")
+            const dats = result.data
+            const mail = dats.filter((element) => { 
+            return element.email === email ?  true : false })
+
+                if(mail.length > 0){
+                    setErrEmail(true)
+                    /* alert("email ya registrado") */
+                    }else{
+                    setErrEmail(false)
                     }
                    
                 
-            });
-        })
-    }    
+            })
+        }
     const submitCreate = (data) => {
     console.log(data)
     const name = data.name;
     const email = data.email_sing_up;
     const password = data.pass_sing_up1;
     const rol_id = 1;
+    if(errEmail){
+
     axios.post('http://localhost:4000/api/user/create' , {name,email,password,rol_id})
     .then(res => {
         console.log(res)
@@ -51,7 +57,10 @@ export default function Register() {
     //redireccionamos la pagina con useNavigate
         window.location.reload()
         }).catch((err) => { console.log(err)})
+        }else{
+          alert("email ya registrado")  
         }
+    }
 
         let contr = watch("pass_sing_up1");
 
@@ -76,12 +85,13 @@ export default function Register() {
                     </div>
 
                     <div className="group">
-                        <input onKeyDown={verifique} required placeholder="Email adress" name='email_sing_up' id="email_sing_up" type="email" className="input"
+                        <input  onKeyUp={verifique} required placeholder="Email adress" name='email_sing_up' id="email_sing_up" type="email" className="input"
                         {...register("email_sing_up" , {
                             pattern : { value: regexEmail , message:"Formato de Email invalido"}
                         })}
                         />
                         {errors.email_sing_up && <span>{errors.email_sing_up.message}</span>}
+                        {errEmail && <span>Email ya Registrado</span>}
                     </div>
 
                     <div className="group">
