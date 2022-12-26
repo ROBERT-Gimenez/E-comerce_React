@@ -18,19 +18,25 @@ export default function Login() {
   
 
     const verifique = (e) => {
-        const email =e.target.value
         e.target.addEventListener('blur' , () => {
+            const email =e.target.value
             
         
         fetch('http://localhost:4000/api/user')
         .then(response => response.json())
         .then(result => {
-           const mail = result.data.filter(element => { return element.email == email})
-                mail.length > 0 ? setMail(true) : setMail(false)
-                     
-            })
-            .catch(err =>{console.log(err)})
-       }) }
+            const dats = result.data
+            const mail = dats.filter((element) => { 
+            return element.email === email ?  true : false })
+            
+            mail.length > 0 ? setMail(true) : setMail(false)
+                                     
+        })
+        .catch(err =>{console.log(err)})
+
+    })
+    
+    }
    
     const SubmitLogin = (data) => {
     const email =data.email
