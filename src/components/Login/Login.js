@@ -19,19 +19,21 @@ export default function Login() {
 
     const verifique = (e) => {
         const email =e.target.value
+        e.target.addEventListener('blur' , () => {
+            
+        
         fetch('http://localhost:4000/api/user')
         .then(response => response.json())
         .then(result => {
-/*             console.log(result.data)
- */            const imail = result.data.filter(element => { element.email === email })
-                if(!imail){
-                    alert("email No registrado")
-                    }
+           const mail = result.data.filter(element => { return element.email == email})
+                if(mail.length == 0){
+                    console.log("email No registrado")
+                    } 
                    
                 
             })
             .catch(err =>{console.log(err)})
-        }
+       }) }
    
     const SubmitLogin = (data) => {
     const email =data.email
@@ -74,7 +76,7 @@ export default function Login() {
                 <div className="sign-in-htm">
                     <div className="group">
 
-                        <input onKeyDown={verifique}  placeholder="Username" required id="email " name="email" type="email" className="input" 
+                        <input placeholder="Enter your Email" required  onClick={verifique} id="email " name="email" type="email" className="input" 
                          {...register("email" , 
                          {
                           minLength:{ value:4 , message:"ingrese un nombre entre 4 y 11 caracteres"},
