@@ -10,11 +10,11 @@ import Register from './Register'
    
   
 export default function Login() {
-
+    const [verMail , setMail] = useState(null);
     const {register, formState:{errors} , watch , handleSubmit } = useForm();
     const history = useNavigate();
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+    
   
 
     const verifique = (e) => {
@@ -26,11 +26,8 @@ export default function Login() {
         .then(response => response.json())
         .then(result => {
            const mail = result.data.filter(element => { return element.email == email})
-                if(mail.length == 0){
-                    console.log("email No registrado")
-                    } 
-                   
-                
+                mail.length > 0 ? setMail(true) : setMail(false)
+                     
             })
             .catch(err =>{console.log(err)})
        }) }
@@ -84,6 +81,7 @@ export default function Login() {
                       })}
                         />
                        {errors.email && <span>{errors.email.message}</span>}
+                        {!verMail && <span>Email no Registrado</span>} 
 
                     </div>
                     <div className="group">
