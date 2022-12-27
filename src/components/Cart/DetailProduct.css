@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #177183;
+    background-color: cornflowerblue;
     padding: 2rem;
     width: 80%;
     border-radius: 20px;
@@ -60,6 +60,7 @@ color: aliceblue;
     width: 10rem;
     height: 10rem;
     border: solid 4px black;
+    border-radius: 10px;
 }
 .Body_Medios_Pago{
     margin-top: 1rem;
@@ -90,3 +91,26 @@ color: aliceblue;
     max-width: 100%;
 
 }
+
+.imgs_recomend_container {
+    width: min(250px,450px);
+    height: min(301pxpx,350px);
+    overflow: hidden;
+    margin: 0;
+    list-style: none;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: beige;
+  }
+  .motion_detail{
+    transform: none;
+    transform-origin: 50% 50% 0px;
+    position: absolute;
+    top: 50%;
+    background-color: cornflowerblue;
+    border-radius: 20px;
+  }

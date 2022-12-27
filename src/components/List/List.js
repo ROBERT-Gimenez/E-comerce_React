@@ -7,6 +7,7 @@ import Loader from '../Loader';
 import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/state';
 import useGetAxios from '../../hooks/useGetAxios';
+import { motion } from "framer-motion"
 const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function List() {
@@ -22,18 +23,45 @@ export default function List() {
   const inDetail= (id) => {
     return <Navigate to={`/detalle?productId=${id}`}/>
   }
+
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
          
   return (
-    <div style={{display: "grid" , placeItems: "center"}}>
+    <motion.div 
+    variants={container}
+    initial="hidden"
+    animate="visible"
+    style={{display: "grid" , placeItems: "center"}}>
       <h2 className='title_ofertas'>Ofertas</h2>
         <Row xs="auto" md="auto" lg="auto" className="container-col-card">
       {loading && <Loader/>}
+
       { !loading  && productsList.map((prod,idx) => (
         
         <Col key={idx}>
          <Card className='body-card-product' >
-            <ImHeart className='cart-card'/>
-            <Card.Img className='img-cards-products' variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title} onClick={() => inDetail(prod.id)} />
+  
+          <ImHeart className='cart-card'/>
+        <Card.Img className='img-cards-products' style={{ margin:"auto"}} variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title} onClick={() => inDetail(prod.id)} />
+       
             <Card.Body className="body_card_detail">
                 <Card.Title>{prod.name.substring(0 ,24)}..</Card.Title>
                 <Card.Text>
@@ -43,8 +71,9 @@ export default function List() {
             </Card.Body>
             </Card>
         </Col>
+    
       ))}
     </Row>
-    </div>
+    </motion.div>
   )
 }

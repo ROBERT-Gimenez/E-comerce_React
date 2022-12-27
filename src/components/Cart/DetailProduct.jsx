@@ -4,7 +4,7 @@ import Loader from '../Loader';
 import "./DetailProduct.css"
 import { BsFillStarFill } from "react-icons/bs";
 import { Button } from 'react-bootstrap';
-import Prueba from '../Home/CarrouselProduct';
+import Prueba from './CarrouselProduct';
 const imgsProducts = require.context('../../resource/img/products', true);
 
 
@@ -55,8 +55,8 @@ export default function DetailProduct() {
             <div className='rating-stars'></div>
             <h3 className={"text"}>Precio ${product.price}</h3>
             <div style={{display:"flex" , justifyContent:"space-evenly" , gap: "1rem"}}>
-              <h5> Devolución gratis</h5>
-              <span> Tenés 30 días desde que lo recibís.</span>
+              <h5 style={{color:"beige"}}> Devolución gratis</h5>
+              <span style={{color:"#f82e00"}}> Tenés 30 días desde que lo recibís.</span>
             </div>
             <h5>Stock disponible : {product.stock}</h5>
 

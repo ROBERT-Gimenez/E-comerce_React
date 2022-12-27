@@ -4,6 +4,7 @@
     top: 3%;
     font-size: 1.3rem;
     color: black;
+    z-index: 4;
 /*     filter: drop-shadow(4px 3px 3px white); */
     background-color: transparent;
     border-radius: 10px;
@@ -17,8 +18,24 @@
     max-height: 11rem;
     width: 10rem;
     height: 11rem;
-    cursor: pointer
+    z-index: 2;
 }
+.img-cards-products:hover{
+    cursor: pointer;
+    object-fit: cover;
+    animation: grow 0.s ease;
+    
+    }
+   
+
+
+
+@keyframes grow{
+    0%{object-fit: scale-down;}
+    100%{object-fit: cover;}
+  
+}
+
 .container-col-card{
     gap: 10px;
     justify-content: center;
@@ -34,6 +51,8 @@
     align-items: center;
     flex-direction: column;
     margin-right: 1px;
+   
+    
     
 }
 .btns-products{

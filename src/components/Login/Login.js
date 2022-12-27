@@ -10,6 +10,7 @@ import Register from './Register'
    
   
 export default function Login() {
+    
     const [verMail , setMail] = useState(null);
     const {register, formState:{errors} , watch , handleSubmit } = useForm();
     const history = useNavigate();
