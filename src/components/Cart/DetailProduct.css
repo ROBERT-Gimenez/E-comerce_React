@@ -118,3 +118,8 @@ color: aliceblue;
     height: 100%;
     z-index: 10;
   }
+  .motion_detail button:not(:disabled) {
+    cursor: pointer;
+    width: 2rem;
+    height: 1rem;
+}
