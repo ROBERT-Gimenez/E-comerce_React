@@ -17,10 +17,11 @@ export default function Header() {
     const night = useSelector(state => state.night);
 
     const variant = {
-      hidden: { opacity: 0, scale: 0 },
+      hidden: { opacity: 0, x:600 },
       visible: ({delay}) => ({
         opacity: 1,
         scale: 1,
+        x:0,
         transition: {
           delay,
           duration:1
@@ -77,12 +78,13 @@ export default function Header() {
             style={{ maxHeight: '100px' , gap:"3rem" }}
             navbarScroll
           >
-            {urls.map((url , inx) => { 
+            {urls.map((url , idx) => { 
               return (
                 <motion.div
-                    custom={{delay: 1}}
-                    initial={{opacity: 0, x:-200}}
-                    variants={variant}
+                custom={{delay : (idx + 1 ) * 0.2}}
+                initial="hidden"
+                animate="visible"
+                variants={variant}
                 >
                     {actionUrls(url.name , url.url)}
                     </motion.div>
