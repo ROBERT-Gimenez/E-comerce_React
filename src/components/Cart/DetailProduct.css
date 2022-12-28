@@ -111,7 +111,7 @@ color: aliceblue;
     transform: none;
     transform-origin: 50% 50% 0px;
     position: absolute;
-    top: 50%;
+    top: 100%;
     background-color: #00000094;
     border-radius: 20px;
     width: 100%;

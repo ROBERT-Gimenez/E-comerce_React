@@ -77,7 +77,7 @@ export default function CarrouselProduct() {
                     alt={selectedProd.title}
                     style={{borderRadius:"10px"}}
                     />
-
+                    <hr/>
                     <motion.h4>{selectedProd.name}</motion.h4>
                     <motion.h5>${selectedProd.price}</motion.h5>
 

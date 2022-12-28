@@ -2,7 +2,7 @@ import {Row , Col , Card , Button} from 'react-bootstrap'
 import {useState , useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
 import './List.css'
-import { Link , Navigate} from 'react-router-dom';
+import { Link , useHistory  } from 'react-router-dom';
 import Loader from '../Loader';
 import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/state';
@@ -11,6 +11,7 @@ import { motion } from "framer-motion"
 const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function List() {
+  let history = useHistory();
   const dispatch = useDispatch();
   const listStore = useSelector(state => state.Products)
   const [productsList , setProductsList] = useState([]);
@@ -21,7 +22,7 @@ export default function List() {
       } ,[loading])   
     
   const inDetail= (id) => {
-    return <Navigate to={`/detalle?productId=${id}`}/>
+    history.push(`/detalle?productId=${id}`)  
   }
 
   const container = {
@@ -44,7 +45,8 @@ export default function List() {
       {loading && <Loader/>}
 
       { !loading  && productsList.map((prod,idx) => (
-        <motion.div 
+        <motion.div
+        
         custom={{delay : (idx + 1 ) * 0.2}}
         variants={container}
         initial="hidden"

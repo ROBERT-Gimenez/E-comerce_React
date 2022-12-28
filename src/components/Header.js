@@ -81,8 +81,10 @@ export default function Header() {
             {urls.map((url , idx) => { 
               return (
                 <motion.div
-                custom={{delay : (idx + 1 ) * 0.2}}
+                key={idx}
+                custom={{delay : (idx + 1 ) * 0.3}}
                 initial="hidden"
+                exit="hidden"
                 animate="visible"
                 variants={variant}
                 >
