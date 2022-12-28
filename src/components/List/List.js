@@ -14,8 +14,8 @@ export default function List() {
   const dispatch = useDispatch();
   const listStore = useSelector(state => state.Products)
   const [productsList , setProductsList] = useState([]);
-  
   const {data , loading} = useGetAxios("http://localhost:4000/api/products")
+  
   useEffect(() => {
        !loading && setProductsList(data)
       } ,[loading])   
@@ -25,37 +25,32 @@ export default function List() {
   }
 
   const container = {
-    hidden: { opacity: 1, scale: 0 },
-    visible: {
+    hidden: { opacity: 0, scale: 0 },
+    visible: ({delay}) => ({
       opacity: 1,
       scale: 1,
       transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
+        delay,
+        duration:1
       }
-    }
+    })
   }
-
-  const item = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1
-    }
-  };
          
   return (
-    <motion.div 
-    variants={container}
-    initial="hidden"
-    animate="visible"
-    style={{display: "grid" , placeItems: "center"}}>
+      <div>
+
       <h2 className='title_ofertas'>Ofertas</h2>
         <Row xs="auto" md="auto" lg="auto" className="container-col-card">
       {loading && <Loader/>}
 
       { !loading  && productsList.map((prod,idx) => (
-        
+        <motion.div 
+        custom={{delay : (idx + 1 ) * 0.2}}
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        style={{display: "grid" , placeItems: "center"}}
+        >
         <Col key={idx}>
          <Card className='body-card-product' >
   
@@ -71,9 +66,10 @@ export default function List() {
             </Card.Body>
             </Card>
         </Col>
+      </motion.div>
     
-      ))}
+    ))}
     </Row>
-    </motion.div>
+    </div>
   )
 }

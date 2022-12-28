@@ -14,7 +14,38 @@ const imgs = require.context('../resource/img' , true);
 export default function Header() {
     
     const dispatch = useDispatch();
-    const night = useSelector(state => state.night)
+    const night = useSelector(state => state.night);
+
+    const variant = {
+      hidden: { opacity: 0, scale: 0 },
+      visible: ({delay}) => ({
+        opacity: 1,
+        scale: 1,
+        transition: {
+          delay,
+          duration:1
+        }
+      })
+    }
+
+    const urls = [{name:"Home",url:"/"},
+    {name:"Admin",url:"/Admin-Profile"},
+    {name:"Carrito",url:"ShoppingCart"},
+    {name:"categoria"},
+    {name:"Login",url:"/Login"}]
+    const actionUrls = (name,url) => {
+      if(name == "Login"){return <Link className='icons-header' to="/Login">Login <HiUser/></Link> }
+      if(name == "Carrito"){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
+      if(name == "categoria"){
+        return <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
+        <Link to="/Bicicletas"><NavDropdown.Item href="/">Bicicletas</NavDropdown.Item></Link>
+        <Link to="/Accesorios"><NavDropdown.Item href="/">Accesorios</NavDropdown.Item></Link>
+        <NavDropdown.Divider />
+        <Link to="/Promociones"><NavDropdown.Item href="/">Promociones</NavDropdown.Item></Link>
+        </NavDropdown>
+      }
+      return <Link to={url}>{name}</Link>
+    }
 
   return (
     <header>
@@ -46,24 +77,25 @@ export default function Header() {
             style={{ maxHeight: '100px' , gap:"3rem" }}
             navbarScroll
           >
-                <Link to="/">Home</Link>
-                <Link to="/Admin-Profile">Admin</Link>
-                <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>
-                    <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
-                        <Link to="/Bicicletas"><NavDropdown.Item href="/">Bicicletas</NavDropdown.Item></Link>
-                        <Link to="/Accesorios"><NavDropdown.Item href="/">Accesorios</NavDropdown.Item></Link>
-                        <NavDropdown.Divider />
-                        <Link to="/Promociones"><NavDropdown.Item href="/">Promociones</NavDropdown.Item></Link>
-                    </NavDropdown>
-                <Link className='icons-header' to="/Login">Login <HiUser/></Link>
+            {urls.map((url , inx) => { 
+              return (
+                <motion.div
+                    custom={{delay: 1}}
+                    initial={{opacity: 0, x:-200}}
+                    variants={variant}
+                >
+                    {actionUrls(url.name , url.url)}
+                    </motion.div>
+                )
+            })}
+             
                 <motion.div
                     initial={{opacity: 0, y:-100}}
                     animate={{opacity:1, y:0}}
                     transition={{duration: 0.3, delay: 0.5}}
                     className="luna-container"
                     onClick={() => dispatch(setNight())}>
-{/*                 <img className='luna' src={night ? luna : sol} alt="nightmode"/>
- */}                <img className='luna' src={night ? imgs(`./luna.png`) : imgs(`./sol.png`)} alt="nightmode"/>
+                <img className='luna' src={night ? imgs(`./luna.png`) : imgs(`./sol.png`)} alt="nightmode"/>
                 </motion.div>
           </Nav>
         </Navbar.Collapse>
