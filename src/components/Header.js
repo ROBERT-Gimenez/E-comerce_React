@@ -35,9 +35,9 @@ export default function Header() {
     {name:"categoria"},
     {name:"Login",url:"/Login"}]
     const actionUrls = (name,url) => {
-      if(name == "Login"){return <Link className='icons-header' to="/Login">Login <HiUser/></Link> }
-      if(name == "Carrito"){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
-      if(name == "categoria"){
+      if(name === "Login"){return <Link className='icons-header' to="/Login">Login <HiUser/></Link> }
+      if(name === "Carrito"){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
+      if(name === "categoria"){
         return <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
         <Link to="/Bicicletas"><NavDropdown.Item href="/">Bicicletas</NavDropdown.Item></Link>
         <Link to="/Accesorios"><NavDropdown.Item href="/">Accesorios</NavDropdown.Item></Link>
@@ -75,7 +75,7 @@ export default function Header() {
 
           <Nav
             className="me-auto my-2 my-lg-0 align-items-center"
-            style={{ maxHeight: '100px' , gap:"3rem" }}
+            style={{ maxHeight: '100px' , gap:"2rem" ,zIndex:"2" }}
             navbarScroll
           >
             {urls.map((url , idx) => { 

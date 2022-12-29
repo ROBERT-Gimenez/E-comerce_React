@@ -1,28 +1,25 @@
-import {Row , Col , Card , Button} from 'react-bootstrap'
+import {Row , Col , Card } from 'react-bootstrap'
 import {useState , useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
 import './List.css'
-import { Link , useHistory  } from 'react-router-dom';
+import { Link , useNavigate  } from 'react-router-dom';
 import Loader from '../Loader';
-import { useSelector , useDispatch } from 'react-redux';
-import { setListStore } from '../../Store/state';
 import useGetAxios from '../../hooks/useGetAxios';
 import { motion } from "framer-motion"
 const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function List() {
-  let history = useHistory();
-  const dispatch = useDispatch();
-  const listStore = useSelector(state => state.Products)
+  const navigate  = useNavigate ();
   const [productsList , setProductsList] = useState([]);
   const {data , loading} = useGetAxios("http://localhost:4000/api/products")
   
   useEffect(() => {
-       !loading && setProductsList(data)
+    !loading && setProductsList(data)
+    // eslint-disable-next-line
       } ,[loading])   
     
   const inDetail= (id) => {
-    history.push(`/detalle?productId=${id}`)  
+    return navigate(`/detalle?productId=${id}`)  
   }
 
   const container = {

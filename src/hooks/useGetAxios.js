@@ -1,11 +1,7 @@
 import axios from 'axios'
 import { useEffect , useState } from 'react';
-import { useSelector , useDispatch } from 'react-redux';
-import { setListStore } from '../Store/state';
-
 
 export default function useGetAxios(url) {
-    const dispatch = useDispatch();
 
     const [data , setData] = useState(null);
     const [loading , setLoading] = useState(true);

@@ -4,7 +4,8 @@ import Loader from '../Loader';
 import "./DetailProduct.css"
 import { BsFillStarFill } from "react-icons/bs";
 import { Button } from 'react-bootstrap';
-import Prueba from './CarrouselProduct';
+import { motion } from 'framer-motion';
+import CarrouselProduct from './CarrouselProduct';
 const imgsProducts = require.context('../../resource/img/products', true);
 
 
@@ -18,16 +19,26 @@ export default function DetailProduct() {
   
   useEffect(() => {
     data !== null && setproduct(data)
-    console.log(data)
    },[data])
 
    const stars = [1,2,3,4,5] ;
+
+   const container = {
+    hidden: { opacity: 0, scale: 0 },
+    visible:{
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration:1
+      }
+    }
+  }
 
    const selected = (e) => {
      const n = e.target
      const l = n.parentElement.getAttribute('name')
 
-     if(l == Stars){
+     if(l === Stars){
        setStars(0)
       }
       setStars(l)
@@ -37,7 +48,11 @@ export default function DetailProduct() {
     <div className='body_detail'>
       {loading && <Loader/>}
         {product.id !== undefined && (
-         <div className="rectangule">
+         <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="rectangule">
           
           <div className="img_content" >
            <img className={"img"} alt={product.name} src={imgsProducts(`./${product.image}`)} />
@@ -54,9 +69,9 @@ export default function DetailProduct() {
             </div>
             <div className='rating-stars'></div>
             <h3 className={"text"}>Precio ${product.price}</h3>
-            <div style={{display:"flex" , justifyContent:"space-evenly" , gap: "1rem"}}>
+            <div className='div_devolution' >
               <h5 style={{color:"beige"}}> Devolución gratis</h5>
-              <span style={{color:"#f82e00"}}> Tenés 30 días desde que lo recibís.</span>
+              <span style={{color:"#f82e00" ,fontWeight: "500"}}> Tenés 30 días desde que lo recibís.</span>
             </div>
             <h5>Stock disponible : {product.stock}</h5>
 
@@ -72,9 +87,16 @@ export default function DetailProduct() {
   
           </div>
   
-        </div>) 
+        </motion.div>) 
         }
-        <div className='Body_Medios_Pago'>
+        {!loading && ( 
+        <motion.div
+        initial={{opacity: 0, scale: 0}}
+        animate={{opacity: 1,
+          scale: 1,
+          transition:{duration:1}}}
+        className='Body_Medios_Pago'
+        >
           <h3>Medios de pago</h3>
             <div className='medios_de_pago'>
             <div>
@@ -86,15 +108,16 @@ export default function DetailProduct() {
               <img src="https://http2.mlstatic.com/storage/logos-api-admin/aa2b8f70-5c85-11ec-ae75-df2bef173be2-m.svg" alt="MasterCard" />
             </div>
             </div>
+              -
             <div>
             <h5>Tarjetas de Débito</h5>
             <div className='targetas_conteiner'>
               <img src="https://http2.mlstatic.com/storage/logos-api-admin/312238e0-571b-11e8-823a-758d95db88db-m.svg" alt="Visa" />
-              <img src="https://http2.mlstatic.com/storage/logos-api-admin/ce454480-445f-11eb-bf78-3b1ee7bf744c-m.svg" alt="maestro" />
               <img src="https://http2.mlstatic.com/storage/logos-api-admin/157dce60-571b-11e8-95d8-631c1a9a92a9-m.svg" alt="mastercard" />
               <img src="https://http2.mlstatic.com/storage/logos-api-admin/cb0af1c0-f3be-11eb-8e0d-6f4af49bf82e-m.svg" alt="Cabal" />
             </div>
             </div>
+              -
             <div>
             <h5>Efectivo</h5>
             <div className='targetas_conteiner'>
@@ -104,8 +127,9 @@ export default function DetailProduct() {
           
            
             </div>
-          </div>
-        <Prueba/>
+          </motion.div>
+          )} 
+          <CarrouselProduct/>
     </div>
   )
 }

@@ -1,8 +1,7 @@
-import {useRef , useState} from 'react'
+import {useState} from 'react'
 import { useForm } from 'react-hook-form' 
 import '../Login/Login.css'
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
 import Register from './Register'
 
 
@@ -12,15 +11,14 @@ import Register from './Register'
 export default function Login() {
     
     const [verMail , setMail] = useState(null);
-    const {register, formState:{errors} , watch , handleSubmit } = useForm();
-    const history = useNavigate();
+    const {register, formState:{errors} , handleSubmit } = useForm();
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
   
 
     const verifique = (e) => {
         e.target.addEventListener('blur' , () => {
-            const email =e.target.value
+        const email =e.target.value
             
         
         fetch('http://localhost:4000/api/user')
@@ -59,16 +57,9 @@ export default function Login() {
             const error = err.response?.data?.message
             alert(error)
             
-        })
-    
-             
+        })      
         }
 
-        let contr = watch("pass_sing_up1");
-
-    
-        
-    
   return (
     <>
     <div className="container-form">

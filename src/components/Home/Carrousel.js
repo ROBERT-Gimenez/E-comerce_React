@@ -3,11 +3,16 @@ import {Carousel} from 'react-bootstrap'
 import banner1 from '../../resource/img/carrousel/Banner-1.png'
 import banner2 from '../../resource/img/carrousel/Banner-2.png'
 import banner3 from '../../resource/img/carrousel/Banner-3.png'
-export default function Carrousel() {
+import { motion } from 'framer-motion'
 
+export default function Carrousel() {
   let imgs = [banner1,banner2,banner3]
   return (
-    <div>
+    <motion.div
+    initial={{x:-1800 , opacity:0}}
+    animate={{x:0 , opacity:2}}
+    transition={{duration:2}}
+    >
     <Carousel variant="transparent" className='corrousel'>
       {imgs.map((img , indx) => {
         return(
@@ -21,6 +26,6 @@ export default function Carrousel() {
         )
       })}
     </Carousel>
-    </div>
+    </motion.div>
   )
 }

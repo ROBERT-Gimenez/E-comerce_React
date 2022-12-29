@@ -1,9 +1,10 @@
 import {useState ,useEffect} from 'react'
 import { Virtual , Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link , Navigate} from 'react-router-dom';
+import { Navigate} from 'react-router-dom';
 import useGetAxios from '../../hooks/useGetAxios';
 import { motion , AnimatePresence } from 'framer-motion';
+
 
 // Import Swiper styles
 import 'swiper/css';
@@ -15,16 +16,27 @@ import 'swiper/css/scrollbar';
 const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function CarrouselProduct() {
-
+    // eslint-disable-next-line
     const [selectedId, setSelectedId] = useState(null)
     const [selectedProd, setSelectedProd] = useState("")
     const [Products , setProducts] = useState([])
     const {data , loading} = useGetAxios('http://localhost:4000/api/products')
 
-    
     useEffect(() => {
-        data && setProducts(data)
-    }, [loading]);
+      let query = new URLSearchParams(window.location.search);
+      let keyword = query.get('productId');
+      // eslint-disable-next-line
+      data && setProducts(data.filter(item => {
+      // eslint-disable-next-line
+          if(item.id != keyword){
+            return item
+          }
+        }))
+      } 
+      
+/*         data && setProducts(data)*/
+      // eslint-disable-next-line
+    , [loading]);
    
 
     const slides = Products.map((el, index) =>
@@ -40,23 +52,37 @@ export default function CarrouselProduct() {
       ); 
 
       const inDetail= (id) => {
-        const selctioProd = Products.find(item => { return item.id == id})
+        const selctioProd = Products.find(item => { return item.id === id})
         setSelectedProd(selctioProd)
         setSelectedId(id)
-        console.log(selctioProd)
         return <Navigate to={`/detalle?productId=${id}`}/>
       };
       
   return (
-    <div>
+    !loading && (
+    <motion.div
+    initial={{opacity:0, scale:0}}
+    animate={{opacity:1 , scale:1}}
+    transition={{duration:1}}
+    >
     <h3 style={{color:"wheat"}}>Productos Relacionados</h3>  
     <div className='body_imgs_recomend' style={{color:"wheat"}}>
         <Swiper 
+        breakpoints={{
+          // when window width is >= 640px
+          340: {
+            slidesPerView:2
+          },
+          // when window width is >= 768px
+          768: {
+            slidesPerView:4
+          },
+        }}
             style={{color:"wheat"}} 
             modules={[Virtual,Navigation, Pagination, Scrollbar, A11y]} 
             spaceBetween={1} 
-            slidesPerView={4}
-            pagination={{ clickable: true }} 
+            /* slidesPerView={4} */
+            pagination={false} /* {{ clickable: false }} */ 
             scrollbar={{ draggable: false }}
             navigation
             virtual>
@@ -76,6 +102,9 @@ export default function CarrouselProduct() {
                     variant="top" src={imgsProducts(`./${selectedProd.image}`)} 
                     alt={selectedProd.title}
                     style={{borderRadius:"10px"}}
+                    onClick={()=>{
+                       window.location.replace(`/detalle?productId=${selectedProd.id}`)
+                      } }
                     />
                     <hr/>
                     <motion.h4>{selectedProd.name}</motion.h4>
@@ -88,7 +117,7 @@ export default function CarrouselProduct() {
           )}
         </AnimatePresence> 
     </div> 
-  </div>
+  </motion.div>)
   )
 }
  

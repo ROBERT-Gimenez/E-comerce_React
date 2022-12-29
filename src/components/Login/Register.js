@@ -1,18 +1,15 @@
 import React from 'react'
-import {useRef , useState} from 'react'
+import { useState} from 'react'
 import { useForm } from 'react-hook-form' 
 import './Login.css'
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
 
 
 export default function Register() {
    
   
     const [errEmail , setErrEmail] = useState(null);
-    const [errPassword , setErrPassword] = useState("");
     const {register, formState:{errors} , watch , handleSubmit } = useForm();
-    const history = useNavigate();
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/;
 
