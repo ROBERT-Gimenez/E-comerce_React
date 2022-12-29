@@ -4,6 +4,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigate} from 'react-router-dom';
 import useGetAxios from '../../hooks/useGetAxios';
 import { motion , AnimatePresence } from 'framer-motion';
+import {AiOutlineCloseCircle } from "react-icons/ai";
+
+
 
 
 // Import Swiper styles
@@ -112,7 +115,7 @@ export default function CarrouselProduct() {
 
                     <a href={`/detalle?productId=${selectedProd.id}`} className="btn btn-primary">go to product</a>
                 </motion.div>
-            <motion.button onClick={() => setSelectedId(null)} />
+            <motion.button onClick={() => setSelectedId(null)} ><AiOutlineCloseCircle onClick={() => setSelectedId(null)} /></motion.button>
           </motion.div>
           )}
         </AnimatePresence> 

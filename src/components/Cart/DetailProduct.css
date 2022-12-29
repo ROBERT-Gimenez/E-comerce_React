@@ -113,13 +113,13 @@ color: aliceblue;
     background: white;
     border-radius: 50px;
     color: steelblue; 
-    margin-top: 7rem;
+    margin-top: 4%;
  }
   .motion_detail{
     transform: none;
     transform-origin: 50% 50% 0px;
     position: absolute;
-    top: 100%;
+    top: 50%;
     background-color: #00000094;
     border-radius: 20px;
     width: 100%;
@@ -130,6 +130,13 @@ color: aliceblue;
     cursor: pointer;
     width: 2rem;
     height: 1rem;
+    position: relative;
+    bottom: 55%;
+    left: 12%;
+    border: none;
+    display: flex;
+    background-color: transparent;
+    font-size: 30px;
 }
 @media (max-width:300px){
     .Body_Medios_Pago{
@@ -137,6 +144,7 @@ color: aliceblue;
     }
 }
 @media (max-width: 400px) {
+    
     .rectangule{
         flex-direction: column;
         padding: 1rem;
@@ -162,6 +170,15 @@ color: aliceblue;
   }
   
    @media (max-width: 640px) {
+    .motion_detail {
+        top: 130%;
+    }
+    .motion_detail button:not(:disabled) {
+        width: 3rem;
+        bottom: 51%;
+        left: 19%;
+        font-size: 40px;
+    }
     .rectangule{
         flex-direction: column;
         padding: 1rem;
