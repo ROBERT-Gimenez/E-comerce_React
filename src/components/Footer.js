@@ -7,7 +7,7 @@ import Logo from '../resource/img/logo-2.svg'
 export default function Footer() {
   return (
     <div className='footer-general'>
-        <a href='/' className='whattsapp-icon'><ImWhatsapp/></a>
+        <div className='circle'><a href='/' className='whattsapp-icon'><ImWhatsapp/></a></div>
         <Navbar  variant="dark" className='bg_footer'>
           <>
           <Navbar.Brand href="#home">

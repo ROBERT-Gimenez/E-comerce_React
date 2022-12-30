@@ -130,9 +130,10 @@ color: aliceblue;
     cursor: pointer;
     width: 2rem;
     height: 1rem;
-    position: relative;
-    bottom: 55%;
-    left: 12%;
+    position: absolute;
+    right: 32%;
+    width: 3rem;
+    top: 7%;
     border: none;
     display: flex;
     background-color: transparent;
@@ -175,9 +176,7 @@ color: aliceblue;
     }
     .motion_detail button:not(:disabled) {
         width: 3rem;
-        bottom: 51%;
-        left: 19%;
-        font-size: 40px;
+        right: 15%;
     }
     .rectangule{
         flex-direction: column;

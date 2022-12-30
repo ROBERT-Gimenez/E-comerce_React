@@ -114,8 +114,8 @@ export default function CarrouselProduct() {
                     <motion.h5>${selectedProd.price}</motion.h5>
 
                     <a href={`/detalle?productId=${selectedProd.id}`} className="btn btn-primary">go to product</a>
+                  <motion.button onClick={() => setSelectedId(null)} ><AiOutlineCloseCircle onClick={() => setSelectedId(null)} /></motion.button>
                 </motion.div>
-            <motion.button onClick={() => setSelectedId(null)} ><AiOutlineCloseCircle onClick={() => setSelectedId(null)} /></motion.button>
           </motion.div>
           )}
         </AnimatePresence> 
