@@ -3,31 +3,37 @@ import {Table , Nav } from 'react-bootstrap';
 import style from './Admin.css'
 import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
-export default function Admin() {
-  const user = useGetAxios("http://localhost:4000/api/user");
-  const Product = useGetAxios("http://localhost:4000/api/products")
+import {useSelector} from "react-redux"
 
-  const [users , setUsers] = useState([]);
-  const [products , setProducts] = useState([]);
 
-  useEffect(() => {
-  user.data && setUsers(user.data)
-  // eslint-disable-next-line
-  },[user.loading]);
+  export default function Admin() {
+    const user = useGetAxios("http://localhost:4000/api/user");
+    const Product = useGetAxios("http://localhost:4000/api/products")
 
-  function getProduct(){
-    Product.data && setProducts(Product.data) 
-    setUsers([])
-  } 
-  function getUsers(){
+    const [users , setUsers] = useState([]);
+    const [products , setProducts] = useState([]);
+
+    const night = useSelector(state => state.night);
+
+    useEffect(() => {
     user.data && setUsers(user.data)
-    setProducts([])
-  } 
+    // eslint-disable-next-line
+    },[user.loading]);
+
+    function getProduct(){
+      Product.data && setProducts(Product.data) 
+      setUsers([])
+    } 
+    function getUsers(){
+      user.data && setUsers(user.data)
+      setProducts([])
+    } 
 
   return (
     <div>
        
-    <Nav variant="tabs" defaultActiveKey="/home" className={style.nav}>
+    <Nav style= {{backgroundColor:night?"slategray":"rgb(19 19 21)"}}
+     variant="tabs" defaultActiveKey="/home" className={style.nav}>
       <Nav.Item>
         <Nav.Link eventKey="Users" onClick={getUsers}>Users</Nav.Link>
       </Nav.Item>
@@ -38,7 +44,8 @@ export default function Admin() {
         <Nav.Link eventKey="Categorys" >Compras</Nav.Link>
       </Nav.Item>
     </Nav>
-    <Table striped bordered hover variant="dark">
+    <Table style= {{backgroundColor:night?"slategray":"rgb(19 19 21)"}} 
+    striped bordered hover >
       {(users.loading || Product.loading) &&  <Loader/>}
       <thead>
         {users.loading && <Loader/>}

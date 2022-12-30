@@ -49,8 +49,8 @@ export default function Header() {
     }
 
   return (
-    <header>
-    <Navbar variant='dark' bg="dark" expand="lg">
+    <header style= {{backgroundColor:night?"#212529":"rgb(180 246 255)"}}>
+    <Navbar variant='dark' expand="lg">
       <Container fluid>
       <Navbar.Brand href="/">
             <img

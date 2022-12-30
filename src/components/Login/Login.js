@@ -3,9 +3,7 @@ import { useForm } from 'react-hook-form'
 import '../Login/Login.css'
 import axios from 'axios'
 import Register from './Register'
-
-
-
+import {useSelector} from "react-redux"
    
   
 export default function Login() {
@@ -13,7 +11,7 @@ export default function Login() {
     const [verMail , setMail] = useState(null);
     const {register, formState:{errors} , handleSubmit } = useForm();
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
+    const night = useSelector(state => state.night);
   
 
     const verifique = (e) => {
@@ -62,11 +60,11 @@ export default function Login() {
 
   return (
     <>
-    <div className="container-form">
-    <div className="login-container">
+    <div  className="container-form">
+    <div style= {{backgroundColor:night?"rgb(19 19 21)":"slategray"}} className="login-container">
             <input id="item-1" type="radio" name="item"  className="sign-in" defaultChecked={true}/><label htmlFor="item-1" className="item">Sign In</label>
             <input id="item-2" type="radio" name="item"  className="sign-up"/><label htmlFor="item-2" className="item">Sign Up</label>
-    <form className='body-login'  onSubmit={handleSubmit(SubmitLogin)} > 
+    <form style= {{backgroundColor:night?"rgb(19 19 21)":"slategray"}} className='body-login'  onSubmit={handleSubmit(SubmitLogin)} > 
             <div className="login-form">
                 <div className="sign-in-htm">
                     <div className="group">
@@ -100,7 +98,7 @@ export default function Login() {
                         <input type="submit" className="button" value="Sign In"/>
                     </div>
                     <div className="hr"></div>
-                    <div className="footer">
+                    <div style= {{backgroundColor:night?"rgb(19 19 21)":"slategray"}} className="footer">
                         <a href="#forgot">Forgot Password?</a>
                     </div>
                 </div>

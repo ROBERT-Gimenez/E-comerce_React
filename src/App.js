@@ -11,10 +11,14 @@ import Admin from "./components/Admin/Admin";
 import Shopping from "./components/Cart/Shopping";
 import DetailProduct from "./components/Cart/DetailProduct";
 import Frameer from "./components/Login/Framer";
+import {useSelector} from 'react-redux'
 
 function App() {
+ 
+  const night = useSelector(state => state.night);
+
   return (
-    <div className="App">
+    <div className="App"  style= {{backgroundColor:night?"#212529":"rgb(0 188 212 / 17%)"}}>
       <Header/>
       <Routes>
       <Route path="/" element={<Home/>}></Route>

@@ -3,7 +3,7 @@ import { useState} from 'react'
 import { useForm } from 'react-hook-form' 
 import './Login.css'
 import axios from 'axios'
-
+import { useSelector } from 'react-redux'
 
 export default function Register() {
    
@@ -12,7 +12,7 @@ export default function Register() {
     const {register, formState:{errors} , watch , handleSubmit } = useForm();
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/;
-
+    const night = useSelector(state => state.night);
   
 
     const verifique = (e) => {
@@ -65,7 +65,7 @@ export default function Register() {
   return (
     <>
 
-                <form onSubmit={handleSubmit(submitCreate)} className='sign-up-form'>
+                <form style= {{backgroundColor:night?"rgb(19 19 21)":"slategray"}} onSubmit={handleSubmit(submitCreate)} className='sign-up-form'>
                 <div className="login-form">   
                  <div className="sign-up-htm">
                     <div className="group">
@@ -116,7 +116,7 @@ export default function Register() {
                         <input type="submit" className="button" value="Sign Up"/>
                     </div>
                     <div className="hr"></div>
-                    <div className="footer">
+                    <div style= {{backgroundColor:night?"rgb(19 19 21)":"slategray"}} className="footer">
                         <label className='label' htmlFor="item-1">Already have an account?</label>
 				</div>
 			</div> 
