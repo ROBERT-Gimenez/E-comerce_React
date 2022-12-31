@@ -99,22 +99,25 @@ export default function CarrouselProduct() {
         <AnimatePresence >
         {selectedId && selectedProd && (
           <motion.div className="motion_detail" layoutId={selectedId}>
-                <motion.div id={selectedProd.id} key={selectedProd.id}  onClick={() => inDetail(selectedProd.id)} className='imgs_recomend_container'>
+                <motion.div id={selectedProd.id} key={selectedProd.id} /*  onClick={() => inDetail(selectedProd.id)} */ className='imgs_recomend_container'>
+                <div className='content_btn'>
+                <motion.button className='btn_close_detail' onClick={() => setSelectedId(null)} ><AiOutlineCloseCircle onClick={() => setSelectedId(null)} /></motion.button>
+                </div>
+
                     <motion.img 
-                    className='img-cards-products' 
+                    className='img-cards-products_detail' 
                     variant="top" src={imgsProducts(`./${selectedProd.image}`)} 
                     alt={selectedProd.title}
                     style={{borderRadius:"10px"}}
                     onClick={()=>{
-                       window.location.replace(`/detalle?productId=${selectedProd.id}`)
-                      } }
+                      window.location.replace(`/detalle?productId=${selectedProd.id}`)
+                    } }
                     />
                     <hr/>
                     <motion.h4>{selectedProd.name}</motion.h4>
                     <motion.h5>${selectedProd.price}</motion.h5>
 
                     <a href={`/detalle?productId=${selectedProd.id}`} className="btn btn-primary">go to product</a>
-                  <motion.button onClick={() => setSelectedId(null)} ><AiOutlineCloseCircle onClick={() => setSelectedId(null)} /></motion.button>
                 </motion.div>
           </motion.div>
           )}

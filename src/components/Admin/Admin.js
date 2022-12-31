@@ -1,6 +1,6 @@
 import {useState , useEffect} from 'react'
 import {Table , Nav } from 'react-bootstrap';
-import style from './Admin.css'
+import './Admin.css'
 import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
 import {useSelector} from "react-redux"
@@ -31,21 +31,20 @@ import {useSelector} from "react-redux"
 
   return (
     <div>
-       
-    <Nav style= {{backgroundColor:night?"slategray":"rgb(19 19 21)"}}
-     variant="tabs" defaultActiveKey="/home" className={style.nav}>
-      <Nav.Item>
+    <Nav
+     variant="tabs" defaultActiveKey="/home" >
+      <Nav.Item  className={night?"nav_tabsMoon":"nav_tabsSun"}>
         <Nav.Link eventKey="Users" onClick={getUsers}>Users</Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item  className={night?"nav_tabsMoon":"nav_tabsSun"}>
         <Nav.Link eventKey="Products" onClick={getProduct}>Products</Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item  className={night?"nav_tabsMoon":"nav_tabsSun"}>
         <Nav.Link eventKey="Categorys" >Compras</Nav.Link>
       </Nav.Item>
     </Nav>
-    <Table style= {{backgroundColor:night?"slategray":"rgb(19 19 21)"}} 
-    striped bordered hover >
+    <Table className={night?"nightOn":"nightOf"}
+     bordered >
       {(users.loading || Product.loading) &&  <Loader/>}
       <thead>
         {users.loading && <Loader/>}
@@ -82,7 +81,7 @@ import {useSelector} from "react-redux"
           <tr key={indx}>
           <td>{product.id}</td>
           <td>{product.name}</td>
-          <td>{product.description}</td>
+          <td>{product.description.substring(0 ,40)}..</td>
           <td>{product.price}</td>
           <td>{product.discount}</td>
           <td>{product.stock}</td>
