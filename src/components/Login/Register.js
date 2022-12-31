@@ -1,9 +1,9 @@
-import React from 'react'
 import { useState} from 'react'
 import { useForm } from 'react-hook-form' 
+import { useSelector } from 'react-redux'
+import swal from 'sweetalert'
 import './Login.css'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
 
 export default function Register() {
    
@@ -23,39 +23,47 @@ export default function Register() {
         .then(result => {
             const dats = result.data
             const mail = dats.filter((element) => { 
-            return element.email === email ?  true : false })
+            return element.email == email ?  true : false })
 
                 if(mail.length > 0){
                     setErrEmail(true)
+                    console.log(dats)
+                    console.log(errEmail)
+                    
                     /* alert("email ya registrado") */
                     }else{
                     setErrEmail(false)
+                    console.log(dats)
+                    console.log(errEmail)
                     }
                    
                 
             })
         }
     const submitCreate = (data) => {
-    console.log(data)
+
     const name = data.name;
     const email = data.email_sing_up;
     const password = data.pass_sing_up1;
     const rol_id = 1;
-    if(errEmail){
+    if(!errEmail){
 
     axios.post('http://localhost:4000/api/user/create' , {name,email,password,rol_id})
     .then(res => {
         console.log(res)
         let error = res?.data?.errors?.[0].msg;
         let userin = res?.data?.name;
-        userin && alert("perfil creado ")
+        userin && (swal("Perfil Registrado!", "Genial ahora puedes ingresar con tu perfil!", "success")
+        .then((value) => {
+            window.location.reload() 
+          }))
         error && alert("Datos erroneos")
-        console.log(userin)
-    //redireccionamos la pagina con useNavigate
-        window.location.reload()
+    //redireccionamos la pagina con useNavigate warning
+       /*  window.location.reload() */
         }).catch((err) => { console.log(err)})
         }else{
-          alert("email ya registrado")  
+            (swal("Error Encontrado!", "Verifique los datos!" , "warning"))
+            
         }
     }
 
