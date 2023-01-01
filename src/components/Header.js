@@ -4,17 +4,20 @@ import {motion} from 'framer-motion'
 import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
 // resource 
 import Logo from '../resource/img/logo-2.svg'
+import useGetAxios from '../hooks/useGetAxios';
 
 //redux
-import { setNight } from '../Store/state';
+import { setNight , setListStore } from '../Store/state';
 import { useDispatch , useSelector } from 'react-redux';
 const imgs = require.context('../resource/img' , true);
 
 
 export default function Header() {
-    
+  
+    const {data} = useGetAxios("http://localhost:4000/api/products")
     const dispatch = useDispatch();
     const night = useSelector(state => state.night);
+    /* const ListStore = useSelector(state => state.Products); */
 
     const variant = {
       hidden: { opacity: 0, x:600 },
@@ -29,6 +32,15 @@ export default function Header() {
       })
     }
 
+    const filterList = (categori) => {// eslint-disable-next-line 
+      let products = data.filter(element => element.categoryid == categori) 
+      return products
+    }
+    const Promocions = () => {
+      let products = data.filter(element => element.discount > 0) 
+      return products
+    }
+
     const urls = [{name:"Home",url:"/"},
     {name:"Admin",url:"/Admin-Profile"},
     {name:"Carrito",url:"ShoppingCart"},
@@ -39,10 +51,10 @@ export default function Header() {
       if(name === "Carrito"){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "categoria"){
         return <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
-        <Link to="/Bicicletas"><NavDropdown.Item href="/">Bicicletas</NavDropdown.Item></Link>
-        <Link to="/Accesorios"><NavDropdown.Item href="/">Accesorios</NavDropdown.Item></Link>
+        <NavDropdown.Item  onClick={() => dispatch(setListStore(filterList(1)))}>Bicicletas</NavDropdown.Item>
+        <NavDropdown.Item  onClick={() => dispatch(setListStore(filterList(4)))}>Accesorios</NavDropdown.Item>
         <NavDropdown.Divider />
-        <Link to="/Promociones"><NavDropdown.Item href="/">Promociones</NavDropdown.Item></Link>
+        <NavDropdown.Item onClick={() => dispatch(setListStore(Promocions()))}>Promociones</NavDropdown.Item>
         </NavDropdown>
       }
       return <Link to={url}>{name}</Link>

@@ -1,20 +1,27 @@
 import {Row , Col , Card } from 'react-bootstrap'
-import {useState , useEffect} from 'react'
+import { useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
-import './List.css'
 import { Link , useNavigate  } from 'react-router-dom';
+import { motion } from "framer-motion"
+import { useSelector , useDispatch } from 'react-redux';
+import { setListStore } from '../../Store/state';
 import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
-import { motion } from "framer-motion"
+import './List.css'
 const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function List() {
   const navigate  = useNavigate ();
-  const [productsList , setProductsList] = useState([]);
+  /* const [productsList , setProductsList] = useState([]); */
   const {data , loading} = useGetAxios("http://localhost:4000/api/products")
+
+  const dispatch = useDispatch();
+  const ListStore = useSelector(state => state.Products);
   
   useEffect(() => {
-    !loading && setProductsList(data)
+    /* !loading && setProductsList(data) */
+    !loading && dispatch(setListStore(data))
+    console.log(data)
     // eslint-disable-next-line
       } ,[loading])   
     
@@ -41,9 +48,9 @@ export default function List() {
         <Row xs="auto" md="auto" lg="auto" className="container-col-card">
       {loading && <Loader/>}
 
-      { !loading  && productsList.map((prod,idx) => (
+      { !loading  && ListStore.map((prod,idx) => (
         <motion.div
-        
+        key={idx}
         custom={{delay : (idx + 1 ) * 0.2}}
         variants={container}
         initial="hidden"

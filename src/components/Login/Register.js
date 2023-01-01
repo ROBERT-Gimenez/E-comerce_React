@@ -23,6 +23,7 @@ export default function Register() {
         .then(result => {
             const dats = result.data
             const mail = dats.filter((element) => { 
+                // eslint-disable-next-line
             return element.email == email ?  true : false })
 
                 if(mail.length > 0){
