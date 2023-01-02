@@ -20,8 +20,7 @@ export default function List() {
   
   useEffect(() => {
     /* !loading && setProductsList(data) */
-    !loading && dispatch(setListStore(data))
-    console.log(data)
+    !loading && ListStore.length < 1 && dispatch(setListStore(data))
     // eslint-disable-next-line
       } ,[loading])   
     

@@ -29,6 +29,6 @@ const Toogle = createSlice({
 })
 
 
-export const {setNight, setAdmin , setListStore} = Toogle.actions;
+export const {setNight, setToken , setAdmin , setListStore} = Toogle.actions;
 
 export default Toogle.reducer;

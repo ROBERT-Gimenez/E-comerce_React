@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { useForm } from 'react-hook-form' 
 import {useSelector , useDispatch} from "react-redux"
 import { useNavigate } from 'react-router-dom'
-import { setToken } from '../../Store/state';
+import { setToken , setAdmin } from '../../Store/state';
 import '../Login/Login.css'
 import axios from 'axios'
 import Register from './Register'
@@ -48,22 +48,21 @@ export default function Login() {
         .then(res => {
             console.log(res)
             let error = res?.data?.errors?.[0].msg
-            /* let userin = res?.data?.data?.user?.name */
+            let userin = res?.data?.data?.user?.rol_id 
+            if(userin === 2){dispatch(setAdmin(true))}
             let token = res?.data?.data?.token
-            console.log(token)
             token && (swal("Bienvenido!", "esperamos que te gusten nuestros productos!", "success")
             .then((value) => {
                 history("/") 
               }))
             error && alert("Datos erroneos")
-            setToken(token)
-            const tokenAdquirido = token
-            localStorage.setItem('token' , tokenAdquirido) // localStorage.getItem('token')
+            token && dispatch(setToken(token))
+            localStorage.setItem('token' , token) // localStorage.getItem('token')
         //redireccionamos la pagina con useNavigate
             /* userin && history("/") */
          }).catch((err) => { 
             const error = err.response?.data?.message
-            alert(error)
+            error && alert(error)
             
         })      
         }

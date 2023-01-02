@@ -1,9 +1,13 @@
-import React from 'react'
+import {Navigate} from 'react-router-dom'
 import {Nav , Table } from 'react-bootstrap'
+import { useSelector } from 'react-redux';
 
 export default function Cart() {
+  const Token = useSelector(state => state.Token);
+
   return (
     <div>
+    {!Token && <Navigate to="/Login" />}
          <Nav variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
         <Nav.Link eventKey="Users">Carrito</Nav.Link>

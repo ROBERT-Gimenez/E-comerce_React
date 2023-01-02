@@ -1,21 +1,24 @@
 import {NavDropdown , Form , Button ,Navbar ,Nav, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import {motion} from 'framer-motion'
 import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
 // resource 
 import Logo from '../resource/img/logo-2.svg'
 import useGetAxios from '../hooks/useGetAxios';
+import swal from 'sweetalert'
 
 //redux
-import { setNight , setListStore } from '../Store/state';
+import { setNight , setToken , setListStore } from '../Store/state';
 import { useDispatch , useSelector } from 'react-redux';
 const imgs = require.context('../resource/img' , true);
 
-
 export default function Header() {
-  
+
+    const navigate  = useNavigate ();
     const {data} = useGetAxios("http://localhost:4000/api/products")
+    //manejo del store
     const dispatch = useDispatch();
+    const Token = useSelector(state => state.Token);
     const night = useSelector(state => state.night);
     const Admin = useSelector(state => state.Admin);
     /* const ListStore = useSelector(state => state.Products); */
@@ -41,6 +44,17 @@ export default function Header() {
       let products = data.filter(element => element.discount > 0) 
       return products
     }
+    const categoriAction = (n , action ) => {
+      dispatch(setListStore(action(n)))
+       return navigate("/")
+      }
+    
+    const checkUser = () => {
+      !Token && (swal("Espere!", "Por favor inicie session Primero!", "warning")
+      .then((value) => {
+        navigate("/Login")
+      }))
+    }
 
     const urls = [{name:"Home",url:"/"},
     {name:"Admin",url:"/Admin-Profile"},
@@ -48,18 +62,18 @@ export default function Header() {
     {name:"categoria"},
     {name:"Login",url:"/Login"}]
     const actionUrls = (name,url) => {
-      if(name === "Login"){return <Link className='icons-header' to="/Login">Login <HiUser/></Link> }
-      if(name === "Carrito"){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
+      if(name === "Login"){return Token?<Link onClick={() => dispatch(setToken(null))} className='icons-header' to="/Login">Logaut <HiUser/></Link>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
+      if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "categoria"){
         return <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
-        <NavDropdown.Item  onClick={() => dispatch(setListStore(filterList(1)))}>Bicicletas</NavDropdown.Item>
-        <NavDropdown.Item  onClick={() => dispatch(setListStore(filterList(4)))}>Accesorios</NavDropdown.Item>
+        <NavDropdown.Item  onClick={() => categoriAction(1,filterList) }>Bicicletas</NavDropdown.Item>
+        <NavDropdown.Item  onClick={() => categoriAction(4,filterList)}>Accesorios</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item onClick={() => dispatch(setListStore(Promocions()))}>Promociones</NavDropdown.Item>
+        <NavDropdown.Item onClick={() => categoriAction(null,Promocions)}>Promociones</NavDropdown.Item>
         </NavDropdown>
       }
-      return console.log("") /* <Link to={url}>{name}</Link> */
+      return /* <Link to={url}>{name}</Link> */
     }
 
   return (
