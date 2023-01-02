@@ -1,12 +1,13 @@
 import {useState} from 'react'
 import { useForm } from 'react-hook-form' 
-import {useSelector} from "react-redux"
+import {useSelector , useDispatch} from "react-redux"
 import { useNavigate } from 'react-router-dom'
+import { setToken } from '../../Store/state';
 import '../Login/Login.css'
 import axios from 'axios'
 import Register from './Register'
 import swal from 'sweetalert'
-   
+
   
 export default function Login() {
     const history  = useNavigate ();
@@ -14,7 +15,9 @@ export default function Login() {
     const {register, formState:{errors} , handleSubmit } = useForm();
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const night = useSelector(state => state.night);
-  
+    const Token = useSelector(state => state.Token);
+    const dispatch = useDispatch();
+
 
     const verifique = (e) => {
         e.target.addEventListener('blur' , () => {
@@ -45,14 +48,16 @@ export default function Login() {
         .then(res => {
             console.log(res)
             let error = res?.data?.errors?.[0].msg
-            let userin = res?.data?.data?.user?.name
-            console.log(error)
-            userin && (swal("Bienvenido!", "esperamos que te gusten nuestros productos!", "success")
+            /* let userin = res?.data?.data?.user?.name */
+            let token = res?.data?.data?.token
+            console.log(token)
+            token && (swal("Bienvenido!", "esperamos que te gusten nuestros productos!", "success")
             .then((value) => {
                 history("/") 
               }))
             error && alert("Datos erroneos")
-            const tokenAdquirido = userin
+            setToken(token)
+            const tokenAdquirido = token
             localStorage.setItem('token' , tokenAdquirido) // localStorage.getItem('token')
         //redireccionamos la pagina con useNavigate
             /* userin && history("/") */

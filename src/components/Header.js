@@ -17,8 +17,9 @@ export default function Header() {
     const {data} = useGetAxios("http://localhost:4000/api/products")
     const dispatch = useDispatch();
     const night = useSelector(state => state.night);
+    const Admin = useSelector(state => state.Admin);
     /* const ListStore = useSelector(state => state.Products); */
-
+    
     const variant = {
       hidden: { opacity: 0, x:600 },
       visible: ({delay}) => ({
@@ -49,6 +50,7 @@ export default function Header() {
     const actionUrls = (name,url) => {
       if(name === "Login"){return <Link className='icons-header' to="/Login">Login <HiUser/></Link> }
       if(name === "Carrito"){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
+      if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "categoria"){
         return <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
         <NavDropdown.Item  onClick={() => dispatch(setListStore(filterList(1)))}>Bicicletas</NavDropdown.Item>
@@ -57,7 +59,7 @@ export default function Header() {
         <NavDropdown.Item onClick={() => dispatch(setListStore(Promocions()))}>Promociones</NavDropdown.Item>
         </NavDropdown>
       }
-      return <Link to={url}>{name}</Link>
+      return console.log("") /* <Link to={url}>{name}</Link> */
     }
 
   return (

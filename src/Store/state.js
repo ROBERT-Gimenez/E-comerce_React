@@ -4,7 +4,9 @@ const Toogle = createSlice({
     name:"reducer",
     initialState:{
         night:true,
-        Products:[]
+        Products:[],
+        Admin:null,
+        Token:null,
     },
     reducers:{
         setNight(state){
@@ -12,13 +14,21 @@ const Toogle = createSlice({
             night:!state.night
         }
     },
+        setAdmin(state){
+           return { ...state ,
+            Admin:true
+        }
+    },
     setListStore:(state , action)=> {
         return { ...state , Products:action.payload}
-    }
+    },
+    setToken:(state , action)=> {
+        return { ...state ,Token:action.payload}
+    },
     }
 })
 
 
-export const {setNight,setListStore} = Toogle.actions;
+export const {setNight, setAdmin , setListStore} = Toogle.actions;
 
 export default Toogle.reducer;
