@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import { useForm } from 'react-hook-form' 
 import {useSelector , useDispatch} from "react-redux"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate , Navigate } from 'react-router-dom'
 import { setToken , setAdmin } from '../../Store/state';
 import '../Login/Login.css'
 import axios from 'axios'
@@ -11,13 +11,15 @@ import swal from 'sweetalert'
   
 export default function Login() {
     const history  = useNavigate ();
-    const [verMail , setMail] = useState(null);
+    const dispatch = useDispatch();
     const {register, formState:{errors} , handleSubmit } = useForm();
+    
+    const [verMail , setMail] = useState(null);
+
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const night = useSelector(state => state.night);
     const Token = useSelector(state => state.Token);
-    const dispatch = useDispatch();
-
+    const localToken = localStorage.getItem('token')
 
     const verifique = (e) => {
         e.target.addEventListener('blur' , () => {
@@ -57,7 +59,7 @@ export default function Login() {
               }))
             error && alert("Datos erroneos")
             token && dispatch(setToken(token))
-            localStorage.setItem('token' , token) // localStorage.getItem('token')
+            localStorage.setItem('token' , token)
         //redireccionamos la pagina con useNavigate
             /* userin && history("/") */
          }).catch((err) => { 
@@ -66,9 +68,11 @@ export default function Login() {
             
         })      
         }
-
+        
+        
   return (
     <>
+    {localToken && <Navigate to="/" /> }
     <div  className="container-form">
     <div style= {{backgroundColor:night?"rgb(19 19 21)":"slategray"}} className="login-container">
             <input id="item-1" type="radio" name="item"  className="sign-in" defaultChecked={true}/><label htmlFor="item-1" className="item">Sign In</label>

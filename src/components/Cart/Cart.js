@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 
 export default function Cart() {
   const Token = useSelector(state => state.Token);
-
+  const localToken = localStorage.getItem('token')
   return (
     <div>
-    {!Token && <Navigate to="/Login" />}
+    {(!localToken) && <Navigate to="/Login" />}
          <Nav variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
         <Nav.Link eventKey="Users">Carrito</Nav.Link>

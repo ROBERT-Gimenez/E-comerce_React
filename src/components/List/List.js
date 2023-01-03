@@ -43,7 +43,7 @@ export default function List() {
   return (
       <div>
 
-      <h2 className='title_ofertas'>Ofertas</h2>
+      <h2 className='title_ofertas'>Productos</h2>
         <Row xs="auto" md="auto" lg="auto" className="container-col-card">
       {loading && <Loader/>}
 

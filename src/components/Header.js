@@ -21,8 +21,8 @@ export default function Header() {
     const Token = useSelector(state => state.Token);
     const night = useSelector(state => state.night);
     const Admin = useSelector(state => state.Admin);
+    const localToken = localStorage.getItem('token')
     /* const ListStore = useSelector(state => state.Products); */
-    
     const variant = {
       hidden: { opacity: 0, x:600 },
       visible: ({delay}) => ({
@@ -50,7 +50,7 @@ export default function Header() {
       }
     
     const checkUser = () => {
-      !Token && (swal("Espere!", "Por favor inicie session Primero!", "warning")
+       (localToken.length < 100) && (swal("Espere!", "Por favor inicie session Primero!", "warning")
       .then((value) => {
         navigate("/Login")
       }))
@@ -62,7 +62,7 @@ export default function Header() {
     {name:"categoria"},
     {name:"Login",url:"/Login"}]
     const actionUrls = (name,url) => {
-      if(name === "Login"){return Token?<Link onClick={() => dispatch(setToken(null))} className='icons-header' to="/Login">Logaut <HiUser/></Link>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
+      if(name === "Login"){return localToken?<Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut <HiUser/></Link>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
       if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "categoria"){

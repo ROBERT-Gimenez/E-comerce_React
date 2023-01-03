@@ -1,10 +1,11 @@
 import {useState , useEffect} from 'react'
+import { useNavigate , Navigate } from 'react-router-dom';
 import {Table , Nav } from 'react-bootstrap';
 import './Admin.css'
 import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
 import {useSelector} from "react-redux"
-
+import swal from 'sweetalert'
 
   export default function Admin() {
     const user = useGetAxios("http://localhost:4000/api/user");
@@ -14,7 +15,8 @@ import {useSelector} from "react-redux"
     const [products , setProducts] = useState([]);
 
     const night = useSelector(state => state.night);
-
+    const Admin = useSelector(state => state.Admin);
+    const navigate  = useNavigate ();
     useEffect(() => {
     user.data && setUsers(user.data)
     // eslint-disable-next-line
@@ -28,10 +30,17 @@ import {useSelector} from "react-redux"
       user.data && setUsers(user.data)
       setProducts([])
     } 
-
+    const rejectAcces = () => {
+      (swal("Error!", "Acceso Denegado!", "error")
+      .then((value) => {
+        navigate("/")
+      }))
+    }
   return (
     <div>
-    <Nav
+      {!Admin && rejectAcces() && <Navigate to="/" />}
+    {Admin && (<>
+     <Nav
      variant="tabs" defaultActiveKey="/home" >
       <Nav.Item  className={night?"nav_tabsMoon":"nav_tabsSun"}>
         <Nav.Link eventKey="Users" onClick={getUsers}>Users</Nav.Link>
@@ -91,6 +100,7 @@ import {useSelector} from "react-redux"
       </tbody>
         
     </Table>
+    </>)}
     </div>
   )
 }
