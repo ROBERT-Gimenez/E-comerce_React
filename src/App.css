@@ -115,7 +115,6 @@ a{
   animation: spin 1.2s linear infinite;
 }
 .footer-general{
-  margin-top: 2rem;
   box-shadow: 0px 13px 30px 0px;
 }
 .footer-general .navbar-brand{
