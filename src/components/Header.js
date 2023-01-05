@@ -1,4 +1,3 @@
-import {NavDropdown , Form , Button ,Navbar ,Nav, Container } from 'react-bootstrap';
 import { Link , useNavigate } from 'react-router-dom';
 import {motion} from 'framer-motion'
 import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
@@ -11,6 +10,7 @@ import { useCookies } from 'react-cookie';
 //redux
 import { setNight , setToken , setListStore } from '../Store/state';
 import { useDispatch , useSelector } from 'react-redux';
+import Buscador from './Buscador';
 const imgs = require.context('../resource/img' , true);
 
 export default function Header() {
@@ -89,6 +89,16 @@ export default function Header() {
               width="120"  height="60"
               className="d-inline align-top Logo"
             />{' '}
+           {/*   <form 
+            className="search-box"
+            onSubmit="">
+                <input
+                type="search" placeholder='Search for product...'
+                required 
+                value=""
+                onChange=""/>
+            </form> */}
+            <Buscador/>
             {urls.map((url , idx) => { 
               return (
                 <motion.div
