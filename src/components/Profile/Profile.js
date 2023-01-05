@@ -1,7 +1,15 @@
-import React from 'react'
+import {useEffect} from 'react'
 import './Profile.css'
-
+import useGetAxios from '../../hooks/useGetAxios'
+import { useSelector } from 'react-redux';
 export default function Profile() {
+
+  const Token = useSelector(state => state.Token);
+  useEffect(() => {
+    console.log(Token)
+   
+  }, []);
+
   return (
     <div className='profile_container'>
       <article className='article_profile'>

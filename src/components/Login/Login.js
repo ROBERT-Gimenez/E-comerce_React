@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { useForm } from 'react-hook-form' 
+import { useCookies } from 'react-cookie';
 import {useSelector , useDispatch} from "react-redux"
 import { useNavigate , Navigate } from 'react-router-dom'
 import { setToken , setAdmin } from '../../Store/state';
@@ -13,14 +14,15 @@ export default function Login() {
     const history  = useNavigate ();
     const dispatch = useDispatch();
     const {register, formState:{errors} , handleSubmit } = useForm();
-    
+    const [cookies, setCookie] = useCookies(['session']);
     const [verMail , setMail] = useState(null);
+    const [userOn , setUserOn] = useState(cookies.session || 0);
 
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const night = useSelector(state => state.night);
     const Token = useSelector(state => state.Token);
     const localToken = localStorage.getItem('token')
-
+    console.log(Token)
     const verifique = (e) => {
         e.target.addEventListener('blur' , () => {
         const email =e.target.value
@@ -50,15 +52,17 @@ export default function Login() {
         .then(res => {
             console.log(res)
             let error = res?.data?.errors?.[0].msg
-            let userin = res?.data?.data?.user?.rol_id 
-            if(userin === 2){dispatch(setAdmin(true))}
+            let isAdmin = res?.data?.data?.user?.rol_id 
+            let userin = res?.data?.data?.user?.id 
+            if(isAdmin === 2){dispatch(setAdmin(true))}
             let token = res?.data?.data?.token
             token && (swal("Bienvenido!", "esperamos que te gusten nuestros productos!", "success")
             .then((value) => {
                 history("/") 
               }))
+            setCookie('session',userin);
             error && alert("Datos erroneos")
-            token && dispatch(setToken(token))
+            token && dispatch(setToken(userin))
             localStorage.setItem('token' , token)
         //redireccionamos la pagina con useNavigate
             /* userin && history("/") */
@@ -68,7 +72,6 @@ export default function Login() {
             
         })      
         }
-        
         
   return (
     <>

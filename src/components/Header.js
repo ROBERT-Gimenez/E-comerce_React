@@ -6,6 +6,7 @@ import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
 import Logo from '../resource/img/logo-2.svg'
 import useGetAxios from '../hooks/useGetAxios';
 import swal from 'sweetalert'
+import { useCookies } from 'react-cookie';
 
 //redux
 import { setNight , setToken , setListStore } from '../Store/state';
@@ -14,6 +15,7 @@ const imgs = require.context('../resource/img' , true);
 
 export default function Header() {
 
+    const [cookies, setCookie] = useCookies(['session']);
     const navigate  = useNavigate ();
     const {data} = useGetAxios("http://localhost:4000/api/products")
     //manejo del store
@@ -62,50 +64,31 @@ export default function Header() {
     {name:"categoria"},
     {name:"Login",url:"/Login"}]
     const actionUrls = (name,url) => {
-      if(name === "Login"){return localToken?<Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut <HiUser/></Link>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
+      if(name === "Login"){return localToken?<Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut {cookies.session}<HiUser/></Link>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
       if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
-      if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
+      if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
       if(name === "categoria"){
-        return <NavDropdown title="Categorias" id="nav-dropdown-dark-example"  menuVariant="dark" variant="secondary">
-        <NavDropdown.Item  onClick={() => categoriAction(1,filterList) }>Bicicletas</NavDropdown.Item>
-        <NavDropdown.Item  onClick={() => categoriAction(4,filterList)}>Accesorios</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item onClick={() => categoriAction(null,Promocions)}>Promociones</NavDropdown.Item>
-        </NavDropdown>
+        return <motion.div>
+        <Link className='icons-header'>Categorias</Link>
+        <motion.ul className='drop_cateories'>Categorias
+        <motion.li  onClick={() => categoriAction(1,filterList) }>Bicicletas</motion.li>
+        <motion.li  onClick={() => categoriAction(4,filterList)}>Accesorios</motion.li>
+        <motion.li onClick={() => categoriAction(null,Promocions)}>Promociones</motion.li>
+        </motion.ul>
+        </motion.div> 
       }
       return /* <Link to={url}>{name}</Link> */
     }
 
   return (
-    <header style= {{backgroundColor:night?"#212529":"rgb(180 246 255)"}}>
-    <Navbar variant='dark' expand="lg">
-      <Container fluid>
-      <Navbar.Brand href="/">
-            <img
-              alt="logo"
-              src={Logo}
-              width="120"
-              height="60"
+    <header className='container_header' style= {{backgroundColor:night?"#212529":"rgb(180 246 255)"}}>
+            <motion.img
+              initial={{opacity: 0, x:-100}} src={Logo} alt="logo"
+              animate={{opacity:1, x:0}}
+              transition={{duration: 0.3, delay: 0.5}}   
+              width="120"  height="60"
               className="d-inline align-top Logo"
             />{' '}
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-
-          <Nav
-            className="me-auto my-2 my-lg-0 align-items-center"
-            style={{ maxHeight: '100px' , gap:"2rem" ,zIndex:"2" }}
-            navbarScroll
-          >
             {urls.map((url , idx) => { 
               return (
                 <motion.div
@@ -120,7 +103,6 @@ export default function Header() {
                     </motion.div>
                 )
             })}
-             
                 <motion.div
                     initial={{opacity: 0, y:-100}}
                     animate={{opacity:1, y:0}}
@@ -129,10 +111,6 @@ export default function Header() {
                     onClick={() => dispatch(setNight())}>
                 <img className='luna' src={night ? imgs(`./luna.png`) : imgs(`./sol.png`)} alt="nightmode"/>
                 </motion.div>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
 
     </header>
   )
