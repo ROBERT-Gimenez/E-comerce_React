@@ -43,7 +43,7 @@ export default function Buscador() {
             className="search-box"
             onSubmit={HandleSearch}>
                 <input
-                type="search" placeholder='Search for product...'
+                type="search" placeholder='Search Product...'
                 required 
                 value={search}
                 onChange={hamdldeChange}/>

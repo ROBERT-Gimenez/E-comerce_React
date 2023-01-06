@@ -37,6 +37,7 @@ img.carrousel{
   min-inline-size:-webkit-fill-available; */
   height: 12rem;
   object-fit: cover;
+  z-index: 1;
 
 }
 .carousel-indicators{
@@ -61,11 +62,29 @@ a{
   margin-bottom: 1rem;
   object-fit: cover;
 }
-.drop_cateories{
-color: white;
-list-style: none;
-display: none;
 
+.drop_cateories {
+  color: #ff5722;
+  list-style: none;
+  /* display: none; */
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  width: 120%;
+  margin: 0;
+  flex-direction: column;
+  border-radius: 20px;
+}
+.drop_cateories li ,
+.drop_cateories a {
+  width: max-content;
+  cursor: pointer;
+}
+.categories_conteiner{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .luna-container{
     transition: 0.3s;
@@ -88,6 +107,7 @@ display: none;
   justify-content: space-around;
   color: #fe2e00;
   font-weight: bold;
+  z-index: 4;
 }
 .nav_bootstrap {
 width: 90%;
@@ -102,9 +122,15 @@ width: 90%;
         scale: 1.02;
         cursor: pointer;
     }
-.icons-header{
-  display: flex;
-  align-items: center;
+.icons-header , 
+.drop_cateories a{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: #fe2e00;
+    font-weight: bold;
+    padding: 0;
 }
 .icons-header svg{
   font-size: 1.4rem;

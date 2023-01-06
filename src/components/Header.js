@@ -1,6 +1,7 @@
 import { Link , useNavigate } from 'react-router-dom';
 import {motion} from 'framer-motion'
 import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
+import { Dropdown } from 'react-bootstrap';
 // resource 
 import Logo from '../resource/img/logo-2.svg'
 import useGetAxios from '../hooks/useGetAxios';
@@ -68,13 +69,20 @@ export default function Header() {
       if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
       if(name === "categoria"){
-        return <motion.div>
-        <Link className='icons-header'>Categorias</Link>
-        <motion.ul className='drop_cateories'>Categorias
-        <motion.li  onClick={() => categoriAction(1,filterList) }>Bicicletas</motion.li>
-        <motion.li  onClick={() => categoriAction(4,filterList)}>Accesorios</motion.li>
-        <motion.li onClick={() => categoriAction(null,Promocions)}>Promociones</motion.li>
-        </motion.ul>
+        return <motion.div className='categories_conteiner' >
+        <Dropdown className="d-inline mx-2">
+          <Dropdown.Toggle variant={night?"dark":"light"} autoClose="inside" className='icons-header' id="dropdown-autoclose-outside">
+            Categorias
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu variant={night?"dark":"light"}>
+            <motion.ul className='drop_cateories'>
+              <Dropdown.Item onClick={() => categoriAction(1,filterList) }>Bicicletas</Dropdown.Item>
+              <Dropdown.Item onClick={() => categoriAction(4,filterList)}>Accesorios</Dropdown.Item>
+              <Dropdown.Item onClick={() => categoriAction(null,Promocions)}>Promociones</Dropdown.Item>
+            </motion.ul>
+          </Dropdown.Menu>
+        </Dropdown>
         </motion.div> 
       }
       return /* <Link to={url}>{name}</Link> */
@@ -89,15 +97,6 @@ export default function Header() {
               width="120"  height="60"
               className="d-inline align-top Logo"
             />{' '}
-           {/*   <form 
-            className="search-box"
-            onSubmit="">
-                <input
-                type="search" placeholder='Search for product...'
-                required 
-                value=""
-                onChange=""/>
-            </form> */}
             <Buscador/>
             {urls.map((url , idx) => { 
               return (

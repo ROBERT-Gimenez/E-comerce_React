@@ -10,10 +10,10 @@ export default function Carrousel() {
   return (
     <motion.div
     initial={{x:-1800 , opacity:0}}
-    animate={{x:0 , opacity:2}}
+    animate={{x:0 , opacity:1}}
     transition={{duration:2}}
     >
-    <Carousel variant="transparent" className='corrousel'>
+    <Carousel style={{zIndex:"1"}} variant="transparent" className='corrousel'>
       {imgs.map((img , indx) => {
         return(
         <Carousel.Item interval={2000} key={indx}>
