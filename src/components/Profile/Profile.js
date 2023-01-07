@@ -1,5 +1,6 @@
 import {useEffect} from 'react'
 import './Profile.css'
+import { Table } from 'react-bootstrap';
 import useGetAxios from '../../hooks/useGetAxios'
 import { useSelector } from 'react-redux';
 export default function Profile() {
@@ -22,7 +23,37 @@ export default function Profile() {
         </form>
         <button>Edit</button>
       </article>
-      <main className='main_in_profile'><h1>Productos Comprados</h1></main>
+      <main className='main_in_profile'>
+        <h1>Productos Comprados</h1>
+        <Table striped bordered hover variant="dark">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Producto</th>
+          <th>Price</th>
+          <th>Data Time</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Rueda N26</td>
+          <td>$2566</td>
+          <td>12/22/22</td>
+          <td><button>Detalle</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>CADENA TEC</td>
+          <td>$1200</td>
+          <td>23/06/21</td>
+          <td><button>Detalle</button></td>
+        </tr>
+      
+      </tbody>
+    </Table>
+      </main>
     </div>
   )
 }
