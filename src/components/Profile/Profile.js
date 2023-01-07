@@ -20,6 +20,7 @@ export default function Profile() {
           <label><input type='text' disabled/>direccion</label>
           <label><input type='text' disabled/>Localidad</label>
         </form>
+        <button>Edit</button>
       </article>
       <main className='main_in_profile'><h1>Productos Comprados</h1></main>
     </div>
