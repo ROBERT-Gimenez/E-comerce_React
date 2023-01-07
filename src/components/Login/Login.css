@@ -64,7 +64,7 @@ a:hover {
     backface-visibility: hidden;
     transition: all .4s linear;
     max-width: 80%;
-    margin: auto;
+    margin: 0 auto;
     transform-style: preserve-3d;
 }
 
