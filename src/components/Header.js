@@ -1,12 +1,15 @@
+import { useState , useEffect } from 'react';
 import { Link , useNavigate } from 'react-router-dom';
 import {motion} from 'framer-motion'
 import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
+import {BiLogIn } from "react-icons/bi";
 import { Dropdown } from 'react-bootstrap';
 // resource 
 import Logo from '../resource/img/logo-2.svg'
 import useGetAxios from '../hooks/useGetAxios';
 import swal from 'sweetalert'
 import { useCookies } from 'react-cookie';
+import useUserAvatar from '../hooks/useUserAvatar'
 
 //redux
 
@@ -16,17 +19,23 @@ import Buscador from './Buscador';
 const imgs = require.context('../resource/img' , true);
 
 export default function Header() {
-
+    const [mostrarElemento, setMostrarElemento] = useState(false)
     const [cookies, setCookie] = useCookies(['session']);
     const navigate  = useNavigate ();
-    const {data} = useGetAxios("http://localhost:4000/api/products")
     //manejo del store
     const dispatch = useDispatch();
     const Token = useSelector(state => state.Token);
     const night = useSelector(state => state.night);
     const Admin = useSelector(state => state.Admin);
     const localToken = localStorage.getItem('token')
+    const avatarId = localStorage.getItem('avatar')
+    const {data} = useGetAxios("http://localhost:4000/api/products")
+    const avatar = useUserAvatar(avatarId);
     /* const ListStore = useSelector(state => state.Products); */
+
+    useEffect(() => {
+      console.log(avatar)
+    }, [avatar]);
     const variant = {
       hidden: { opacity: 0, x:600 },
       visible: ({delay}) => ({
@@ -68,11 +77,23 @@ export default function Header() {
     const actionUrls = (name,url) => {
       if(name === "Login"){
         return localToken?
-        <div className='onLine'>
-          <div className='container_online'>
+        <div
+         onClick={() => setMostrarElemento(!mostrarElemento)} className='onLine'>
+          <motion.img src={avatar}  alt="avatar user" initial={{opacity: 0, y:-100}}
+                    animate={{opacity:1, y:0}}
+                    transition={{duration: 0.3, delay: 0.5}}
+                    className="onLine" />
+          <motion.div initial={{scale:0 ,opacity: 0 , y:-50}}
+                      animate={{scale:1, y: mostrarElemento ? 10 : -50,
+                      opacity: mostrarElemento ? 1 : 0,
+                      pointerEvents: mostrarElemento ? 'auto' : 'none',
+                      }}
+                      transition={{ duration: 0.2 }}
+                      exit={{y:-300 , opacity: 0 , scale:0 }}
+                      className='container_online'>
             <Link onClick={() =>  navigate("/ShoppingCart") } className='icons-header' to={`/Profile?userId=${cookies.session}`}>Profile<HiUser/></Link>
-            <Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut <HiUser/></Link>
-          </div>
+            <Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut <BiLogIn/></Link>
+          </motion.div>
           </div>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
       if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
@@ -105,7 +126,8 @@ export default function Header() {
               transition={{duration: 0.3, delay: 0.5}}   
               width="120"  height="60"
               className="d-inline align-top Logo"
-            />{' '}
+            />
+          
             <Buscador/>
             {urls.map((url , idx) => { 
               return (

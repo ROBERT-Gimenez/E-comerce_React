@@ -3,17 +3,18 @@ import './Profile.css'
 import { Table } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import useUserAvatar from '../../hooks/useUserAvatar';
 
 export default function Profile() {
   
+  const token = localStorage.getItem('token');
+  const avatariD = localStorage.getItem('avatar');
   const [user , setUser] = useState(null);
-  let query = new URLSearchParams(window.location.search);
   const Token = useSelector(state => state.Token);
-
+  const avatar = useUserAvatar(avatariD)
     useEffect(() => {
       const getUserData = async () => {
         try {
-          const token = localStorage.getItem('token');
           const config = {
             headers: {
               'x-access-token': token,
@@ -22,8 +23,8 @@ export default function Profile() {
           const query = new URLSearchParams(window.location.search);
           const keyword = query.get('userId');
           const response = await axios.get(`http://localhost:4000/api/user/detail/${keyword}`, config);
-          setUser(response.data)
           console.log(response)
+          response && setUser(response.data)
         } catch (error) {
           console.log(error)
         }
@@ -35,7 +36,7 @@ export default function Profile() {
   return (
     <div className='profile_container'>
       <article className='article_profile'>
-        <img className='img_profile' src={ user?.avatar ? user.avatar :'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'} />
+        <img className='img_profile' src={ avatar} />
         { user &&  <form>
           <label><input type='text' disabled  defaultValue={user.name} />Usuario</label>
           <label><input type='text' disabled defaultValue={user.telefono ? user.telefono : "No agregado"} />telefono</label>
