@@ -9,6 +9,7 @@ import swal from 'sweetalert'
 import { useCookies } from 'react-cookie';
 
 //redux
+
 import { setNight , setToken , setListStore } from '../Store/state';
 import { useDispatch , useSelector } from 'react-redux';
 import Buscador from './Buscador';
@@ -65,13 +66,20 @@ export default function Header() {
     {name:"categoria"},
     {name:"Login",url:"/Login"}]
     const actionUrls = (name,url) => {
-      if(name === "Login"){return localToken?<Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut {cookies.session}<HiUser/></Link>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
+      if(name === "Login"){
+        return localToken?
+        <div className='onLine'>
+          <div className='container_online'>
+            <Link onClick={() =>  navigate("/ShoppingCart") } className='icons-header' to={`/Profile?userId=${cookies.session}`}>Profile<HiUser/></Link>
+            <Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut <HiUser/></Link>
+          </div>
+          </div>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
       if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
       if(name === "categoria"){
         return <motion.div className='categories_conteiner' >
         <Dropdown className="d-inline mx-2">
-          <Dropdown.Toggle variant={night?"dark":"light"} autoClose="inside" className='icons-header' id="dropdown-autoclose-outside">
+          <Dropdown.Toggle variant={night?"dark":"light"} autoclose="inside" className='icons-header' id="dropdown-autoclose-outside">
             Categorias
           </Dropdown.Toggle>
 
@@ -89,8 +97,9 @@ export default function Header() {
     }
 
   return (
-    <header className='container_header' style= {{backgroundColor:night?"#212529":"rgb(180 246 255)"}}>
+    <header className='container_header' style= {{backgroundColor:night?"#212529":"rgb(199 240 245)"}}>
             <motion.img
+              onClick={() => navigate("/")}
               initial={{opacity: 0, x:-100}} src={Logo} alt="logo"
               animate={{opacity:1, x:0}}
               transition={{duration: 0.3, delay: 0.5}}   

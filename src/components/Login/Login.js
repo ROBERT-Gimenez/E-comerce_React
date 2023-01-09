@@ -62,7 +62,7 @@ export default function Login() {
               }))
             setCookie('session',userin);
             error && alert("Datos erroneos")
-            token && dispatch(setToken(userin))
+            token && dispatch(setToken(token))
             localStorage.setItem('token' , token)
         //redireccionamos la pagina con useNavigate
             /* userin && history("/") */
