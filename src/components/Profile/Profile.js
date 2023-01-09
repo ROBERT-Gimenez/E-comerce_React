@@ -4,14 +4,16 @@ import { Table } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import useUserAvatar from '../../hooks/useUserAvatar';
+import MyModal from './MyModal';
 
 export default function Profile() {
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem('token');
   const avatariD = localStorage.getItem('avatar');
   const [user , setUser] = useState(null);
   const Token = useSelector(state => state.Token);
   const avatar = useUserAvatar(avatariD)
+
     useEffect(() => {
       const getUserData = async () => {
         try {
@@ -32,19 +34,30 @@ export default function Profile() {
       getUserData();
     }, []);
   
+    
+  function openModal() {
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
+
 
   return (
     <div className='profile_container'>
       <article className='article_profile'>
-        <img className='img_profile' src={ avatar} />
+        <img className='img_profile' src={ user?.avatar ? avatar : "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg"} />
+
         { user &&  <form>
           <label><input type='text' disabled  defaultValue={user.name} />Usuario</label>
           <label><input type='text' disabled defaultValue={user.telefono ? user.telefono : "No agregado"} />telefono</label>
           <label><input type='text' disabled defaultValue={user.direccion_id ? user.direccion_id : "No agregado"} />direccion</label>
           <label><input type='text' disabled  defaultValue={user.direccion_id ? user.direccion_id : "No agregado"} />Localidad</label>
         </form> }
-        <button>Edit</button>
+        <button onClick={openModal}>Edit</button>
       </article>
+      <MyModal isOpen={isModalOpen} onClose={closeModal} user={user}/>
       <main className='main_in_profile'>
         <h1>Productos Comprados</h1>
         <Table striped bordered hover variant="dark">

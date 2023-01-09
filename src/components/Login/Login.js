@@ -54,8 +54,8 @@ export default function Login() {
             let error = res?.data?.errors?.[0].msg
             let isAdmin = res?.data?.data?.user?.rol_id 
             let userin = res?.data?.data?.user?.id 
-/*             let avatar = res?.data?.data?.user?.avatar 
- */            if(isAdmin === 2){dispatch(setAdmin(true))}
+            let avatar = res?.data?.data?.user?.avatar 
+             if(isAdmin === 2){dispatch(setAdmin(true))}
             let token = res?.data?.data?.token
             token && (swal("Bienvenido!", "esperamos que te gusten nuestros productos!", "success")
             .then((value) => {
@@ -65,7 +65,8 @@ export default function Login() {
             error && alert("Datos erroneos")
             token && dispatch(setToken(token))
             localStorage.setItem('token' , token)
-            localStorage.setItem('avatar' , userin)
+            localStorage.setItem('avatarId' , userin)
+            localStorage.setItem('avatar' , avatar)
         //redireccionamos la pagina con useNavigate
             /* userin && history("/") */
          }).catch((err) => { 

@@ -28,13 +28,14 @@ export default function Header() {
     const night = useSelector(state => state.night);
     const Admin = useSelector(state => state.Admin);
     const localToken = localStorage.getItem('token')
-    const avatarId = localStorage.getItem('avatar')
+    const avatarId = localStorage.getItem('avatarId')
+    const verifyAvatar = localStorage.getItem('avatar')
     const {data} = useGetAxios("http://localhost:4000/api/products")
     const avatar = useUserAvatar(avatarId);
     /* const ListStore = useSelector(state => state.Products); */
 
     useEffect(() => {
-      console.log(avatar)
+      console.log(avatarId)
     }, [avatar]);
     const variant = {
       hidden: { opacity: 0, x:600 },
@@ -79,7 +80,7 @@ export default function Header() {
         return localToken?
         <div
          onClick={() => setMostrarElemento(!mostrarElemento)} className='onLine'>
-          <motion.img src={avatar}  alt="avatar user" initial={{opacity: 0, y:-100}}
+          <motion.img src={avatarId ? avatar : "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg"}  alt="avatar user" initial={{opacity: 0, y:-100}}
                     animate={{opacity:1, y:0}}
                     transition={{duration: 0.3, delay: 0.5}}
                     className="onLine" />
