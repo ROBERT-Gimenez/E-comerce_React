@@ -9,11 +9,11 @@ import MyModal from './MyModal';
 export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem('token');
-  const avatariD = localStorage.getItem('avatar');
+  const avatarId = localStorage.getItem('avatarId')
   const [user , setUser] = useState(null);
   const Token = useSelector(state => state.Token);
-  const avatar = useUserAvatar(avatariD)
-
+  const avatar = useUserAvatar(avatarId)
+  console.log(avatar)
     useEffect(() => {
       const getUserData = async () => {
         try {
@@ -47,7 +47,7 @@ export default function Profile() {
   return (
     <div className='profile_container'>
       <article className='article_profile'>
-        <img className='img_profile' src={ user?.avatar ? avatar : "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg"} />
+        <img className='img_profile' src={avatarId ? avatar : "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg"}  alt="avatar user" />
 
         { user &&  <form>
           <label><input type='text' disabled  defaultValue={user.name} />Usuario</label>
