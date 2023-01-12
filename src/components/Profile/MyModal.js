@@ -3,14 +3,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import axios from 'axios';
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
-
+import FormRegister from './FormRegister';
 
 export default function MyModal({ isOpen, onClose , user }) {
+
+
   const {register, formState:{errors} , watch , handleSubmit } = useForm();
-  const [provinces, setProvinces] = useState([]);
-  const [selectedProvince, setSelectedProvince] = useState('');
-  const [localities, setLocalities] = useState([]);
-  const [selectedLocality, setSelectedLocality] = useState('');
+  
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -28,70 +27,17 @@ export default function MyModal({ isOpen, onClose , user }) {
   
   };
 
-  useEffect(() => {
-    // Obtener las provincias
-    axios.get('https://apis.datos.gob.ar/georef/api/provincias')
-      .then(response => {
-        setProvinces(response.data.provincias);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    // Obtener las localidades de la provincia seleccionada
-    if (selectedProvince) {
-      axios.get(`https://apis.datos.gob.ar/georef/api/localidades?provincia=${selectedProvince}&campos=id,nombre&max=5000`)
-        .then(response => {
-          setLocalities(response.data.localidades);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    } else {
-      setLocalities([]);
-    }
-  }, [selectedProvince]);
-
-  const handleProvinceChange = event => {
-    setSelectedProvince(event.target.value);
-  };
-
-  const handleLocalityChange = event => {
-    setSelectedLocality(event.target.value);
-  };
-  const submitUpdate = (data) => {
-
-    const name = data.name;
-    const email = data.email_sing_up;
-    const password = data.pass_sing_up1;
-    const rol_id = 1;
-   
-
-    axios.post('http://localhost:4000/api/user/create' , {name,email,password,rol_id})
-    .then(res => {
-        console.log(res)
-        let error = res?.data?.errors?.[0].msg;
-        let userin = res?.data?.name;
-       /*  userin && (swal("Perfil Registrado!", "Genial ahora puedes ingresar con tu perfil!", "success")
-        .then((value) => {
-            window.location.reload() 
-          })) */
-        error && alert("Datos erroneos")
-   
-        }).catch((err) => { console.log(err)})
-    }
  
-    
+
+  
 
   return (
     <div className='modal_container'>
     <AnimatePresence>
       {isOpen && (
         <motion.div style={{position: "fixed" , zIndex:"2"}}
-          initial={{ opacity: 0 , x:-900 , width:"100%"  }}
-          animate={{ opacity: 1 , x:0  }}
+          initial={{ opacity: 0 , y:-50, x:-900 , width:"100%"  }}
+          animate={{ opacity: 1 ,y:-70 ,x:0  }}
           exit={{ opacity: 0 , x:-900 }}
           transition={{duration:1 , delay:0.3}}
           className="modal-overlay"
@@ -107,7 +53,7 @@ export default function MyModal({ isOpen, onClose , user }) {
             <h4>Editar Datos</h4>
          
 
-        <form className='modal_form_img' onSubmit={submitUpdate}>
+        <form className='modal_form_img' onSubmit={handleSubmit()}>
 
         <div className='conteiner_img_upload'>
         <h5>Avatar</h5>
@@ -119,7 +65,7 @@ export default function MyModal({ isOpen, onClose , user }) {
             </label>
         </div> 
           <br />
-          <div className='container_label'>
+        <div className='container_label'>
           <label><input type='text'  name='name' id="name" defaultValue={user.name} 
            {...register("name" , 
            {
@@ -138,42 +84,14 @@ export default function MyModal({ isOpen, onClose , user }) {
             })}
             />telefono</label>
             {errors.telefono && <span>{errors.telefono.message}</span>}
-            <hr/>
-          <button>Guardar</button>         
-            </div>
-            
+          <hr/>
+            <button>Guardar</button>         
+        </div>  
         </form> 
         <hr/>
-        <form className='modal_form'>
-      <label>
-        <select value={selectedProvince} onChange={handleProvinceChange}>
-          <option value="">Seleccione una provincia</option>
-          {provinces.map(province => (
-            <option key={province.id} value={province.nombre}>{province.nombre}</option>
-          ))}
-        </select>
-        Provincia:
-      </label>
-      <label>
-        <select value={selectedLocality} onChange={handleLocalityChange}>
-          <option value="">Seleccione una localidad</option>
-          {localities.map(locality => (
-            <option key={locality.id} value={locality.nombre}>{locality.nombre}</option>
-          ))}
-        </select>
-        Localidad:
-      </label>
-      <label>
-        <input type='text'  defaultValue={user.direccion_id ? user.direccion_id : "No agregado"} />
-        direccion
-        </label>
-        <button>Guardar</button> 
-    </form>
+          <FormRegister user={user}/>
         <hr/>
-        
-      
-  
-            <button className='btn_modal_close' onClick={onClose}>Cancelar</button>
+          <button className='btn_modal_close' onClick={onClose}>Cancelar</button>
           </motion.div>
         </motion.div>
       )}

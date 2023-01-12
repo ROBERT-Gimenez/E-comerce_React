@@ -3,6 +3,7 @@
     display: flex;
     background-color: aquamarine;
     height: 100vh;
+    z-index: 4;
 }
 .article_profile{
     width: 30%;
@@ -103,9 +104,8 @@ form.modal_form_img{
     background-color: #f44336;
 }
 .img_prev{
-    width: 11rem;
-    height: 10rem;
-    border-radius: 54%;
+    width: 50%;
+    border-radius: 50%;
     place-self: center;
 }
 .conteiner_img_upload{
@@ -116,6 +116,7 @@ form.modal_form_img{
     flex-direction: column;
     text-align-last: center;
     font-size: smaller;
+    width: 40%;
 }
 .label_img{
     font-size: revert;
