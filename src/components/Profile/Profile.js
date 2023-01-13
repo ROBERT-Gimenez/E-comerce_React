@@ -25,7 +25,7 @@ export default function Profile() {
           const query = new URLSearchParams(window.location.search);
           const keyword = query.get('userId');
           const response = await axios.get(`http://localhost:4000/api/user/detail/${keyword}`, config);
-          console.log(response)
+          console.log(response.data?.user)
           response && setUser(response.data)
         } catch (error) {
           console.log(error)
@@ -50,14 +50,14 @@ export default function Profile() {
         <img className='img_profile' src={avatarId ? avatar : "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg"}  alt="avatar user" />
 
         { user &&  <form>
-          <label><input type='text' disabled  defaultValue={user.name} />Usuario</label>
-          <label><input type='text' disabled defaultValue={user.telefono ? user.telefono : "No agregado"} />telefono</label>
+          <label><input type='text' disabled  defaultValue={user.user.name} />Usuario</label>
+          <label><input type='text' disabled defaultValue={user.user.name ? user.user.name : "No agregado"} />telefono</label>
           <label><input type='text' disabled defaultValue={user.direccion_id ? user.direccion_id : "No agregado"} />direccion</label>
           <label><input type='text' disabled  defaultValue={user.direccion_id ? user.direccion_id : "No agregado"} />Localidad</label>
         </form> }
         <button onClick={openModal}>Edit</button>
       </article>
-      <MyModal isOpen={isModalOpen} onClose={closeModal} user={user}/>
+      <MyModal isOpen={isModalOpen} onClose={closeModal} user={user?.user}/>
       <main className='main_in_profile'>
         <h1>Productos Comprados</h1>
         <Table striped bordered hover variant="dark">

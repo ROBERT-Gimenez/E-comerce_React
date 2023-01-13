@@ -66,7 +66,7 @@ export default function MyModal({ isOpen, onClose , user }) {
         </div> 
           <br />
         <div className='container_label'>
-          <label><input type='text'  name='name' id="name" defaultValue={user.name} 
+          <label><input type='text'  name='name' id="name" placeholder={user.name} 
            {...register("name" , 
            {
              minLength:{ value:4 , message:"ingrese un nombre entre 4 y 11 caracteres"},
@@ -76,7 +76,7 @@ export default function MyModal({ isOpen, onClose , user }) {
             />Usuario</label>
           {errors.name && <span>{errors.name.message}</span>}
         
-          <label><input type='text' id='telefono' name='telefono' defaultValue={user.telefono ? user.telefono : "No agregado"}
+          <label><input type='text' id='telefono' name='telefono' placeholder={user.telefono ? user.telefono : "No agregado"}
            {...register("telefono" , 
            {
              minLength:{ value:8 , message:"ingrese un nombre entre 8 y 12 caracteres"},
