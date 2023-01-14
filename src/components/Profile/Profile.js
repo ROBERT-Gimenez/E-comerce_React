@@ -11,6 +11,7 @@ export default function Profile() {
   const token = localStorage.getItem('token');
   const avatarId = localStorage.getItem('avatarId')
   const [user , setUser] = useState(null);
+  const [direction , setDirection] = useState(null);
   const Token = useSelector(state => state.Token);
   const avatar = useUserAvatar(avatarId)
   console.log(avatar)
@@ -26,7 +27,9 @@ export default function Profile() {
           const keyword = query.get('userId');
           const response = await axios.get(`http://localhost:4000/api/user/detail/${keyword}`, config);
           console.log(response.data?.user)
+          console.log(response.data?.direction[0])
           response && setUser(response.data)
+          response && setDirection(response.data?.direction[0])
         } catch (error) {
           console.log(error)
         }
@@ -51,9 +54,9 @@ export default function Profile() {
 
         { user &&  <form>
           <label><input type='text' disabled  defaultValue={user.user.name} />Usuario</label>
-          <label><input type='text' disabled defaultValue={user.user.name ? user.user.name : "No agregado"} />telefono</label>
-          <label><input type='text' disabled defaultValue={user.direccion_id ? user.direccion_id : "No agregado"} />direccion</label>
-          <label><input type='text' disabled  defaultValue={user.direccion_id ? user.direccion_id : "No agregado"} />Localidad</label>
+          <label><input type='text' disabled defaultValue={user.user.telefono ? user.user.telefono : "No agregado"} />telefono</label>
+          <label><input type='text' disabled defaultValue={direction.direccion ? direction.direccion  : "No agregado"} />direccion</label>
+          <label><input type='text' disabled  defaultValue={direction.localidad ? direction.localidad : "No agregado"} />Localidad</label>
         </form> }
         <button onClick={openModal}>Edit</button>
       </article>

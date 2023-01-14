@@ -37,7 +37,7 @@ const useAxiosPost = () => {
     const makePostRequest = async () => {
       setIsLoading(true);
       try {
-        const res = await axios.post(url, postData);
+        const res = await axios.put(url, postData);
         setResponse(res.data);
       } catch (err) {
         setError(err);

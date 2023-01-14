@@ -16,9 +16,12 @@ export default function FormRegister({user}) {
   const [data, loading] = useAxiosPost();
   const [response, error, isLoading, setUrl, setPostData] = useAxiosPost();
  
-  const onSubmit = data => {
-    setUrl("https://example.com/submit");
+  const onSubmit = (data) => {
+    setUrl(`http://localhost:4000/api/user/edit/${user.id}`);
     setPostData(data);
+    console.log(data)
+    console.log(error)
+
 };
 
     const containsNumber = (value) => {
@@ -71,7 +74,8 @@ return (
     <div>
         <form className='modal_form'  onSubmit={handleSubmit(onSubmit)}>
         <label>
-        <select name='provincia' value={selectedProvince} onChange={handleProvinceChange}>
+        <select name='provincia' value={selectedProvince} onChange={handleProvinceChange}
+        {...register("provincia",{value: selectedProvince, onChange: handleProvinceChange})}>
             <option value="">Seleccione una provincia</option>
             {provinces.map(province => (
             <option key={province.id} value={province.nombre}>{province.nombre}</option>
@@ -80,8 +84,10 @@ return (
         Provincia:
         </label>
         <label>
-        <select name="localidad" value={selectedLocality} onChange={handleLocalityChange}>
-            <option value="">Seleccione una localidad</option>
+        <select name="localidad"  onChange={handleLocalityChange}
+            {...register("localidad",{value: {selectedLocality}}
+)}>
+            <option value={selectedLocality}>Seleccione una localidad</option>
             {localities.map(locality => (
             <option key={locality.id} value={locality.nombre}>{locality.nombre}</option>
             ))}

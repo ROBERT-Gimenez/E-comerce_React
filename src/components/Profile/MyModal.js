@@ -4,17 +4,30 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import FormRegister from './FormRegister';
+import useAxiosPost from '../../hooks/useAxiosPost';
 
 export default function MyModal({ isOpen, onClose , user }) {
 
 
   const {register, formState:{errors} , watch , handleSubmit } = useForm();
-  
+  const [response, error, isLoading, setUrl, setPostData] = useAxiosPost();
+
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
   const night = useSelector(state => state.night);
   const regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/;
+
+    const onSubmit = (data) => {
+      const formData = new FormData();
+      formData.append('avatar', file);
+      formData.append('name', data.name);
+      formData.append('telefono', data.telefono);
+      setUrl(`http://localhost:4000/api/user/edit/${user.id}`);
+      setPostData(formData);
+      console.log(file)
+      console.log(error)
+  };
 
   const handleFileChange = event => {
     const selectedFile = event.target.files[0];
@@ -24,9 +37,7 @@ export default function MyModal({ isOpen, onClose , user }) {
       setPreviewUrl(reader.result);
     };
     reader.readAsDataURL(selectedFile);
-  
   };
-
  
 
   
@@ -53,7 +64,7 @@ export default function MyModal({ isOpen, onClose , user }) {
             <h4>Editar Datos</h4>
          
 
-        <form className='modal_form_img' onSubmit={handleSubmit()}>
+        <form className='modal_form_img' onSubmit={handleSubmit(onSubmit)}>
 
         <div className='conteiner_img_upload'>
         <h5>Avatar</h5>
@@ -61,7 +72,8 @@ export default function MyModal({ isOpen, onClose , user }) {
           <br /> 
             <label className='label_img'>
               {file ? `Subir foto:${file.name}` : ''}
-              <input name='avatar' id='avatar' type="file" onChange={handleFileChange} />
+              <input name='avatar' id='avatar' type="file" value={file?.path} onChange={handleFileChange} 
+              />
             </label>
         </div> 
           <br />
