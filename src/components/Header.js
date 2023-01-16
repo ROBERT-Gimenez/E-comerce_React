@@ -108,9 +108,9 @@ export default function Header() {
 
           <Dropdown.Menu variant={night?"dark":"dark"}>
             <motion.ul className='drop_cateories'>
-            <motion.li><Link onClick={() => categoriAction(1,filterList) }>Bicicletas</Link></motion.li>
-              <motion.li><Link onClick={() => categoriAction(4,filterList)}>Accesorios</Link></motion.li>
-              <motion.li><Link onClick={() => categoriAction(null,Promocions)}>Promociones</Link></motion.li>
+            <Dropdown.Item><Link onClick={() => categoriAction(1,filterList) }>Bicicletas</Link></Dropdown.Item>
+            <Dropdown.Item><Link onClick={() => categoriAction(4,filterList)}>Accesorios</Link></Dropdown.Item>
+              <Dropdown.Item><Link onClick={() => categoriAction(null,Promocions)}>Promociones</Link></Dropdown.Item>
              {/*  <Dropdown.Item onClick={() => categoriAction(1,filterList) }>Bicicletas</Dropdown.Item>
               <Dropdown.Item onClick={() => categoriAction(4,filterList)}>Accesorios</Dropdown.Item>
               <Dropdown.Item onClick={() => categoriAction(null,Promocions)}>Promociones</Dropdown.Item> */}

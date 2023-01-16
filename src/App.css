@@ -142,7 +142,8 @@ width: 90%;
         cursor: pointer;
     }
 .icons-header , 
-.drop_cateories a{
+.drop_cateories a,
+.dropdown-item a{
     display: flex;
     align-items: center;
     background-color: transparent;
