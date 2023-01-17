@@ -126,7 +126,7 @@ a{
   justify-content: space-around;
   color: #fe2e00;
   font-weight: bold;
-  z-index: 4;
+  z-index: 5;
 }
 .nav_bootstrap {
 width: 90%;
@@ -221,4 +221,18 @@ background-color: rgb(0 0 0 / 50%);
 }
 
 
+.underline{
+  height: 3px;
+  width: 5rem;
+  z-index: 5;
+  background: #fe2e00;
+}
+.link_contain{
+ 
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
+}

@@ -19,6 +19,8 @@ import Buscador from './Buscador';
 const imgs = require.context('../resource/img' , true);
 
 export default function Header() {
+    
+    const [selectedTab, setSelectedTab] = useState(null);
     const [mostrarElemento, setMostrarElemento] = useState(false)
     const [cookies, setCookie] = useCookies(['session']);
     const navigate  = useNavigate ();
@@ -37,6 +39,7 @@ export default function Header() {
     useEffect(() => {
       console.log(avatarId)
     }, [avatar]);
+
     const variant = {
       hidden: { opacity: 0, x:600 },
       visible: ({delay}) => ({
@@ -45,8 +48,7 @@ export default function Header() {
         x:0,
         transition: {
           delay,
-          duration:1
-        }
+          duration:1}
       })
     }
 
@@ -69,8 +71,12 @@ export default function Header() {
         navigate("/Login")
       }))
     }
+    const cerrar = () => {
+      setSelectedTab(null)
+      if (mostrarElemento){setMostrarElemento(!mostrarElemento)}
+    }
 
-    const urls = [{name:"Home",url:"/"},
+    const urls = [
     {name:"Admin",url:"/Admin-Profile"},
     {name:"Carrito",url:"ShoppingCart"},
     {name:"categoria"},
@@ -100,20 +106,19 @@ export default function Header() {
       if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
       if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
       if(name === "categoria"){
-        return <motion.div className='categories_conteiner' >
+        return <motion.div className='categories_conteiner' 
+        >
         <Dropdown className="d-inline mx-2">
           <Dropdown.Toggle variant={night?"dark":"light"} autoclose="inside" className='icons-header' id="dropdown-autoclose-outside">
             Categorias
           </Dropdown.Toggle>
 
           <Dropdown.Menu variant={night?"dark":"dark"}>
-            <motion.ul className='drop_cateories'>
+            <motion.ul className='drop_cateories'
+            >
             <Dropdown.Item><Link onClick={() => categoriAction(1,filterList) }>Bicicletas</Link></Dropdown.Item>
             <Dropdown.Item><Link onClick={() => categoriAction(4,filterList)}>Accesorios</Link></Dropdown.Item>
               <Dropdown.Item><Link onClick={() => categoriAction(null,Promocions)}>Promociones</Link></Dropdown.Item>
-             {/*  <Dropdown.Item onClick={() => categoriAction(1,filterList) }>Bicicletas</Dropdown.Item>
-              <Dropdown.Item onClick={() => categoriAction(4,filterList)}>Accesorios</Dropdown.Item>
-              <Dropdown.Item onClick={() => categoriAction(null,Promocions)}>Promociones</Dropdown.Item> */}
             </motion.ul>
           </Dropdown.Menu>
         </Dropdown>
@@ -124,7 +129,9 @@ export default function Header() {
 
   return (
     <header className='container_header' style= {{backgroundColor:night?"#212529":"rgb(199 240 245)"}}
-    onMouseLeave={(e) => {if (!e.target.classList.contains("onLine") && mostrarElemento ){setMostrarElemento(!mostrarElemento)} }}
+    onMouseLeave={() =>cerrar()}
+    /* onHoverStart={() => {if (mostrarElemento){setMostrarElemento(!mostrarElemento)} }} */
+
     >
             <motion.img
               onClick={() => navigate("/")}
@@ -140,13 +147,24 @@ export default function Header() {
               return (
                 <motion.div
                 key={idx}
-                custom={{delay : (idx + 1 ) * 0.3}}
+                custom={{delay : (idx + 1 ) * 0.1}}
                 initial="hidden"
                 exit="hidden"
                 animate="visible"
                 variants={variant}
+                onHoverStart={() => setSelectedTab(url.name)}
+                className="link_contain"  
                 >
                     {actionUrls(url.name , url.url)}
+                    {url.name != "Login" && url.name === selectedTab ? (
+                <motion.div className="underline" layoutId="underline"
+                key={idx}
+                initial={{opacity: 0, x:-50}}
+                animate={{opacity:1, x:0}}
+                exit={{opacity: 0}}
+                transition={{duration: 0.2, delay: 0.1}}  
+                 />
+              ) : null}
                     </motion.div>
                 )
             })}

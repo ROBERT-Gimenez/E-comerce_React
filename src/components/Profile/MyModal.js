@@ -48,7 +48,7 @@ export default function MyModal({ isOpen, onClose , user }) {
       {isOpen && (
         <motion.div style={{position: "fixed" , zIndex:"2"}}
           initial={{ opacity: 0 , y:-50, x:-900 , width:"100%"  }}
-          animate={{ opacity: 1 ,y:-70 ,x:0  }}
+          animate={{ opacity: 1 ,y:20 ,x:0  }}
           exit={{ opacity: 0 , x:-900 }}
           transition={{duration:1 , delay:0.3}}
           className="modal-overlay"
@@ -66,6 +66,7 @@ export default function MyModal({ isOpen, onClose , user }) {
 
         <form className='modal_form_img' onSubmit={handleSubmit(onSubmit)}>
 
+        <div className='container_label'>
         <div className='conteiner_img_upload'>
         <h5>Avatar</h5>
             {previewUrl ? <img className="img_prev" src={previewUrl} alt="Vista previa" /> : ''}
@@ -77,7 +78,6 @@ export default function MyModal({ isOpen, onClose , user }) {
             </label>
         </div> 
           <br />
-        <div className='container_label'>
           <label><input type='text'  name='name' id="name" placeholder={user.name} 
            {...register("name" , 
            {
@@ -96,12 +96,11 @@ export default function MyModal({ isOpen, onClose , user }) {
             })}
             />telefono</label>
             {errors.telefono && <span>{errors.telefono.message}</span>}
-          <hr/>
-            <button>Guardar</button>         
+          <hr/>         
         </div>  
-        </form> 
-        <hr/>
           <FormRegister user={user}/>
+          <button>Guardar</button>
+        </form> 
         <hr/>
           <button className='btn_modal_close' onClick={onClose}>Cancelar</button>
           </motion.div>

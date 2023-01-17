@@ -72,7 +72,6 @@ div.modal-container h4 {
     text-decoration: underline;
 }
 form.modal_form{
-    border: 1px solid black;
     border-radius: 20px;
     width: 50%;
     margin: 0 auto;
@@ -90,12 +89,18 @@ form.modal_form_img{
     border-radius: 20px;
     margin: auto;
     padding: 1rem;
-    display: flex;
     height: 45%;
-    flex-direction: row;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: repeat(1, 1fr);
     justify-content: center;
+    align-content: center;
+    align-items: center;
 
+}
+form.modal_form_img button {
+    grid-column: 1 / -1;
+    grid-row: 3;
 }
 .btn_modal_close{
     max-width: 40%;

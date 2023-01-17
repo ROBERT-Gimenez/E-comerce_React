@@ -104,7 +104,17 @@ return (
         direccion
         </label>
         {errors.direccion && <span>{errors.direccion.message}</span>}
-        <button>Guardar</button> 
+        <label>
+        <input name='altura' type='text'  placeholder={user.direccion_id ? user.direccion_id : "direccion y altura"}
+        {...register("altura" , 
+        {
+          minLength:{ value:4 , message:"la direccion es muy corta"},
+          validate: {containsNumber}
+         })} />
+        Altura
+        </label>
+        {errors.direccion && <span>{errors.direccion.message}</span>}
+         
     </form>
   </div>
   )
