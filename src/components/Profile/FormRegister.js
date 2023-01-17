@@ -4,10 +4,10 @@ import useAxiosPost from '../../hooks/useAxiosPost';
 import axios from 'axios';
 import { useCallback } from 'react';
 
-export default function FormRegister({user}) {
+export default function FormRegister({user , register , errors}) {
 
 
-  const {register, formState:{errors} , watch , handleSubmit } = useForm();
+  const { watch , handleSubmit } = useForm();
 
   const [provinces, setProvinces] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState('');
@@ -16,20 +16,20 @@ export default function FormRegister({user}) {
   const [data, loading] = useAxiosPost();
   const [response, error, isLoading, setUrl, setPostData] = useAxiosPost();
  
-  const onSubmit = (data) => {
+ /*  const onSubmit = (data) => {
     setUrl(`http://localhost:4000/api/user/edit/${user.id}`);
     setPostData(data);
     console.log(data)
     console.log(error)
 
-};
+}; */
 
     const containsNumber = (value) => {
         const regex = /\d/;
-        if(regex.test(value)) {
+        if(regex.test(value) || value.length >= 0) {
             return true;
         }
-        return "ingrese algun número para indicar la altura";
+        return "ingrese un número valido para indicar la altura";
     }
     useEffect(() => {
         // Obtener las provincias
@@ -71,8 +71,7 @@ export default function FormRegister({user}) {
       
     
 return (
-    <div>
-        <form className='modal_form'  onSubmit={handleSubmit(onSubmit)}>
+    <div className='modal_form'>
         <label>
         <select name='provincia' value={selectedProvince} onChange={handleProvinceChange}
         {...register("provincia",{value: selectedProvince, onChange: handleProvinceChange})}>
@@ -99,7 +98,6 @@ return (
         {...register("direccion" , 
         {
           minLength:{ value:4 , message:"la direccion es muy corta"},
-          validate: {containsNumber}
          })} />
         direccion
         </label>
@@ -108,14 +106,14 @@ return (
         <input name='altura' type='text'  placeholder={user.direccion_id ? user.direccion_id : "direccion y altura"}
         {...register("altura" , 
         {
-          minLength:{ value:4 , message:"la direccion es muy corta"},
+          minLength:{ value:4 , message:"ingrese una direccion de 4 digitos"},
           validate: {containsNumber}
          })} />
         Altura
         </label>
-        {errors.direccion && <span>{errors.direccion.message}</span>}
+        {errors.altura && <span>{errors.altura.message}</span>}
          
-    </form>
+  
   </div>
   )
 }

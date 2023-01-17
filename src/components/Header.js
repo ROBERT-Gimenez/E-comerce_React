@@ -23,7 +23,7 @@ export default function Header() {
     const [selectedTab, setSelectedTab] = useState(null);
     const [mostrarElemento, setMostrarElemento] = useState(false)
     const [cookies, setCookie] = useCookies(['session']);
-    const navigate  = useNavigate ();
+    const navigate = useNavigate();
     //manejo del store
     const dispatch = useDispatch();
     const Token = useSelector(state => state.Token);
@@ -87,12 +87,12 @@ export default function Header() {
         <div
          onClick={() => setMostrarElemento(!mostrarElemento)} className='onLine'>
           <motion.img src={avatarId ? avatar : "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg"}  alt="avatar user" 
-                    initial={{opacity: 0, y:-100}}
-                    animate={{opacity:1, y:0}}
+                    initial={{opacity: 0, x:-100}}
+                    animate={{opacity:1, x:0}}
                     transition={{duration: 0.3, delay: 0.5}}
                     className="onLine" />
-          <motion.div initial={{scale:0 ,opacity: 0 , y:-50}}
-                      animate={{scale:1, y: mostrarElemento ? -50 : -50,x:mostrarElemento ? -70 : -0,
+          <motion.div initial={{scale:0 ,opacity: 0 , x:-50}}
+                      animate={{scale:1, y: mostrarElemento ? 10 : -50,x:mostrarElemento ? -0 : -0,
                       opacity: mostrarElemento ? 1 : 0,
                       pointerEvents: mostrarElemento ? 'auto' : 'none',
                       }}
@@ -108,17 +108,17 @@ export default function Header() {
       if(name === "categoria"){
         return <motion.div className='categories_conteiner' 
         >
-        <Dropdown className="d-inline mx-2">
-          <Dropdown.Toggle variant={night?"dark":"light"} autoclose="inside" className='icons-header' id="dropdown-autoclose-outside">
+        <Dropdown className="d-inline mx-2" >
+          <Dropdown.Toggle  variant={night?"dark":"light"} autoclose="inside" className='icons-header' id="dropdown-autoclose-outside">
             Categorias
           </Dropdown.Toggle>
 
-          <Dropdown.Menu variant={night?"dark":"dark"}>
+          <Dropdown.Menu style={{marginTop:"1rem"}} variant={night?"dark":"dark"}>
             <motion.ul className='drop_cateories'
             >
-            <Dropdown.Item><Link onClick={() => categoriAction(1,filterList) }>Bicicletas</Link></Dropdown.Item>
-            <Dropdown.Item><Link onClick={() => categoriAction(4,filterList)}>Accesorios</Link></Dropdown.Item>
-              <Dropdown.Item><Link onClick={() => categoriAction(null,Promocions)}>Promociones</Link></Dropdown.Item>
+            <Dropdown.Item onClick={() => categoriAction(1,filterList) }>Bicicletas</Dropdown.Item>
+            <Dropdown.Item onClick={() => categoriAction(4,filterList)}>Accesorios</Dropdown.Item>
+              <Dropdown.Item onClick={() => categoriAction(null,Promocions)}>Promociones</Dropdown.Item>
             </motion.ul>
           </Dropdown.Menu>
         </Dropdown>
@@ -134,7 +134,7 @@ export default function Header() {
 
     >
             <motion.img
-              onClick={() => navigate("/")}
+              onClick={() => /* navigate("/") */ window.location.reload()}
               initial={{opacity: 0, x:-100}} src={Logo} alt="logo"
               animate={{opacity:1, x:0}}
               transition={{duration: 0.3, delay: 0.5}}   

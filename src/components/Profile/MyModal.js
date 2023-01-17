@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import FormRegister from './FormRegister';
 import useAxiosPost from '../../hooks/useAxiosPost';
+import Loader from '../Loader';
 
 export default function MyModal({ isOpen, onClose , user }) {
 
@@ -14,19 +15,28 @@ export default function MyModal({ isOpen, onClose , user }) {
 
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [loader, setLoader] = useState(false);
 
   const night = useSelector(state => state.night);
   const regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/;
 
     const onSubmit = (data) => {
+      data.avatar = file
       const formData = new FormData();
       formData.append('avatar', file);
       formData.append('name', data.name);
-      formData.append('telefono', data.telefono);
+      formData.append('telefono', data.telefono); 
+      formData.append('provincia', data.provincia); 
+      formData.append('localidad', data.localidad); 
+      formData.append('direccion', data.direccion); 
+      formData.append('altura', data.altura); 
       setUrl(`http://localhost:4000/api/user/edit/${user.id}`);
       setPostData(formData);
-      console.log(file)
-      console.log(error)
+      console.log(isLoading)
+      setLoader(true)
+       setInterval(function(){
+        window.location.reload();
+    }, 3000);
   };
 
   const handleFileChange = event => {
@@ -46,8 +56,8 @@ export default function MyModal({ isOpen, onClose , user }) {
     <div className='modal_container'>
     <AnimatePresence>
       {isOpen && (
-        <motion.div style={{position: "fixed" , zIndex:"2"}}
-          initial={{ opacity: 0 , y:-50, x:-900 , width:"100%"  }}
+        <motion.div style={{position: "absolute" , zIndex:"2"}}
+          initial={{ opacity: 0 , y:-50, x:-900 , width:"70%"  }}
           animate={{ opacity: 1 ,y:20 ,x:0  }}
           exit={{ opacity: 0 , x:-900 }}
           transition={{duration:1 , delay:0.3}}
@@ -55,7 +65,7 @@ export default function MyModal({ isOpen, onClose , user }) {
           onClick={onClose}
         >
           <motion.div
-            initial={{ x:-900 , width:"70%" }}
+            initial={{ x:-900 , width:"90%" }}
             animate={{ opacity: 1 , x: 0 }}
             exit={{ opacity: 0,  x:-900 , transition:{duration:1} }}
             className="modal-container"
@@ -63,10 +73,12 @@ export default function MyModal({ isOpen, onClose , user }) {
           >
             <h4>Editar Datos</h4>
          
-
+        {loader && <Loader/>}
         <form className='modal_form_img' onSubmit={handleSubmit(onSubmit)}>
 
-        <div className='container_label'>
+        <div className='container_label'
+        onClick={()=> {console.log(isLoading)}}
+        >
         <div className='conteiner_img_upload'>
         <h5>Avatar</h5>
             {previewUrl ? <img className="img_prev" src={previewUrl} alt="Vista previa" /> : ''}
@@ -81,8 +93,8 @@ export default function MyModal({ isOpen, onClose , user }) {
           <label><input type='text'  name='name' id="name" placeholder={user.name} 
            {...register("name" , 
            {
-             minLength:{ value:4 , message:"ingrese un nombre entre 4 y 11 caracteres"},
-             maxLength:{value:11 , message:"ingrese un nombre entre 4 y 11 caracteres"},
+             minLength:{ value:4 , message:"ingrese un nombre entre 4 y 15 caracteres"},
+             maxLength:{value:15 , message:"ingrese un nombre entre 4 y 15 caracteres"},
              pattern:{value:regExAlpha , message:"Nombre Invalido , evite numeros o caracteres "}
             })}
             />Usuario</label>
@@ -91,14 +103,14 @@ export default function MyModal({ isOpen, onClose , user }) {
           <label><input type='text' id='telefono' name='telefono' placeholder={user.telefono ? user.telefono : "No agregado"}
            {...register("telefono" , 
            {
-             minLength:{ value:8 , message:"ingrese un nombre entre 8 y 12 caracteres"},
-             maxLength:{value:12 , message:"ingrese un nombre entre 4 y 11 caracteres"},
+             minLength:{ value:8 , message:"ingrese un nombre entre 8 y 13 caracteres"},
+             maxLength:{value:13 , message:"ingrese un nombre entre 8 y 13 caracteres"},
             })}
             />telefono</label>
             {errors.telefono && <span>{errors.telefono.message}</span>}
           <hr/>         
         </div>  
-          <FormRegister user={user}/>
+          <FormRegister user={user} register={register} errors={errors}/>
           <button>Guardar</button>
         </form> 
         <hr/>

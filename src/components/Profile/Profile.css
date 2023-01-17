@@ -1,7 +1,7 @@
 .profile_container{
     width: 100%;
     display: flex;
-    background-color: aquamarine;
+    background-color: #03a9f4;
     height: 100vh;
     z-index: 4;
 }
@@ -11,6 +11,17 @@
     flex-direction: column;
     text-align: center;
     justify-content: start;
+}
+.modal-container .loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -7%;
+    margin-left: -6%;
+    border: solid 6px #ff5722;
+    border-top-color: transparent;
+    width: 80px;
+    height: 80px;
 }
 .main_in_profile{
     display: flex;
@@ -22,15 +33,16 @@
     padding: 0 1rem;
 
 }
+
 .img_profile{
     width: 11rem;
     border-radius: 50%;
-    margin: 0 auto;
+    margin: 8px auto;
 }
 form{
     display: flex;
     flex-direction: column;
-    height: 45%;
+    height: 55%;
     justify-content: start;
     gap: 1rem;
     padding: 0 1rem;
@@ -59,7 +71,7 @@ button:hover{
     margin: auto;
     border-radius: 20px;
     padding: 1rem;  
-    width: 70%;    
+    width: 90%;  
 }
 div.modal-container hr {
     margin:none;
@@ -71,14 +83,16 @@ div.modal-container h4 {
     font-style: italic;
     text-decoration: underline;
 }
-form.modal_form{
-    border-radius: 20px;
-    width: 50%;
-    margin: 0 auto;
-    height: 45%;
-    display: table;
-    padding: 0 1rem 0.5rem;
+form .modal_form{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(198px, 1fr));
+    grid-template-rows: repeat(1, 1fr);
+    place-content: space-between;
     background-color: #4b6177;
+    padding: 0 1rem 0.5rem;
+    border-radius: 20px;
+    height: 65%;
+    width: 100%;
 }
 form.modal_form button{
     margin-top: 1rem;
@@ -88,15 +102,20 @@ form.modal_form_img{
     border: 1px solid black;
     border-radius: 20px;
     margin: auto;
-    padding: 1rem;
+    padding-bottom: 1rem;
     height: 45%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    display: grid;  
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
     justify-content: center;
     align-content: center;
     align-items: center;
 
+}
+form.modal_form_img span{
+    font-size: x-small;
+    color: #f44336;
+    font-weight: 800;
 }
 form.modal_form_img button {
     grid-column: 1 / -1;
@@ -109,7 +128,7 @@ form.modal_form_img button {
     background-color: #f44336;
 }
 .img_prev{
-    width: 50%;
+    width: 70%;
     border-radius: 50%;
     place-self: center;
 }
@@ -121,7 +140,7 @@ form.modal_form_img button {
     flex-direction: column;
     text-align-last: center;
     font-size: smaller;
-    width: 40%;
+    width: 60%;
 }
 .label_img{
     font-size: revert;
@@ -133,3 +152,40 @@ display: flex;
 flex-direction: column;
 align-items: center;
 }
+
+@media (max-width: 766px) {
+    form.modal_form_img {
+      grid-template-columns: repeat(1, 1fr);
+      text-align: -webkit-center;
+      font-size: smaller;
+
+    }
+    form.modal_form{
+        place-content: center;
+        gap: 0;
+    }
+    .img_profile{
+        width:9rem;
+    }
+    table.table-dark{
+        font-size: smaller;
+        }
+  }
+  @media (max-width: 520px) {
+    main h1 {
+    font-size: x-large;
+    }
+    table.table-dark{
+    font-size: x-small;
+    }
+    .img_profile {
+        width: 6rem;
+    }
+    .article_profile{
+        font-size: small;
+    }
+    .article_profile form{
+        height: 45%;
+        font-size: smaller;
+    }
+  }

@@ -55,8 +55,9 @@ export default function Profile() {
         { user &&  <form>
           <label><input type='text' disabled  defaultValue={user.user.name} />Usuario</label>
           <label><input type='text' disabled defaultValue={user.user.telefono ? user.user.telefono : "No agregado"} />telefono</label>
-          <label><input type='text' disabled defaultValue={direction.direccion ? direction.direccion  : "No agregado"} />direccion</label>
           <label><input type='text' disabled  defaultValue={direction.localidad ? direction.localidad : "No agregado"} />Localidad</label>
+          <label><input type='text' disabled defaultValue={direction.direccion ? direction.direccion  : "No agregado"} />direccion</label>
+          <label><input type='text' disabled defaultValue={direction.altura ? direction.altura  : "No agregado"} />altura</label>
         </form> }
         <button onClick={openModal}>Edit</button>
       </article>
