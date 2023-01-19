@@ -143,7 +143,9 @@ export default function Header() {
             />
           
             <Buscador/>
-            {urls.map((url , idx) => { 
+            <motion.div className='container_btns'>
+            {urls.map((url , idx) => {
+              if(url.name != "Admin"){ 
               return (
                 <motion.div
                 key={idx}
@@ -166,8 +168,9 @@ export default function Header() {
                  />
               ) : null}
                     </motion.div>
-                )
+                )}
             })}
+            </motion.div>
                 <motion.div
                     initial={{opacity: 0, y:-100}}
                     animate={{opacity:1, y:0}}

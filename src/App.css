@@ -83,6 +83,18 @@ a{
   margin-bottom: 1rem;
   object-fit: cover;
 }
+.container_btns{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.container_btns:first-child{
+display: none;
+} 
+/* .container_btns div:last-child{
+display: none;
+} */
 
 .drop_cateories {
   color: #ff5722;
@@ -238,4 +250,10 @@ border-top: 2px solid #6dada2;
   justify-content: space-between;
   align-items: center;
 
+}
+@media (max-width: 766px) {
+
+  div.container_btns{
+    display: none;
+  }
 }
