@@ -1,0 +1,75 @@
+nav.nav_open{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+  }
+nav.nav_close{
+    display: none;
+}
+  
+  .background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    background: #fff;
+  }
+  
+  header button.btn_burguer {
+    outline: none;
+    border: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+    position: sticky;
+    top: 18px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    place-content: center;
+
+  }
+  header button.btn_burguer svg {
+    position: relative;
+    left: 1px;
+    top: 2px;
+  }
+  
+  .icon-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex: 40px 0;
+    margin-right: 20px;
+  }
+  
+  .text-placeholder {
+    border-radius: 5px;
+    width: 200px;
+    height: 20px;
+    flex: 1;
+  }
+  
+  .refresh {
+    padding: 10px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  

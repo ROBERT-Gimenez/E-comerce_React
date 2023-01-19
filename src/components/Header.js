@@ -10,12 +10,13 @@ import useGetAxios from '../hooks/useGetAxios';
 import swal from 'sweetalert'
 import { useCookies } from 'react-cookie';
 import useUserAvatar from '../hooks/useUserAvatar'
-
+import { MenuToggle } from './MenuBurger/MenuToggle';
 //redux
 
 import { setNight , setToken , setListStore } from '../Store/state';
 import { useDispatch , useSelector } from 'react-redux';
 import Buscador from './Buscador';
+import { Example } from './MenuBurger/Example';
 const imgs = require.context('../resource/img' , true);
 
 export default function Header() {
@@ -179,6 +180,7 @@ export default function Header() {
                     onClick={() => dispatch(setNight())}>
                 <img className='luna' src={night ? imgs(`./luna.png`) : imgs(`./sol.png`)} alt="nightmode"/>
                 </motion.div>
+                <Example/>   
 
     </header>
   )

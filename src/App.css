@@ -126,8 +126,8 @@ display: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     color: #222222;
     background-color: rgba(255, 255, 255, 0.75);
@@ -144,6 +144,9 @@ display: none;
 }
 .nav_bootstrap {
 width: 90%;
+}
+.Burger_Menu{
+  display: none;
 }
 .luna{
         width: 70%;
@@ -255,5 +258,8 @@ border-top: 2px solid #6dada2;
 
   div.container_btns{
     display: none;
+  }
+  div.Burger_Menu{
+    display: block;
   }
 }
