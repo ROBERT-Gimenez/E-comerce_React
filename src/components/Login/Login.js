@@ -16,7 +16,6 @@ export default function Login() {
     const {register, formState:{errors} , handleSubmit } = useForm();
     const [cookies, setCookie] = useCookies(['session']);
     const [verMail , setMail] = useState(null);
-    const [userOn , setUserOn] = useState(cookies.session || 0);
 
     const regexEmail =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const night = useSelector(state => state.night);
@@ -51,6 +50,7 @@ export default function Login() {
         axios.post('http://localhost:4000/api/user/login' , {email,password})
         .then(res => {
             console.log(res)
+            console.log(cookies)
             let error = res?.data?.errors?.[0].msg
             let isAdmin = res?.data?.data?.user?.rol_id 
             let userin = res?.data?.data?.user?.id 

@@ -1,8 +1,6 @@
-import {useState , useEffect} from 'react'
+import {useState } from 'react'
 import { AnimatePresence, motion } from "framer-motion";
-import axios from 'axios';
 import { useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
 import FormRegister from './FormRegister';
 import useAxiosPost from '../../hooks/useAxiosPost';
 import Loader from '../Loader';
@@ -10,14 +8,13 @@ import Loader from '../Loader';
 export default function MyModal({ isOpen, onClose , user }) {
 
 
-  const {register, formState:{errors} , watch , handleSubmit } = useForm();
-  const [response, error, isLoading, setUrl, setPostData] = useAxiosPost();
+  const {register, formState:{errors} , handleSubmit } = useForm();
+  const [ isLoading, setUrl, setPostData] = useAxiosPost();
 
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loader, setLoader] = useState(false);
 
-  const night = useSelector(state => state.night);
   const regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/;
 
     const onSubmit = (data) => {
@@ -49,9 +46,6 @@ export default function MyModal({ isOpen, onClose , user }) {
     reader.readAsDataURL(selectedFile);
   };
  
-
-  
-
   return (
     <div className='modal_container'>
     <AnimatePresence>

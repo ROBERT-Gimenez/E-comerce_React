@@ -1,20 +1,14 @@
 import {useState , useEffect} from 'react'
-import { useForm } from 'react-hook-form'
-import useAxiosPost from '../../hooks/useAxiosPost';
 import axios from 'axios';
-import { useCallback } from 'react';
 
 export default function FormRegister({user , register , errors}) {
 
 
-  const { watch , handleSubmit } = useForm();
 
   const [provinces, setProvinces] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState('');
   const [localities, setLocalities] = useState([]);
   const [selectedLocality, setSelectedLocality] = useState('');
-  const [data, loading] = useAxiosPost();
-  const [response, error, isLoading, setUrl, setPostData] = useAxiosPost();
  
  /*  const onSubmit = (data) => {
     setUrl(`http://localhost:4000/api/user/edit/${user.id}`);
