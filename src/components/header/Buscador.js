@@ -1,6 +1,6 @@
 import {useState , useEffect} from 'react'
-import useGetAxios from '../hooks/useGetAxios';
-import {setListStore } from '../Store/state';
+import useGetAxios from '../../hooks/useGetAxios';
+import {setListStore } from '../../Store/state';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert'

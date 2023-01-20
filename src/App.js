@@ -1,5 +1,5 @@
 import Home from "./components/Home/Home";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import Footer from "./components/Footer";
