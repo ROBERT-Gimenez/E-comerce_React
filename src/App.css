@@ -92,6 +92,12 @@ a{
 .container_btns:first-child{
 display: none;
 } 
+.burger_btns{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
 /* .container_btns div:last-child{
 display: none;
 } */
@@ -168,6 +174,8 @@ width: 90%;
     color: #fe2e00;
     font-weight: bold;
     padding: 0;
+    width: 100%;
+    justify-content: center;
 }
 .icons-header svg{
   font-size: 1.4rem;

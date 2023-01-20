@@ -5,9 +5,16 @@ nav.nav_open{
     bottom: 0;
     width: 300px;
   }
-nav.nav_close{
+  nav.nav_close{
+    animation: close 3s ease-in-out linear;
+    animation-fill-mode: forwards;
     display: none;
-}
+ }
+ @keyframes close {
+     0%{display: block; opacity: 1;}
+     80%{opacity:0;}
+     100%{display:none}
+ }
   
   .background {
     position: absolute;
@@ -15,7 +22,8 @@ nav.nav_close{
     right: 0;
     bottom: 0;
     width: 300px;
-    background: #fff;
+    background: #212529;
+    border-left: 5px solid #90ee90bd;
   }
   
   header button.btn_burguer {
@@ -48,7 +56,10 @@ nav.nav_close{
     height: 40px;
     border-radius: 50%;
     flex: 40px 0;
-    margin-right: 20px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    place-items: center;
   }
   
   .text-placeholder {
@@ -56,6 +67,8 @@ nav.nav_close{
     width: 200px;
     height: 20px;
     flex: 1;
+    display: flex;
+    justify-content: center;
   }
   
   .refresh {
@@ -73,3 +86,51 @@ nav.nav_close{
     cursor: pointer;
   }
   
+  
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+    position: absolute;
+    top: 66px;
+    width: 278px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: end;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.search_burger_menu {
+
+    display: flex;
+    flex-direction: column;
+    height: 55%;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.search_burger_menu input{
+    appearance: none;
+    background: none;
+    outline: none;
+    /* border: none; */
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 5px;
+    border-radius: 999px;
+    background-color: #EEE;
+    transition: 0.4s;
+    margin: 1rem;
+
+}

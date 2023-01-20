@@ -1,19 +1,29 @@
-import {useState} from 'react'
 import { Link , useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import useGetAxios from '../../hooks/useGetAxios'
 import { useDispatch , useSelector } from 'react-redux';
-import { setNight , setToken , setListStore } from '../../Store/state';
+import { setListStore } from '../../Store/state';
 import {motion} from 'framer-motion'
+import useUserAvatar from '../../hooks/useUserAvatar'
 import swal from 'sweetalert'
+import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
+import {BiLogIn } from "react-icons/bi";
+import { Dropdown } from 'react-bootstrap';
 
-export default function NavLinks({SelectedTab,SetTab,setverElemento,verElemento}) {
-    
-    const {data} = useGetAxios("http://localhost:4000/api/products")
+
+
+export default function NavLinks({SelectedTab,SetTab,setverElemento,verElemento , clas}) {
+
+    const [cookies, setCookie] = useCookies(['session']);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
-
     const localToken = localStorage.getItem('token')
+    const avatarId = localStorage.getItem('avatarId')
+    const avatar = useUserAvatar(avatarId);
+    const Admin = useSelector(state => state.Admin);
+    const night = useSelector(state => state.night);
+    const {data} = useGetAxios("http://localhost:4000/api/products")
 
 
     const filterList = (categori) => {// eslint-disable-next-line 
@@ -101,9 +111,9 @@ export default function NavLinks({SelectedTab,SetTab,setverElemento,verElemento}
 
 
   return (
-         <motion.div className='container_btns'>
+         <motion.div className={clas}>
             {urls.map((url , idx) => {
-              if(url.name != "Admin"){ 
+              if(url.name !== "Admin"){ 
               return (
                 <motion.div
                 key={idx}
@@ -116,7 +126,7 @@ export default function NavLinks({SelectedTab,SetTab,setverElemento,verElemento}
                 className="link_contain"  
                 >
                     {actionUrls(url.name , url.url)}
-                    {url.name != "Login" && url.name === {SelectedTab} ? (
+                    {url.name !== "Login" && url.name === {SelectedTab} ? (
                 <motion.div className="underline" layoutId="underline"
                 key={idx}
                 initial={{opacity: 0, x:-50}}

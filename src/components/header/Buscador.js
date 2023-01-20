@@ -1,11 +1,11 @@
-import {useState , useEffect} from 'react'
+import {useState} from 'react'
 import useGetAxios from '../../hooks/useGetAxios';
 import {setListStore } from '../../Store/state';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert'
 
-export default function Buscador() {
+export default function Buscador({clas}) {
 
     const dispatch = useDispatch();
     const navigate  = useNavigate ();
@@ -40,7 +40,7 @@ export default function Buscador() {
   return (
     <div>
           <form 
-            className="search-box"
+            className = {clas}
             onSubmit={HandleSearch}>
                 <input
                 type="search" placeholder='Search Product...'

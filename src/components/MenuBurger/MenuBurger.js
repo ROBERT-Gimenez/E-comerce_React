@@ -4,6 +4,7 @@ import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "./useDimensions";
 import { MenuToggle } from "./MenuToggle";
 import "./Burguerstyle.css"
+import { Btns_Nav } from "./Btns_Nav";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -15,17 +16,18 @@ const sidebar = {
     }
   }),
   closed: {
-    clipPath: "circle(21px at 262px 41px)",
+    clipPath: "circle(20px at 262px 41px)",
     transition: {
-      delay: 0.2,
+      delay: 0.5,
       type: "spring",
       stiffness: 400,
-      damping: 40
+      damping: 40,
+      duration: 4
     }
   }
 };
 
-export const Example = () => {
+export const MenuBurger = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
@@ -41,9 +43,7 @@ export const Example = () => {
     <MenuToggle toggle={() => toggleOpen()} />
     <motion.nav className={isOpen ? "nav_open" : "nav_close"}>
       <motion.div className="background" variants={sidebar} />
-        <p>MENU</p>
-        <p>MENU</p>
-        <p>MENU</p>
+      <Btns_Nav toggle={() => toggleOpen()} />
     </motion.nav>
     </motion.div>
   );
