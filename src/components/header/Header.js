@@ -9,6 +9,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import Buscador from './Buscador';
 import { MenuBurger } from '../MenuBurger/MenuBurger';
 import NavLinks from './NavLinks';
+import AvatarUser from './AvatarUser';
 const imgs = require.context('../../resource/img' , true);
 
 export default function Header() {
@@ -46,10 +47,12 @@ export default function Header() {
             <NavLinks
              SelectedTab={selectedTab}
              SetTab={setSelectedTab}
-             setverElemento={setMostrarElemento}
-             verElemento={mostrarElemento}
              date={data}
              clas={"container_btns"}
+             />
+             <AvatarUser 
+             setverElemento={setMostrarElemento}
+             verElemento={mostrarElemento}
              />
                 <motion.div
                     initial={{opacity: 0, y:-100}}

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { MenuItem } from "./MenuItem";
 import { useCookies } from 'react-cookie';
 import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
-import { Link , useNavigate } from 'react-router-dom';    
+import { Link } from 'react-router-dom';    
 import {BiLogIn } from "react-icons/bi";
 import {TbReportSearch } from "react-icons/tb";
 import Buscador from "../header/Buscador";
@@ -19,11 +19,11 @@ const variants = {
 };
 
 
-export const Btns_Nav = ({toggle}) => {
+export const BtnsNav = ({toggle}) => {
 
 
-    const navigate = useNavigate();
     const localToken = localStorage.getItem('token')
+     // eslint-disable-next-line
     const [cookies, setCookie] = useCookies(['session']);
 
     const itemIds = [{name:"Perfil" , url:`/Profile?userId=${cookies.session}` },

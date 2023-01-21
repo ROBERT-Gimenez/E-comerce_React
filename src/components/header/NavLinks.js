@@ -1,26 +1,20 @@
 import { Link , useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import {motion} from 'framer-motion'
 import useGetAxios from '../../hooks/useGetAxios'
 import { useDispatch , useSelector } from 'react-redux';
 import { setListStore } from '../../Store/state';
-import {motion} from 'framer-motion'
-import useUserAvatar from '../../hooks/useUserAvatar'
 import swal from 'sweetalert'
-import {HiOutlineShoppingCart , HiUser} from "react-icons/hi2";
-import {BiLogIn } from "react-icons/bi";
+import {HiOutlineShoppingCart} from "react-icons/hi2";
 import { Dropdown } from 'react-bootstrap';
 
 
 
-export default function NavLinks({SelectedTab,SetTab,setverElemento,verElemento , clas}) {
+export default function NavLinks({SelectedTab,SetTab, clas}) {
 
-    const [cookies, setCookie] = useCookies(['session']);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
     const localToken = localStorage.getItem('token')
-    const avatarId = localStorage.getItem('avatarId')
-    const avatar = useUserAvatar(avatarId);
     const Admin = useSelector(state => state.Admin);
     const night = useSelector(state => state.night);
     const {data} = useGetAxios("http://localhost:4000/api/products")
@@ -61,30 +55,8 @@ export default function NavLinks({SelectedTab,SetTab,setverElemento,verElemento 
     const urls = [
         {name:"Admin",url:"/Admin-Profile"},
         {name:"Carrito",url:"ShoppingCart"},
-        {name:"categoria"},
-        {name:"Login",url:"/Login"}]
+        {name:"categoria"},]
         const actionUrls = (name,url) => {
-          if(name === "Login"){
-            return localToken?
-            <div
-             onClick={() => setverElemento(!verElemento)} className='onLine'>
-              <motion.img src={avatarId ? avatar : "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg"}  alt="avatar user" 
-                        initial={{opacity: 0, x:-100}}
-                        animate={{opacity:1, x:0}}
-                        transition={{duration: 0.3, delay: 0.5}}
-                        className="onLine" />
-              <motion.div initial={{scale:0 ,opacity: 0 , x:-50}}
-                          animate={{scale:1, y: verElemento ? 10 : -50,x:verElemento ? -0 : -0,
-                          opacity: verElemento ? 1 : 0,
-                          pointerEvents: verElemento ? 'auto' : 'none',
-                          }}
-                          transition={{ duration: 0.2 }}
-                          exit={{y:-300 , opacity: 0 , scale:0 }}
-                          className='container_online'>
-                <Link onClick={() =>  navigate("/ShoppingCart") } className='icons-header' to={`/Profile?userId=${cookies.session}`}>Profile<HiUser/></Link>
-                <Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut <BiLogIn/></Link>
-              </motion.div>
-              </div>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
           if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
           if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
           if(name === "categoria"){
@@ -106,12 +78,13 @@ export default function NavLinks({SelectedTab,SetTab,setverElemento,verElemento 
             </Dropdown>
             </motion.div> 
           }
-          return /* <Link to={url}>{name}</Link> */
+          return 
         }
 
 
   return (
-         <motion.div className={clas}>
+      <motion.div className={clas}>
+             {/*  eslint-disable-next-line */}
             {urls.map((url , idx) => {
               if(url.name !== "Admin"){ 
               return (

@@ -4,7 +4,7 @@ import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "./useDimensions";
 import { MenuToggle } from "./MenuToggle";
 import "./Burguerstyle.css"
-import { Btns_Nav } from "./Btns_Nav";
+import { BtnsNav } from "./BtnsNav";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -43,7 +43,7 @@ export const MenuBurger = () => {
     <MenuToggle toggle={() => toggleOpen()} />
     <motion.nav className={isOpen ? "nav_open" : "nav_close"}>
       <motion.div className="background" variants={sidebar} />
-      <Btns_Nav toggle={() => toggleOpen()} />
+      <BtnsNav toggle={() => toggleOpen()} />
     </motion.nav>
     </motion.div>
   );
