@@ -55,8 +55,8 @@ export default function NavLinks({SelectedTab,SetTab, clas}) {
     const urls = [
         {name:"Admin",url:"/Admin-Profile"},
         {name:"Carrito",url:"ShoppingCart"},
-        {name:"categoria"},]
-        const actionUrls = (name,url) => {
+        {name:"categoria" , url:"/"},]
+        const actionUrls = (name) => {
           if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
           if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
           if(name === "categoria"){
@@ -78,19 +78,19 @@ export default function NavLinks({SelectedTab,SetTab, clas}) {
             </Dropdown>
             </motion.div> 
           }
-          return 
+          return null
         }
 
 
   return (
       <motion.div className={clas}>
-             {/*  eslint-disable-next-line */}
-            {urls.map((url , idx) => {
+            
+            {urls.map((url , index) => {
               if(url.name !== "Admin"){ 
               return (
                 <motion.div
-                key={idx}
-                custom={{delay : (idx + 1 ) * 0.1}}
+                key={index}
+                custom={{delay : (index + 1 ) * 0.1}}
                 initial="hidden"
                 exit="hidden"
                 animate="visible"
@@ -98,10 +98,10 @@ export default function NavLinks({SelectedTab,SetTab, clas}) {
                 onHoverStart={() =>  {SetTab(url.name)}}
                 className="link_contain"  
                 >
-                    {actionUrls(url.name , url.url)}
-                    {url.name !== "Login" && url.name === {SelectedTab} ? (
+                    {actionUrls(url.name)}
+                    { url.name === SelectedTab ? (
                 <motion.div className="underline" layoutId="underline"
-                key={idx}
+                key={index}
                 initial={{opacity: 0, x:-50}}
                 animate={{opacity:1, x:0}}
                 exit={{opacity: 0}}
@@ -110,7 +110,8 @@ export default function NavLinks({SelectedTab,SetTab, clas}) {
               ) : null}
                     </motion.div>
                 )}
-            })}
+                return null
+            })}  
             </motion.div>
   )
 }

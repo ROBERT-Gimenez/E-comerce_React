@@ -30,7 +30,7 @@ export default function Header() {
     
   return (
     <header className='container_header' style= {{backgroundColor:night?"#212529":"rgb(199 240 245)"}}
-    onMouseLeave={() =>cerrar()}
+    onMouseLeave={() => cerrar()}
     /* onHoverStart={() => {if (mostrarElemento){setMostrarElemento(!mostrarElemento)} }} */
 
     >

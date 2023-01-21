@@ -100,7 +100,7 @@ ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    place-items: end;
+    place-items: flex-end;
 }
 
 li {
