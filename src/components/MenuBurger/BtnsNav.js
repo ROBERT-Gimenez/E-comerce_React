@@ -58,7 +58,7 @@ export const BtnsNav = ({toggle}) => {
 
     return (
     <motion.ul variants={variants}>
-        <Buscador clas={"search_burger_menu"}/>
+        <Buscador action={toggle} clas={"search_burger_menu"}/>
     {itemIds.map((i , index) => {
          if (i.name === "logaut" && !localToken ) {
           return null
