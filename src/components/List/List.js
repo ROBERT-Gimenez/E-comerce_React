@@ -41,7 +41,10 @@ export default function List() {
   }
 
   const formattedPrice = (price , discount) => {
-    let discountOn = parseFloat(price - price * discount / 100);
+    let discountOn = parseFloat(price - price * discount / 100).toLocaleString('es-AR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).replace(",", ".");
     let princeNormal = parseFloat(price).toLocaleString('es-AR', {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
@@ -52,6 +55,12 @@ export default function List() {
       </p>)
     }
     return (<p className="precio" >${princeNormal}</p>)  
+  }
+  const discountOn = (discount) => {
+    if (discount > 0) {
+      return <p className="sale-off">{discount}%</p>
+    }
+    return null
   }
 
 
@@ -76,8 +85,9 @@ export default function List() {
          <Card className='body-card-product' >
   
           <ImHeart className='cart-card'/>
+          <span>{discountOn(prod.discount)}</span>
         <Card.Img className='img-cards-products' style={{ margin:"auto"}} variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title} onClick={() => inDetail(prod.id)} />
-       
+
             <Card.Body className="body_card_detail">
                 <Card.Title>{formattedPrice(prod.price,prod.discount)}</Card.Title>
                 <Card.Text>

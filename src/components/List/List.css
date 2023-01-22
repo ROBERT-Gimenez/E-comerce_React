@@ -1,6 +1,6 @@
 .cart-card{
     position: absolute;
-    right: 4%;
+    left: 4%;
     top: 3%;
     font-size: 1.3rem;
     color: black;
@@ -80,8 +80,27 @@ p.precio-discount {
 }
 p.precio-discount .precio{
     font-weight: thin;
-    font-size: 0.9rem;
     text-decoration: line-through;
     color:#b20600;
     margin-left: 6px;
+    font-size: 0.7rem;
+    position: absolute;
+}
+p.sale-off {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    height: 34px;
+    background: #b20600;
+    color: white;
+    width: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(10% 1%, 100% 0%, 100% 100%, 10% 100%, 0% 50%);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    font-weight: bolder;
+    font-size: 20px;
+    z-index: 3;
 }
