@@ -64,7 +64,7 @@ export default function Profile() {
       <MyModal isOpen={isModalOpen} onClose={closeModal} user={user?.user}/>
       <main className='main_in_profile'>
         <h1>Productos Comprados</h1>
-        <Table striped bordered hover variant="dark">
+        <Table className='table_orders' striped bordered hover variant="ligth">
       <thead>
         <tr>
           <th>#</th>

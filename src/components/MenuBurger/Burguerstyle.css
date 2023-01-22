@@ -125,7 +125,7 @@ li {
     background: none;
     outline: none;
     /* border: none; */
-    display: block;
+    display: none;
     width: 100%;
     max-width: 400px;
     padding: 5px;
@@ -133,5 +133,12 @@ li {
     background-color: #EEE;
     transition: 0.4s;
     margin: 1rem;
+    
+}
 
+@media (max-width: 598px) {
+
+    .search_burger_menu input{
+        display: block;
+    }
 }

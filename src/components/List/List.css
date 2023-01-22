@@ -30,9 +30,13 @@
     align-items: center;
     width: 99%;
 }
+.container-col-card div .col{
+    min-width: 14rem;
+}
 .body-card-product{
     max-height: 23rem;
     min-height: 23rem;
+    min-width: 14rem;
     max-width: 14rem;
     display: flex;
     justify-content: center;
@@ -65,4 +69,19 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+}
+p.precio-discount {
+    font-weight: 900;
+    font-size: 1.2rem;
+    font-family: 'Raleway', sans-serif;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+p.precio-discount .precio{
+    font-weight: thin;
+    font-size: 0.9rem;
+    text-decoration: line-through;
+    color:#b20600;
+    margin-left: 6px;
 }

@@ -39,6 +39,22 @@ export default function List() {
       }
     })
   }
+
+  const formattedPrice = (price , discount) => {
+    let discountOn = parseFloat(price - price * discount / 100);
+    let princeNormal = parseFloat(price).toLocaleString('es-AR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).replace(",", ".");
+    if(discount > 0){
+      return (<p className="precio-discount">${discountOn}
+              <span className="precio">${price}</span>
+      </p>)
+    }
+    return (<p className="precio" >${princeNormal}</p>)  
+  }
+
+
   
   return (
       <div>
@@ -63,10 +79,13 @@ export default function List() {
         <Card.Img className='img-cards-products' style={{ margin:"auto"}} variant="top" src={imgsProducts(`./${prod.image}`)} alt={prod.title} onClick={() => inDetail(prod.id)} />
        
             <Card.Body className="body_card_detail">
-                <Card.Title>{prod.name.substring(0 ,24)}..</Card.Title>
+                <Card.Title>{formattedPrice(prod.price,prod.discount)}</Card.Title>
                 <Card.Text>
-                {prod.description.substring(0 ,40)}..
+                {prod.name.substring(0 ,24)}
                 </Card.Text>
+               {/*  <Card.Text>
+                {prod.description.substring(0 ,40)}..
+                </Card.Text> */}
               <Link to={`/detalle?productId=${prod.id}`} className="btn btn-primary">View Detail</Link>
             </Card.Body>
             </Card>

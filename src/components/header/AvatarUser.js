@@ -22,7 +22,7 @@ export default function AvatarUser({verElemento , setverElemento }) {
         {localToken?
         <div
          onClick={() => setverElemento(!verElemento)} className='onLine'>
-        <div class="inline" ></div>
+        <div className="inline" ></div>
           <motion.img src={avatarId ? avatar : "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg"}  alt="avatar user" 
                     initial={{opacity: 0, x:-100}}
                     animate={{opacity:1, x:0}}

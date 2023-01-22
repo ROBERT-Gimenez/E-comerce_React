@@ -1,9 +1,10 @@
 .profile_container{
     width: 100%;
     display: flex;
-    background-color: #03a9f4;
+    background-color: transparent;
     height: 100vh;
     z-index: 4;
+   
 }
 .article_profile{
     width: 30%;
@@ -11,6 +12,8 @@
     flex-direction: column;
     text-align: center;
     justify-content: flex-start;
+    border-radius: 0 20px 20px 0;
+    background-color: #d4f4f8;
 }
 .modal-container .loader{
     position: absolute;
@@ -31,6 +34,12 @@
     text-align: center;
     border-left: 1px solid;
     padding: 0 1rem;
+
+}
+table.table{
+    --bs-table-bg: #d4f4f8;
+    --bs-table-striped-bg: #d4f4f8;
+    border-color:#4b6177;
 
 }
 

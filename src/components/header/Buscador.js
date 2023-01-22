@@ -35,7 +35,7 @@ export default function Buscador({clas , action}) {
       }
 
   return (
-    <div>
+    <div className='container_search_input'>
           <form 
             className = {clas}
             onSubmit={HandleSearch}>

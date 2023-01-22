@@ -24,8 +24,11 @@ header .Logo{
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid green;
-  place-items: flex-end;
+/*   border: 1px solid green;
+ */  place-items: flex-end;
+}
+img.onLine{
+  border: 3px solid #c7c8c9;
 }
 .onLine img {
   width: fit-content;
@@ -132,7 +135,7 @@ display: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     border-radius: 50%;
     color: #222222;
@@ -155,7 +158,7 @@ display: none;
   border-radius: 50%;
   background-color: #20fb03;
   animation: pulse 1500ms infinite;
-  z-index: 2;
+  z-index: 1;
 }
 @keyframes pulse {
   0% {
@@ -191,7 +194,7 @@ width: 90%;
     color: #fe2e00;
     font-weight: bold;
     padding: 0;
-    width: 100%;
+    /* width: 100%; */
     justify-content: center;
 }
 .icons-header svg{
@@ -281,10 +284,20 @@ border-top: 2px solid #6dada2;
 }
 @media (max-width: 766px) {
 
+  .container_header{
+    justify-content: space-between;
+  }
   div.container_btns{
     display: none;
   }
   div.Burger_Menu{
     display: block;
   }
+}
+@media (max-width: 598px) {
+
+  .search-box{
+    display: none;
+  }
+ 
 }
