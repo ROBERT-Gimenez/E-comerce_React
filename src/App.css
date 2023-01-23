@@ -88,7 +88,7 @@ a{
 }
 .container_btns{
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: center;
   justify-content: center;
 }
@@ -194,7 +194,7 @@ width: 90%;
     color: #fe2e00;
     font-weight: bold;
     padding: 0;
-    /* width: 100%; */
+    width: 100%; 
     justify-content: center;
 }
 .icons-header svg{

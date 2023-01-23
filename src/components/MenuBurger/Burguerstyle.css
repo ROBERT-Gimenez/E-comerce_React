@@ -53,7 +53,7 @@ nav.nav_open{
   }
   
   .icon-placeholder {
-    width: 40px;
+    width: 20px;
     height: 40px;
     border-radius: 50%;
     flex: 40px 0;
@@ -100,7 +100,8 @@ place-content: space-evenly;
 justify-content: space-around;
 align-self: center;}
 
-ul.list_categori{
+ul.list_categori,
+ul.list_burger_categori{
     width: 130px;
     display: flex;
     flex-direction: column;
@@ -113,25 +114,43 @@ ul.list_categori{
     background-color: rgba(30, 30, 30, 0.9);
     padding: 10px 0;
 }
+.close_ul{
+    display: none;
+}
 ul {
     position: absolute;
     top: 66px;
-    width: 278px;
+    width: 270px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     place-items: flex-end;
+    z-index: 1;
 }
-
+ul.list_burger_categori{
+    position: fixed;
+    top: 2rem;
+    opacity: 1;
+    z-index: 4;
+}
+ul.list_burger_categori li {
+    z-index: 4;
+}
 li {
-  list-style: none;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+    list-style: none;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+li:hover{
+    color: #ffb347;
+    scale: 1.1;
+}
+ul.list_burger_categori li.categoriOn {
+    z-index: 4;
 }
 .search_burger_menu {
-
     display: flex;
     flex-direction: column;
     height: 55%;

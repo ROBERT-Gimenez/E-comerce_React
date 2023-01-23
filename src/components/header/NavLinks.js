@@ -5,8 +5,8 @@ import { useDispatch , useSelector } from 'react-redux';
 import { setListStore } from '../../Store/state';
 import swal from 'sweetalert'
 import {HiOutlineShoppingCart} from "react-icons/hi2";
-import { Dropdown } from 'react-bootstrap';
 import { useState } from 'react';
+import BtnDropDrawn from '../MenuBurger/BtnDropDrawn';
 
 
 
@@ -14,27 +14,12 @@ export default function NavLinks({SelectedTab,SetTab, clas}) {
 
     const [isOpen, setIsOpen] = useState(false)
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const localToken = localStorage.getItem('token')
     const Admin = useSelector(state => state.Admin);
     const night = useSelector(state => state.night);
-    const {data} = useGetAxios("http://localhost:4000/api/products")
 
-
-    const filterList = (categori) => {// eslint-disable-next-line 
-        let products = data.filter(element => element.categoryid == categori) 
-        return products
-      }
-      const Promocions = () => {
-        let products = data.filter(element => element.discount > 0) 
-        return products
-      }
-      const categoriAction = (n , action ) => {
-        dispatch(setListStore(action(n)))
-         return navigate("/")
-        }
       
       const checkUser = () => {
          (localToken.length < 100) && (swal("Espere!", "Por favor inicie session Primero!", "warning")
@@ -63,46 +48,7 @@ export default function NavLinks({SelectedTab,SetTab, clas}) {
           if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
           if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
           if(name === "categoria"){
-            return <motion.div className='categories_conteiner' 
-            >
-            <motion.a 
-            className='icons-header'
-            onClick={() => setIsOpen(!isOpen)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            >
-            Categorias
-            </motion.a>
-            {isOpen && (
-                <motion.div
-                className='container_ul_categori'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                >
-                <ul className='list_categori'>
-                    <li onClick={() => categoriAction(1,filterList) }>Bicicletas</li>
-                    <li onClick={() => categoriAction(4,filterList)}>Accesorios</li>
-                    <li onClick={() => categoriAction(null,Promocions)}>Promociones</li>
-                </ul>
-                </motion.div>
-      )}
-            {/* <Dropdown className="d-inline mx-2" >
-              <Dropdown.Toggle  variant={night?"dark":"light"} autoclose="inside" className='icons-header' id="dropdown-autoclose-outside">
-                Categorias
-              </Dropdown.Toggle>
-    
-              <Dropdown.Menu style={{marginTop:"1rem"}} variant={night?"dark":"dark"}>
-                <motion.ul className='drop_cateories'
-                >
-                <Dropdown.Item onClick={() => categoriAction(1,filterList) }>Bicicletas</Dropdown.Item>
-                <Dropdown.Item onClick={() => categoriAction(4,filterList)}>Accesorios</Dropdown.Item>
-                  <Dropdown.Item onClick={() => categoriAction(null,Promocions)}>Promociones</Dropdown.Item>
-                </motion.ul>
-              </Dropdown.Menu>
-            </Dropdown> */}
-            </motion.div> 
-          }
+            return <BtnDropDrawn clas={'list_categori'}/> }
           return null
         }
 

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import {BiLogIn } from "react-icons/bi";
 import {TbReportSearch } from "react-icons/tb";
 import Buscador from "../header/Buscador";
+import BtnDropDrawn from "./BtnDropDrawn";
 
 
 const variants = {
@@ -49,7 +50,7 @@ export const BtnsNav = ({toggle}) => {
         } else if (url === itemIds[1].url) {
         return <Link onClick={toggle} className='icons-header' to="/ShoppingCart">Carrito</Link>;
         } else if (url === itemIds[2].name) {
-        return <Link className='icons-header' >Categorias</Link>;
+        return <BtnDropDrawn clas={'list_burger_categori'}/>
         } else if (url === itemIds[3].url && localToken) {
         return  <Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut </Link>;
         }

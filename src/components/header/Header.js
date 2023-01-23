@@ -45,7 +45,7 @@ export default function Header() {
               className="d-inline align-top Logo"
             />
           
-            <Buscador clas={"search-box"}/>
+            <Buscador action={() => console.log("search")} clas={"search-box"}/>
             <NavLinks
              SelectedTab={selectedTab}
              SetTab={setSelectedTab}
