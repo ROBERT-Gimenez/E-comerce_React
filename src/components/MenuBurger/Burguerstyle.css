@@ -93,7 +93,26 @@ li {
   margin: 0;
   padding: 0;
 }
+.container_ul_categori{
+opacity: 1;
+display: flex;
+place-content: space-evenly;
+justify-content: space-around;
+align-self: center;}
 
+ul.list_categori{
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    place-items: flex-start;
+    background-color: slategray;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(40px);
+    background-color: rgba(30, 30, 30, 0.9);
+    padding: 10px 0;
+}
 ul {
     position: absolute;
     top: 66px;

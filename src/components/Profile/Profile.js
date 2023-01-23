@@ -1,7 +1,6 @@
 import {useEffect , useState} from 'react'
 import './Profile.css'
 import { Table } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 import useUserAvatar from '../../hooks/useUserAvatar';
 import MyModal from './MyModal';
@@ -12,9 +11,9 @@ export default function Profile() {
   const avatarId = localStorage.getItem('avatarId')
   const [user , setUser] = useState(null);
   const [direction , setDirection] = useState(null);
-  const Token = useSelector(state => state.Token);
   const avatar = useUserAvatar(avatarId)
   console.log(avatar)
+
     useEffect(() => {
       const getUserData = async () => {
         try {
@@ -35,7 +34,7 @@ export default function Profile() {
         }
       };
       getUserData();
-    }, []);
+    }, [token]);
   
     
   function openModal() {

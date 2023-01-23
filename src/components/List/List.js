@@ -2,7 +2,7 @@ import {Row , Col , Card } from 'react-bootstrap'
 import { useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
 import {MdOutlineAddShoppingCart} from "react-icons/md";
-import { Link , useNavigate  } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import { motion } from "framer-motion"
 import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/state';

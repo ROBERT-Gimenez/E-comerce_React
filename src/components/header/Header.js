@@ -15,6 +15,8 @@ const imgs = require.context('../../resource/img' , true);
 export default function Header() {
     const [selectedTab, setSelectedTab] = useState(null);
     const [mostrarElemento, setMostrarElemento] = useState(false)
+   
+    
 
     //manejo del store
     const dispatch = useDispatch();
