@@ -1,6 +1,7 @@
 import {Row , Col , Card } from 'react-bootstrap'
 import { useEffect} from 'react'
 import {ImHeart} from "react-icons/im";
+import {MdOutlineAddShoppingCart} from "react-icons/md";
 import { Link , useNavigate  } from 'react-router-dom';
 import { motion } from "framer-motion"
 import { useSelector , useDispatch } from 'react-redux';
@@ -93,10 +94,14 @@ export default function List() {
                 <Card.Text>
                 {prod.name.substring(0 ,24)}
                 </Card.Text>
+                <button className="agregar" target="<%= product.id %>">
+                            Añadir
+                           <MdOutlineAddShoppingCart/>
+                        </button>
                {/*  <Card.Text>
                 {prod.description.substring(0 ,40)}..
                 </Card.Text> */}
-              <Link to={`/detalle?productId=${prod.id}`} className="btn btn-primary">View Detail</Link>
+              {/* <Link to={`/detalle?productId=${prod.id}`} className="btn btn-primary">View Detail</Link> */}
             </Card.Body>
             </Card>
         </Col>
