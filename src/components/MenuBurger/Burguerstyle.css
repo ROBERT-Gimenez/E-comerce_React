@@ -98,7 +98,10 @@ opacity: 1;
 display: flex;
 place-content: space-evenly;
 justify-content: space-around;
-align-self: center;}
+align-self: center;
+z-index: 4;
+}
+
 
 ul.list_categori,
 ul.list_burger_categori{
@@ -131,7 +134,6 @@ ul.list_burger_categori{
     position: fixed;
     top: 2rem;
     opacity: 1;
-    z-index: 4;
 }
 ul.list_burger_categori li {
     z-index: 4;
@@ -146,9 +148,6 @@ li {
 li:hover{
     color: #ffb347;
     scale: 1.1;
-}
-ul.list_burger_categori li.categoriOn {
-    z-index: 4;
 }
 .search_burger_menu {
     display: flex;

@@ -50,13 +50,13 @@ export const BtnsNav = ({toggle}) => {
         } else if (url === itemIds[1].url) {
         return <Link onClick={toggle} className='icons-header' to="/ShoppingCart">Carrito</Link>;
         } else if (url === itemIds[2].name) {
-        return <BtnDropDrawn clas={'list_burger_categori'}/>
+        return <BtnDropDrawn action={toggle} clas={'list_burger_categori'}/>
         } else if (url === itemIds[3].url && localToken) {
         return  <Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut </Link>;
         }
         }
 
-
+        const zIndex = (name) => name === "Categoria" ? 4 : 2;
     return (
     <motion.ul variants={variants}>
         <Buscador action={toggle} clas={"search_burger_menu"}/>
@@ -64,7 +64,7 @@ export const BtnsNav = ({toggle}) => {
          if (i.name === "logaut" && !localToken ) {
           return null
 }else{
-    return (  <MenuItem i={index} key={index} icon={getIcon(i.name)} context={getButton(i.url)}  />
+    return (  <MenuItem onClick={toggle} i={index} key={index} icon={getIcon(i.name)} context={getButton(i.url)}  />
 )}
 })}
   </motion.ul>

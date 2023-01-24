@@ -16,7 +16,7 @@ const variants = {
     }
   }
 };
-
+const zIndex = (name) => name == "list_burger_categori" ? 4 : 2;
 const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"];
 
 export const MenuItem = ({ i , icon , context }) => {
@@ -27,6 +27,7 @@ export const MenuItem = ({ i , icon , context }) => {
       variants={variants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
+      style={{zIndex:zIndex(context.props.clas)}}
     >
       <div className="icon-placeholder" style={styleIcon} >{icon}</div>
       <div className="text-placeholder" style={style} >{context}</div>
