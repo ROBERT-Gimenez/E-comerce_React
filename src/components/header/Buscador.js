@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert'
 
-export default function Buscador({clas , action}) {
+export default function Buscador({clas , accion}) {
 
     const dispatch = useDispatch();
     const navigate  = useNavigate ();
@@ -18,7 +18,7 @@ export default function Buscador({clas , action}) {
         const result = data.filter((item) =>{/* if((item.name||item.description).includes(search)){return item}} */
         return item.description.toLowerCase().includes(search.toLowerCase())})
         if(result.length > 0){
-            action()   
+            accion()   
             dispatch(setListStore(result)) 
         }else{
         swal("Oops...", "no se encontraron productos!", "info")

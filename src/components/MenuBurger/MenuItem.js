@@ -16,7 +16,7 @@ const variants = {
     }
   }
 };
-const zIndex = (name) => name == "list_burger_categori" ? 4 : 2;
+const zIndex = (name) => name == "list_burger_categori" ? 4 : 0;
 const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"];
 
 export const MenuItem = ({ i , icon , context }) => {

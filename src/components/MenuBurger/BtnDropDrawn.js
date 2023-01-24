@@ -17,17 +17,16 @@ export default function BtnDropDrawn({clas , action}) {
 
 
     const filterList = (categori) => {// eslint-disable-next-line 
-        action()
         let products = data.filter(element => element.categoryid == categori) 
         return products
       }
       const Promocions = () => {
-        action()
         let products = data.filter(element => element.discount > 0) 
         return products
       }
-      const categoriAction = (n , action ) => {
-        dispatch(setListStore(action(n)))
+      const categoriAction = (n , accion) => {
+        action()
+        dispatch(setListStore(accion(n)))
          return navigate("/")
         }
 

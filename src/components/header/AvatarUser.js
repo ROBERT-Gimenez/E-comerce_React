@@ -39,7 +39,7 @@ export default function AvatarUser({verElemento , setverElemento }) {
             <Link onClick={() =>  navigate("/ShoppingCart") } className='icons-header' to={`/Profile?userId=${cookies.session}`}>Profile<HiUser/></Link>
             <Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut <BiLogIn/></Link>
           </motion.div>
-          </div>:<Link className='icons-header' to="/Login">Login <HiUser/></Link> }
+          </div>:<Link className='icons-header-login' to="/Login">Login <HiUser/></Link> }
     </>
   )
 }

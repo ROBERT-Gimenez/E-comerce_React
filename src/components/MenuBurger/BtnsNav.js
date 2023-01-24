@@ -59,7 +59,7 @@ export const BtnsNav = ({toggle}) => {
         const zIndex = (name) => name === "Categoria" ? 4 : 2;
     return (
     <motion.ul variants={variants}>
-        <Buscador action={toggle} clas={"search_burger_menu"}/>
+        <Buscador accion={toggle} clas={"search_burger_menu"}/>
     {itemIds.map((i , index) => {
          if (i.name === "logaut" && !localToken ) {
           return null

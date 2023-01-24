@@ -184,7 +184,8 @@ width: 90%;
         scale: 1.02;
         cursor: pointer;
     }
-.icons-header , 
+.icons-header ,
+.icons-header-login, 
 .drop_cateories a,
 .dropdown-item a{
     display: flex;
@@ -196,6 +197,9 @@ width: 90%;
     padding: 0;
     width: 100%; 
     justify-content: center;
+}
+.icons-header-login{
+  width: 20%;
 }
 .icons-header svg{
   font-size: 1.4rem;
@@ -292,6 +296,7 @@ border-top: 2px solid #6dada2;
   }
   div.Burger_Menu{
     display: block;
+    margin: 0 8px;
   }
 }
 @media (max-width: 598px) {
