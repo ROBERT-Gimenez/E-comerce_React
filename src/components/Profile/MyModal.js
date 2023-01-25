@@ -59,7 +59,7 @@ export default function MyModal({ isOpen, onClose , user }) {
           onClick={onClose}
         >
           <motion.div
-            initial={{ x:-900 , width:"90%" }}
+            initial={{ x:-900  }}
             animate={{ opacity: 1 , x: 0 }}
             exit={{ opacity: 0,  x:-900 , transition:{duration:1} }}
             className="modal-container"
