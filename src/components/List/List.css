@@ -33,6 +33,7 @@
 .container-col-card div .col{
     min-width: 14rem;
 }
+
 .body-card-product{
   
     max-height: 20rem;
@@ -46,6 +47,9 @@
     margin-right: 1px;
     
     
+}
+.body-card-product:hover{
+    box-shadow: 0px 1px 10px orangered;
 }
 .btns-products{
     position: absolute;

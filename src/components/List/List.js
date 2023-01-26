@@ -76,11 +76,13 @@ export default function List() {
       { !loading  && ListStore.map((prod,idx) => (
         <motion.div
         key={idx}
-        custom={{delay : (idx + 1 ) * 0.2}}
+        custom={{delay : (idx + 1 ) * 0.1}}
         variants={container}
         initial="hidden"
         animate="visible"
         style={{display: "grid" , placeItems: "center"}}
+        whileHover={{ y:-20 , scale: 1, transition: { duration: 0.1 , delay:0 } }}
+        whileTap={{ y:-20 , scale: 1, transition: { duration: 0.1 , delay:0} }} 
         >
         <Col key={idx}>
          <Card className='body-card-product' >
@@ -98,10 +100,7 @@ export default function List() {
                             Añadir
                            <MdOutlineAddShoppingCart/>
                         </button>
-               {/*  <Card.Text>
-                {prod.description.substring(0 ,40)}..
-                </Card.Text> */}
-              {/* <Link to={`/detalle?productId=${prod.id}`} className="btn btn-primary">View Detail</Link> */}
+             
             </Card.Body>
             </Card>
         </Col>
