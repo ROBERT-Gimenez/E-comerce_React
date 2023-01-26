@@ -48,7 +48,7 @@ export default function NavLinks({SelectedTab,SetTab, clas}) {
           if(name === "Carrito"){ return <Link onClick={() => checkUser()} className='icons-header' to="/ShoppingCart">Carrito <HiOutlineShoppingCart/></Link>}
           if(name === "Admin" && Admin){ return <Link className='icons-header' to="/ShoppingCart">Admin <HiOutlineShoppingCart/></Link>}
           if(name === "categoria"){
-            return <BtnDropDrawn clas={'list_categori'}/> }
+            return <BtnDropDrawn action={() => console.log()} clas={'list_categori'}/> }
           return null
         }
 

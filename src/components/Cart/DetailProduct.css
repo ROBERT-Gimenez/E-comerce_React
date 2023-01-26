@@ -113,7 +113,7 @@ color: aliceblue;
     gap: 15px;
     padding: 15px;
     background: white;
-    border-radius: 50px;
+    border-radius: 30px;
     color: steelblue; 
     margin-top: 4%;
     border-bottom-style: outset;
@@ -135,14 +135,16 @@ color: aliceblue;
   }
   .motion_detail .btn_close_detail {
     cursor: pointer;
-    height: 2rem;
-    width: 3rem;
+    height: 4rem;
+    width: 4rem;
     border: none;
     display: flex;
     background-color: transparent;
-    font-size: 30px;
+    font-size: 50px;
     position: relative;
     z-index: 4;
+    position: relative;
+    left: 1rem;
 }
 .content_btn{
     height: 2rem;

@@ -5,6 +5,7 @@ import { Navigate} from 'react-router-dom';
 import useGetAxios from '../../hooks/useGetAxios';
 import { motion , AnimatePresence } from 'framer-motion';
 import {AiOutlineCloseCircle } from "react-icons/ai";
+import {Row , Col , Card } from 'react-bootstrap'
 
 
 
@@ -19,6 +20,30 @@ import 'swiper/css/scrollbar';
 const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function CarrouselProduct() {
+
+
+  const formattedPrice = (price , discount) => {
+    let discountOn = parseFloat(price - price * discount / 100).toLocaleString('es-AR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).replace(",", ".");
+    let princeNormal = parseFloat(price).toLocaleString('es-AR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).replace(",", ".");
+    if(discount > 0){
+      return (<p className="precio-discount">${discountOn}
+              <span className="precio">${price}</span>
+      </p>)
+    }
+    return (<p className="precio" >${princeNormal}</p>)  
+  }
+  const discountOn = (discount) => {
+    if (discount > 0) {
+      return <p className="sale-off">{discount}%</p>
+    }
+    return null
+  }
     // eslint-disable-next-line
     const [selectedId, setSelectedId] = useState(null)
     const [selectedProd, setSelectedProd] = useState("")
@@ -104,7 +129,7 @@ export default function CarrouselProduct() {
                 <motion.button className='btn_close_detail' onClick={() => setSelectedId(null)} ><AiOutlineCloseCircle onClick={() => setSelectedId(null)} /></motion.button>
                 </div>
 
-                    <motion.img 
+                    {/* <motion.img 
                     className='img-cards-products_detail' 
                     variant="top" src={imgsProducts(`./${selectedProd.image}`)} 
                     alt={selectedProd.title}
@@ -112,13 +137,21 @@ export default function CarrouselProduct() {
                     onClick={()=>{
                       window.location.replace(`/detalle?productId=${selectedProd.id}`)
                     } }
-                    />
-                    <hr/>
-                    <motion.h4>{selectedProd.name}</motion.h4>
-                    <motion.h5>${selectedProd.price}</motion.h5>
+                    /> */}
+                   
+                <Card style={{border:'none'}} className='body-card-product card' >
+                    <span>{discountOn(selectedProd.discount)}</span>
+                    <Card.Img className='img-cards-products ' style={{ margin:"auto"}} variant="top" src={imgsProducts(`./${selectedProd.image}`)} alt={selectedProd.title} onClick={() => inDetail(selectedProd.id)} />
 
-                    <a href={`/detalle?productId=${selectedProd.id}`} className="btn btn-primary">go to product</a>
-                </motion.div>
+                    <Card.Body className="body_card_detail">
+                      <Card.Title>{formattedPrice(selectedProd.price,selectedProd.discount)}</Card.Title>
+                      <Card.Text>
+                      {selectedProd.name.substring(0 ,24)}
+                      </Card.Text>
+                    </Card.Body>
+                  <a style={{marginBottom:'10px'}} href={`/detalle?productId=${selectedProd.id}`} className="agregar">go to product</a>
+                </Card>
+          </motion.div>
           </motion.div>
           )}
         </AnimatePresence> 
