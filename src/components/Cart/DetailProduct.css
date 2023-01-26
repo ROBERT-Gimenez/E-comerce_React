@@ -203,7 +203,7 @@ color: aliceblue;
         top: 130%;
     }
     .motion_detail button:not(:disabled) {
-        width: 3rem;
+        width: 4rem;
         right: 15%;
     }
     .rectangule{

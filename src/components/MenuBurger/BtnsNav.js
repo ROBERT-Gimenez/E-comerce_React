@@ -34,15 +34,21 @@ export const BtnsNav = ({toggle}) => {
 
     function getIcon(name) {
         if (name === 'Perfil') {
-        return <HiUser />;
-        } else if (name === 'Carrito') {
-        return <HiOutlineShoppingCart />;
-        } else if(name === 'Categoria') {
+        return <HiUser />;}
+        else if (name === 'Carrito') {
+        return <HiOutlineShoppingCart />;} 
+        else if(name === 'Categoria') {
         return <TbReportSearch/> ;
         }else{
             return <BiLogIn/>
         }
         }
+    
+    function Logautt(){
+        toggle()
+        localStorage.removeItem('token')
+    }
+
     function getButton(url) {
         if (url === itemIds[0].url) {
         return localToken ? <Link onClick={toggle} className='icons-header' to={`/Profile?userId=${cookies.session}`}>Profile</Link>:
@@ -52,7 +58,7 @@ export const BtnsNav = ({toggle}) => {
         } else if (url === itemIds[2].name) {
         return <BtnDropDrawn action={toggle} clas={'list_burger_categori'}/>
         } else if (url === itemIds[3].url && localToken) {
-        return  <Link onClick={() => localStorage.removeItem('token')} className='icons-header' to="/Login">Logaut </Link>;
+        return  <Link onClick={Logautt} className='icons-header' to="/Login">Logaut </Link>;
         }
         }
 
