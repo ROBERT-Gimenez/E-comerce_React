@@ -124,6 +124,7 @@ form.modal_form_img{
     justify-content: center;
     align-content: center;
     align-items: center;
+    gap: 1.5rem;
 
 }
 form.modal_form_img span{

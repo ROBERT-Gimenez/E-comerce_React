@@ -18,6 +18,7 @@ export default function MyModal({ isOpen, onClose , user }) {
   const [response, error, isLoading, setUrl , setPostData]  = useAxiosPost();
   
   const submitForm = (data) => {
+    console.log(data)
       data.avatar = file
       const formData = new FormData();
       formData.append('avatar', file);
