@@ -1,30 +1,4 @@
-/* import { useState , useEffect } from "react";
-import axios from "axios";
-
-const useAxiosPost = (url, postData) => {
-    const [response, setResponse] = useState(null);
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-  
-    const makePostRequest = async () => {
-      setIsLoading(true);
-      try {
-        const res = await axios.post(url, postData);
-        setResponse(res.data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    
-    useEffect(() => {
-      makePostRequest();
-    }, [url, postData]);
-  
-    return [response, isLoading, error, makePostRequest];
-  }; */
-  import { useState , useEffect } from "react";
+import { useState , useEffect } from "react";
 import axios from "axios";
 
 const useAxiosPost = () => {
@@ -56,6 +30,6 @@ const useAxiosPost = () => {
         };
     }, [url, postData]);
   
-    return [response, error, isLoading, setUrl, setPostData];
+    return [response, error, isLoading, setUrl , setPostData];
   };
 export default useAxiosPost;

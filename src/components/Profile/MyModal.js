@@ -9,15 +9,15 @@ export default function MyModal({ isOpen, onClose , user }) {
 
 
   const {register, formState:{errors} , handleSubmit } = useForm();
-  const [ isLoading, setUrl, setPostData] = useAxiosPost();
-
+  
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loader, setLoader] = useState(false);
-
+  
   const regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/;
-
-    const onSubmit = (data) => {
+  const [response, error, isLoading, setUrl , setPostData]  = useAxiosPost();
+  
+  const submitForm = (data) => {
       data.avatar = file
       const formData = new FormData();
       formData.append('avatar', file);
@@ -27,9 +27,8 @@ export default function MyModal({ isOpen, onClose , user }) {
       formData.append('localidad', data.localidad); 
       formData.append('direccion', data.direccion); 
       formData.append('altura', data.altura); 
-      setUrl(`http://localhost:4000/api/user/edit/${user.id}`);
-      setPostData(formData);
-      console.log(isLoading)
+      setUrl(() => (`http://localhost:4000/api/user/edit/${user.id}`))
+      setPostData(formData)
       setLoader(true)
        setInterval(function(){
         window.location.reload();
@@ -68,7 +67,7 @@ export default function MyModal({ isOpen, onClose , user }) {
             <h4>Editar Datos</h4>
          
         {loader && <Loader/>}
-        <form className='modal_form_img' onSubmit={handleSubmit(onSubmit)}>
+        <form className='modal_form_img' onSubmit={handleSubmit(submitForm)}>
 
         <div className='container_label'
         onClick={()=> {console.log(isLoading)}}
@@ -105,7 +104,7 @@ export default function MyModal({ isOpen, onClose , user }) {
           <hr/>         
         </div>  
           <FormRegister user={user} register={register} errors={errors}/>
-          <button>Guardar</button>
+          <button >Guardar</button>
         </form> 
         <hr/>
           <button className='btn_modal_close' onClick={onClose}>Cancelar</button>

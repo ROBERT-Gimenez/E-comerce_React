@@ -88,7 +88,7 @@ return (
         Localidad:
         </label>
         <label>
-        <input name='direccion' type='text'  placeholder={user.direccion_id ? user.direccion_id : "direccion y altura"}
+        <input name='direccion' type='text'  placeholder={user.direccion_id ? user.direccion_id : "direccion"}
         {...register("direccion" , 
         {
           minLength:{ value:4 , message:"la direccion es muy corta"},
@@ -97,7 +97,7 @@ return (
         </label>
         {errors.direccion && <span>{errors.direccion.message}</span>}
         <label>
-        <input name='altura' type='text'  placeholder={user.direccion_id ? user.direccion_id : "direccion y altura"}
+        <input name='altura' type='text'  placeholder={user.direccion_id ? user.direccion_id : "Altura"}
         {...register("altura" , 
         {
           minLength:{ value:4 , message:"ingrese una direccion de 4 digitos"},
