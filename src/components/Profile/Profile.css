@@ -231,3 +231,36 @@ align-items: center;
         padding: 0;
     }
   }
+
+  @media (max-width:400px){
+    .profile_container{
+        display: list-item;
+        flex-direction: column;
+        height: auto;
+    }
+    .article_profile {
+        border-radius: 5px;
+        font-size: small;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        justify-content: center;
+        align-content: center;
+        place-content: baseline;
+        font-size: x-small;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 1rem;
+    }
+    .article_profile button{
+        position: relative;
+        top: -4rem;
+    }
+    .modal-container{
+    position: absolute;
+    margin: 0 auto;
+    top: -19rem;
+    width: 18rem;
+    left: 1rem;
+    }
+}

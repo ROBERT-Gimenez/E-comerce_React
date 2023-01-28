@@ -1,12 +1,16 @@
 import {Link} from 'react-router-dom'
 import {Navbar} from 'react-bootstrap'
 import {ImWhatsapp} from "react-icons/im";
-import Logo from '../resource/img/logo-2.svg'
-
-
+import Logo from '../../resource/img/logo-2.svg'
+import { useSelector } from 'react-redux';
+import './FooterStiles.css'
 export default function Footer() {
+
+  const night = useSelector(state => state.night);
+
+
   return (
-    <div className='footer-general'>
+    <div className={night?'footer-general':'footer_night'}>
         <div className='circle'><a href='/' className='whattsapp-icon'><ImWhatsapp/></a></div>
         <Navbar  variant="dark" className='bg_footer'>
           <>
@@ -21,7 +25,7 @@ export default function Footer() {
           <p> copyright Bike's Master </p>
           </Navbar.Brand>
         </>
-        <div className='footer_Links'>
+        <div className={'footer_Links'}>
         <a href="https://www.buenosaires.gob.ar/defensaconsumidor">Defensa al Consumidor</a>
         <Link to="/">Contacto</Link>
         <Link to="/">Consulta</Link>

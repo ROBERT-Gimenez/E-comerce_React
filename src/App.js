@@ -2,7 +2,7 @@ import Home from "./components/Home/Home";
 import Header from "./components/header/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import {Routes , Route} from 'react-router-dom'
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
