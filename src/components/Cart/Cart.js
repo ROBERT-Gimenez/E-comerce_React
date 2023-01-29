@@ -15,9 +15,6 @@ export default function Cart() {
       <Nav.Item>
         <Nav.Link eventKey="Products">Compras</Nav.Link>
       </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="Categorys" >Direcciones</Nav.Link>
-      </Nav.Item>
     </Nav>
     <Table striped bordered hover variant="dark">
       <thead>
@@ -41,11 +38,11 @@ export default function Cart() {
           <td>$1200</td>
           <td>23/06/21</td>
         </tr>
-        <tr>
+       {/*  <tr>
           <td>3</td>
           <td colSpan={2}>Mantenimiento General</td>
           <td>01/02/21</td>
-        </tr>
+        </tr> */}
       </tbody>
     </Table>
     </div>

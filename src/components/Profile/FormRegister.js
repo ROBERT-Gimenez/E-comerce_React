@@ -22,8 +22,6 @@ export default function FormRegister({user , register , errors }) {
           });
       }, []);
     
-      
-
     useEffect(() => {
         // Obtener las localidades de la provincia seleccionada
         if (selectedProvince) {
@@ -48,6 +46,7 @@ export default function FormRegister({user , register , errors }) {
       const handleLocalityChange = event => {
         setSelectedLocality(event.target.value);
       };
+
       
     
 return (

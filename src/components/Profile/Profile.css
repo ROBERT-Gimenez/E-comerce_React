@@ -15,6 +15,9 @@
     border-radius: 0 20px 20px 0;
     background-color: #d4f4f8;
 }
+.article_profile button{
+    width: 90%;
+}
 .modal-container .loader{
     position: absolute;
     top: 50%;
@@ -32,16 +35,17 @@
     width: 100%;
     flex-direction: column;
     text-align: center;
-    border-left: 1px solid;
-    padding: 0 1rem;
+/*     border-left: 1px solid;
+ */    padding: 0 1rem;
 
 }
 table.table{
-    --bs-table-bg: #d4f4f8;
-    --bs-table-striped-bg: #d4f4f8;
-    border-color:#4b6177;
-
+    --bs-table-bg: #03a9f4;
+    --bs-table-striped-bg: #ff2f01;
+    border-color: #4b6177;
 }
+table.table tr td {
+    text-align: -webkit-center;}
 
 .img_profile{
     width: 11rem;
@@ -68,8 +72,8 @@ button{
     border: 1px solid;
     padding: 0 1rem;
     place-self: center;
-    width: 90%;
-    display: flex;
+/*     width: 90%;
+ */    display: flex;
     justify-content: center;
 }
 button:hover{
@@ -86,6 +90,7 @@ button:hover{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    font: caption;
 }
 div.modal-container hr {
     margin:none;

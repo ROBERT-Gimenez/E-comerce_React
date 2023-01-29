@@ -31,9 +31,14 @@
 .navbar-brand img{
     width: 50%;
 }
+.nav-tabs .nav-link {
+    border: 1px solid orange;
+    border-radius: 10px 10px 0 0;
+    color: #f44336;
+}
 @media (max-width:400px){
     .bg_footer{
         display: list-item;
+        flex-direction: column;
     }
-    flex-direction: column;
 }

@@ -8,7 +8,9 @@ import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/state';
 import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
+import { ToastContainer, toast } from 'react-toastify';
 import './List.css'
+import 'react-toastify/dist/ReactToastify.css';
 const imgsProducts = require.context('../../resource/img/products', true);
 
 export default function List() {
@@ -27,6 +29,19 @@ export default function List() {
     
   const inDetail= (id) => {
     return navigate(`/detalle?productId=${id}`)  
+  }
+
+  const addProduct = (id) => {
+    toast('🦄 Producto Agregado!', {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
 
   const container = {
@@ -96,17 +111,19 @@ export default function List() {
                 <Card.Text>
                 {prod.name.substring(0 ,24)}
                 </Card.Text>
-                <button className="agregar" target="<%= product.id %>">
+                <button onClick={() => addProduct()}
+                  className="agregar" 
+                  target="<%= product.id %>">
                             Añadir
                            <MdOutlineAddShoppingCart/>
                         </button>
-             
             </Card.Body>
             </Card>
         </Col>
       </motion.div>
     
     ))}
+    <ToastContainer />
     </Row>
     </div>
   )
