@@ -8,6 +8,8 @@ import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/state';
 import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
+import useAxiosPost from '../../hooks/useAxiosPost';
+import { useCookies } from 'react-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import './List.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,6 +18,8 @@ const imgsProducts = require.context('../../resource/img/products', true);
 export default function List() {
   const navigate  = useNavigate ();
   /* const [productsList , setProductsList] = useState([]); */
+  const [cookies, setCookie] = useCookies(['session']);
+  const [response, error, isLoading, setUrl , setPostData]  = useAxiosPost();
   const {data , loading} = useGetAxios("http://localhost:4000/api/products")
 
   const dispatch = useDispatch();
@@ -54,6 +58,17 @@ export default function List() {
         duration:1
       }
     })
+  }
+
+  const addCarrito = (id) => {
+    const formData = new FormData();
+    formData.append('user_id',cookies);
+    formData.append('product_id', id);
+    setUrl(() => (`http://www.localhost:4000/api/Carrito/addedToShopping/${id}`))
+    setPostData(formData)
+     setInterval(function(){
+     console.log("hecho");
+  }, 3000);
   }
 
   const formattedPrice = (price , discount) => {
