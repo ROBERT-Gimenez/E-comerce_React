@@ -2,7 +2,7 @@ import {useState } from 'react'
 import { AnimatePresence, motion } from "framer-motion";
 import { useForm } from 'react-hook-form'
 import FormRegister from './FormRegister';
-import useAxiosPost from '../../hooks/useAxiosPost';
+import useAxiosPost from '../../hooks/useAxiosPut';
 import Loader from '../Loader';
 
 export default function MyModal({ isOpen, onClose , user }) {

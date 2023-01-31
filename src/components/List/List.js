@@ -8,7 +8,7 @@ import { useSelector , useDispatch } from 'react-redux';
 import { setListStore } from '../../Store/state';
 import Loader from '../Loader';
 import useGetAxios from '../../hooks/useGetAxios';
-import useAxiosPost from '../../hooks/useAxiosPost';
+import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import './List.css'
@@ -19,7 +19,6 @@ export default function List() {
   const navigate  = useNavigate ();
   /* const [productsList , setProductsList] = useState([]); */
   const [cookies, setCookie] = useCookies(['session']);
-  const [response, error, isLoading, setUrl , setPostData]  = useAxiosPost();
   const {data , loading} = useGetAxios("http://localhost:4000/api/products")
 
   const dispatch = useDispatch();
@@ -35,8 +34,8 @@ export default function List() {
     return navigate(`/detalle?productId=${id}`)  
   }
 
-  const addProduct = (id) => {
-    toast('🦄 Producto Agregado!', {
+  const msjAdded = (type , msg) => {
+    type(`🦄 ${msg}`, {
       position: "top-right",
       autoClose: 1500,
       hideProgressBar: false,
@@ -47,6 +46,20 @@ export default function List() {
       theme: "light",
       });
   }
+  const addCarrito = (id) => {
+    const usuario_id = +cookies.session
+    const product_id = id
+    axios.post(`http://localhost:4000/api/Carrito/addedToShopping/${id}` , {usuario_id , product_id })
+    .then(res => {
+          msjAdded(toast , "Producto Agregado!" )
+            console.log(res)
+         }).catch((err) => { 
+            const error = err.response?.data?.message
+            error && msjAdded(toast.info , error )
+            
+        })      
+       
+     }
 
   const container = {
     hidden: { opacity: 0, scale: 0 },
@@ -60,16 +73,6 @@ export default function List() {
     })
   }
 
-  const addCarrito = (id) => {
-    const formData = new FormData();
-    formData.append('user_id',cookies);
-    formData.append('product_id', id);
-    setUrl(() => (`http://www.localhost:4000/api/Carrito/addedToShopping/${id}`))
-    setPostData(formData)
-     setInterval(function(){
-     console.log("hecho");
-  }, 3000);
-  }
 
   const formattedPrice = (price , discount) => {
     let discountOn = parseFloat(price - price * discount / 100).toLocaleString('es-AR', {
@@ -126,7 +129,7 @@ export default function List() {
                 <Card.Text>
                 {prod.name.substring(0 ,24)}
                 </Card.Text>
-                <button onClick={() => addProduct()}
+                <button onClick={() => addCarrito(prod.id)}
                   className="agregar" 
                   target="<%= product.id %>">
                             Añadir

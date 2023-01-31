@@ -1,7 +1,7 @@
 import { useState , useEffect } from "react";
 import axios from "axios";
 
-const useAxiosPost = () => {
+const useAxiosPUT = () => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -32,4 +32,4 @@ const useAxiosPost = () => {
   
     return [response, error, isLoading, setUrl , setPostData];
   };
-export default useAxiosPost;
+export default useAxiosPUT;
