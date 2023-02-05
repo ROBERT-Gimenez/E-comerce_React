@@ -25,13 +25,13 @@ export default function Footer() {
           <p> copyright Bike's Master </p>
           </Navbar.Brand>
         </>
+        </Navbar>
         <div className={'footer_Links'}>
         <a href="https://www.buenosaires.gob.ar/defensaconsumidor">Defensa al Consumidor</a>
         <Link to="/">Contacto</Link>
         <Link to="/">Consulta</Link>
         <Link to="/">Redes sociales</Link>
         </div>
-        </Navbar>
     </div>
   )
 }
