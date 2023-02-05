@@ -125,7 +125,7 @@ export default function Register() {
                         <input type="submit" className="button" value="Sign Up"/>
                     </div>
                     <div className="hr"></div>
-                    <div style= {{backgroundColor:night?"rgb(19 19 21)":"slategray"}} className="footer">
+                    <div /* style= {{backgroundColor:night?"rgb(19 19 21)":"slategray"}} */ className="footer_register">
                         <label className='label' htmlFor="item-1">Already have an account?</label>
 				</div>
 			</div> 
